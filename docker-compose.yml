@@ -1,0 +1,43 @@
+# Local development stack. Mirrors the Railway setup:
+# one Postgres, one backend, one frontend — each built from its own Dockerfile.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: tervisehull
+      POSTGRES_USER: tervisehull
+      POSTGRES_PASSWORD: tervisehull
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tervisehull"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tervisehull
+      SPRING_DATASOURCE_USERNAME: tervisehull
+      SPRING_DATASOURCE_PASSWORD: tervisehull
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    environment:
+      PORT: 3000
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
