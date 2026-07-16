@@ -1,25 +1,25 @@
 # tervisehull
 
-Monorepo, kus backend ja frontend on eraldi builditavad ja deployitavad.
+Monorepo where the backend and frontend are built and deployed independently.
 
 ```
 /
 ├── backend/            # Spring Boot 4 (Java 21, Gradle), PostgreSQL, Dockerfile
 ├── frontend/           # SvelteKit (adapter-node, TypeScript), Dockerfile
-├── docker-compose.yml  # Lokaalne dev: Postgres + backend + frontend
-├── .env.example        # Backendi keskkonnamuutujad (Railway jaoks)
+├── docker-compose.yml  # Local dev: Postgres + backend + frontend
+├── .env.example        # Backend environment variables (for Railway)
 └── .gitignore
 ```
 
-## Eeldused
+## Prerequisites
 
-- Java 21, Gradle (või kasuta `./gradlew` wrapperit)
+- Java 21, Gradle (or use the `./gradlew` wrapper)
 - Node 22+
 - Docker + Docker Compose
 
-## Lokaalne arendus
+## Local development
 
-### Kõik korraga (Docker Compose)
+### Everything at once (Docker Compose)
 
 ```bash
 docker compose up --build
@@ -30,9 +30,9 @@ docker compose up --build
 - Health:   http://localhost:8080/actuator/health
 - Postgres: localhost:5432 (db/user/pass = `tervisehull`)
 
-### Eraldi (ilma Dockerita)
+### Separately (without Docker)
 
-**Andmebaas:**
+**Database:**
 ```bash
 docker compose up db
 ```
@@ -50,50 +50,51 @@ npm install
 npm run dev
 ```
 
-## Buildimine eraldi
+## Building separately
 
 ```bash
 # Backend -> backend/build/libs/backend-0.0.1-SNAPSHOT.jar
 cd backend && ./gradlew bootJar
 
-# Frontend -> frontend/build/ (Node server, käivitub `node build`)
+# Frontend -> frontend/build/ (Node server, started with `node build`)
 cd frontend && npm ci && npm run build
 ```
 
-Mõlemal on oma `Dockerfile`, seega saab ka eraldi konteineriteks ehitada:
+Each has its own `Dockerfile`, so they can also be built as separate containers:
 
 ```bash
 docker build -t tervisehull-backend ./backend
 docker build -t tervisehull-frontend ./frontend
 ```
 
-## Railway deploy
+## Railway deployment
 
-Sama repo → **kolm eraldi teenust** samas Railway projektis.
+Same repo → **three separate services** in one Railway project.
 
-1. **PostgreSQL** — lisa Railway projekti `Postgres` plugin (New → Database → PostgreSQL).
+1. **PostgreSQL** — add a `Postgres` plugin to the Railway project (New → Database → PostgreSQL).
 
-2. **Backend teenus**
-   - New → GitHub Repo → vali see repo
+2. **Backend service**
+   - New → GitHub Repo → select this repo
    - Settings → **Root Directory**: `backend`
-   - Build: Railway leiab `backend/railway.json` + `Dockerfile` automaatselt
-   - Variables (viita Postgres pluginale):
+   - Build: Railway picks up `backend/railway.json` + `Dockerfile` automatically
+   - Variables (reference the Postgres plugin):
      ```
      SPRING_DATASOURCE_URL=jdbc:postgresql://${{Postgres.PGHOST}}:${{Postgres.PGPORT}}/${{Postgres.PGDATABASE}}
      SPRING_DATASOURCE_USERNAME=${{Postgres.PGUSER}}
      SPRING_DATASOURCE_PASSWORD=${{Postgres.PGPASSWORD}}
      SPRING_JPA_HIBERNATE_DDL_AUTO=update
      ```
-   - Healthcheck path (juba railway.json-is): `/actuator/health`
-   - `PORT` annab Railway ise.
+   - Healthcheck path (already in railway.json): `/actuator/health`
+   - `PORT` is provided by Railway.
 
-3. **Frontend teenus**
-   - New → GitHub Repo → sama repo
+3. **Frontend service**
+   - New → GitHub Repo → same repo
    - Settings → **Root Directory**: `frontend`
    - Build: `frontend/railway.json` + `Dockerfile`
-   - `PORT` annab Railway ise (adapter-node kuulab seda).
-   - Kui frontend peab backendiga rääkima, lisa muutuja backendi avaliku URL-iga
-     (nt `PUBLIC_API_URL`) ja kasuta seda SvelteKitis.
+   - `PORT` is provided by Railway (adapter-node listens on it).
+   - If the frontend needs to talk to the backend, add a variable with the
+     backend's public URL (e.g. `PUBLIC_API_URL`) and use it in SvelteKit.
 
-Iga teenus buildib ainult oma kaustast — commit ühte kausta ei re-deploy'i teist,
-kui seadistad Settings → **Watch Paths** (nt backend teenusel `backend/**`).
+Each service builds only from its own directory — a commit to one directory
+won't redeploy the other if you configure Settings → **Watch Paths**
+(e.g. `backend/**` on the backend service).
