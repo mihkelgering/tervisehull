@@ -1,0 +1,54 @@
+package ee.tervisehull.backend.auth;
+
+import java.util.Map;
+import java.util.Optional;
+
+import ee.tervisehull.backend.user.User;
+import ee.tervisehull.backend.user.UserRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api")
+public class AuthController {
+
+	private static final String INVALID_CREDENTIALS_MESSAGE = "Invalid email or password";
+
+	private final UserRepository userRepository;
+	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+	public AuthController(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+		Optional<User> user = userRepository.findByEmail(loginRequest.email());
+
+		if (user.isEmpty() || !passwordEncoder.matches(loginRequest.password(), user.get().getPasswordHash())) {
+			return ResponseEntity.status(401).body(Map.of("message", INVALID_CREDENTIALS_MESSAGE));
+		}
+
+		HttpSession session = request.getSession(true);
+		session.setAttribute("userId", user.get().getId());
+
+		return ResponseEntity.ok(new LoginResponse(user.get().getEmail()));
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<Void> logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		return ResponseEntity.ok().build();
+	}
+}
