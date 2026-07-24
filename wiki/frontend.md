@@ -11,20 +11,31 @@ frontend/src/
 ├── app.d.ts            Ambient types
 ├── lib/
 │   ├── index.ts         (empty, scaffold)
+│   ├── api.ts            API client (login/logout — see below)
 │   └── assets/favicon.svg
 └── routes/
     ├── +layout.svelte   Root layout (scaffold)
-    └── +page.svelte     Landing page (scaffold, no real content yet)
+    ├── +page.svelte     Landing page (scaffold, no real content yet)
+    └── login/
+        └── +page.svelte  Login form (email + password)
 ```
 
-No routing beyond the root page exists yet. No API client, no auth/session
-handling, no forms — see `roadmap.md`.
+Landing page (`/`) is still a scaffold — see `roadmap.md`. No auth-aware layout
+(e.g. redirecting unauthenticated users) exists yet.
+
+## API client
+
+`src/lib/api.ts` wraps `fetch` with `credentials: 'include'` against
+`PUBLIC_API_URL` (`$env/dynamic/public`, defaults to `http://localhost:8080`
+for dev). Exports `login(email, password): Promise<{ email }>` (throws
+`InvalidCredentialsError` on 401) and `logout(): Promise<void>`.
 
 ## Config
 
 - `vite.config.ts`, `tsconfig.json`, `.svelte-kit/` — standard SvelteKit setup.
-- No `PUBLIC_API_URL` (or similar) is wired up yet for talking to the backend;
-  README's Railway section anticipates adding it once needed.
+- `PUBLIC_API_URL` — backend base URL, see `.env.example`. Not required locally
+  (defaults to `http://localhost:8080`); set it in production once the
+  backend's Railway URL is known.
 
 ## Build & run
 

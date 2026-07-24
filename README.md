@@ -89,7 +89,7 @@ Same repo → **three separate services** in one Railway project.
      SPRING_DATASOURCE_URL=jdbc:postgresql://${{Postgres.PGHOST}}:${{Postgres.PGPORT}}/${{Postgres.PGDATABASE}}
      SPRING_DATASOURCE_USERNAME=${{Postgres.PGUSER}}
      SPRING_DATASOURCE_PASSWORD=${{Postgres.PGPASSWORD}}
-     SPRING_JPA_HIBERNATE_DDL_AUTO=update
+     SPRING_JPA_HIBERNATE_DDL_AUTO=validate
      ```
    - Healthcheck path (already in railway.json): `/actuator/health`
    - `PORT` is provided by Railway.

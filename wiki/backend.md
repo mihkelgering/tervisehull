@@ -7,10 +7,24 @@ Spring Boot 4, Java 21, Gradle. Package root: `ee.tervisehull.backend`.
 ```
 backend/src/main/java/ee/tervisehull/backend/
 ├── BackendApplication.java   Spring Boot entry point
-└── web/
-    └── HelloController.java  Sample REST controller
+├── web/
+│   └── HelloController.java  Sample REST controller
+├── auth/
+│   ├── AuthController.java   Login/logout endpoints
+│   ├── LoginRequest.java     Request DTO (email, password)
+│   └── LoginResponse.java    Response DTO (email)
+├── user/
+│   ├── User.java              JPA entity (extends BaseEntity)
+│   └── UserRepository.java    Spring Data repository (findByEmail)
+└── common/
+    ├── BaseEntity.java        Audit fields (see convention below)
+    ├── JpaAuditingConfig.java @EnableJpaAuditing + AuditorAware bean
+    ├── CurrentUserHolder.java Request-scoped holder for the logged-in user id
+    ├── CurrentUserFilter.java Populates CurrentUserHolder from the session
+    └── CorsConfig.java        Allows the local frontend origin, with credentials
 backend/src/main/resources/
-└── application.properties    Server, datasource, JPA, actuator config
+├── application.properties    Server, datasource, JPA, actuator config
+└── db/migration/             Flyway migrations (V1 users table, V2 seed user)
 ```
 
 ## Endpoints (current)
@@ -19,24 +33,34 @@ backend/src/main/resources/
 |---|---|---|---|
 | GET | `/api/hello` | Sample/health-check response with a timestamp | none |
 | GET | `/actuator/health` | Spring Actuator health probe (used by Railway healthcheck) | none |
+| POST | `/api/login` | Email+password login; creates a session cookie (`JSESSIONID`) | none (credentials in body) |
+| POST | `/api/logout` | Invalidates the current session | session cookie |
 
-No other endpoints exist yet. No users table, no auth endpoints — see `roadmap.md`.
+No signup endpoint exists — see `roadmap.md` open decisions.
 
 ## Configuration (`application.properties`)
 
 - `server.port` — from `PORT` env var, defaults to `8080` locally.
 - `spring.datasource.*` — from `SPRING_DATASOURCE_URL/USERNAME/PASSWORD`, defaults
   point at the local docker-compose Postgres (`localhost:5432/tervisehull`).
-- `spring.jpa.hibernate.ddl-auto` — defaults to `update`. Comment in the file notes
-  this should become `validate` once Flyway/Liquibase migrations are introduced.
+- `spring.jpa.hibernate.ddl-auto` — defaults to `validate`. Flyway owns schema
+  management; Hibernate only validates entities against it.
 - `management.endpoints.web.exposure.include=health,info` — actuator exposure for
   the Railway healthcheck.
 
 ## Data layer
 
-Postgres, reached via the datasource config above. **No migration tool
-(Flyway/Liquibase) is wired into `build.gradle` yet** — `ddl-auto=update` is doing
-schema management for now. This is called out as needed in `roadmap.md`.
+Postgres, reached via the datasource config above. Schema is managed by **Flyway**
+(`backend/src/main/resources/db/migration/`, Spring Boot 4's
+`spring-boot-starter-flyway` module — plain `flyway-core` alone does not
+autoconfigure migrations on this version).
+
+### `users` table
+
+Created by `V1__create_users_table.sql`, columns: `id` (identity), `email`
+(unique), `password_hash` (bcrypt), plus the four audit columns below.
+`V2__seed_test_user.sql` seeds one dev/test account: `test@tervisehull.ee` /
+`DevPassword123!` — **dev-only, not for production**.
 
 ### Convention: audit fields on every table
 
@@ -44,12 +68,26 @@ schema management for now. This is called out as needed in `roadmap.md`.
 `updated_by`.** This is a standing rule, not a per-table decision — apply it to
 every new migration/entity, no exceptions unless explicitly decided otherwise.
 
-Planned mechanism (see `roadmap.md` for status): a `BaseEntity` (`@MappedSuperclass`)
-providing these four fields via Spring Data JPA auditing (`@CreatedDate`,
-`@CreatedBy`, `@LastModifiedDate`, `@LastModifiedBy` + `@EnableJpaAuditing`), with
-every JPA entity extending it. `created_by`/`updated_by` are nullable, logical
-references to `users.id` (no FK constraint, since not every write has an acting
-user yet, e.g. seed data or unauthenticated requests).
+Mechanism (implemented, see `common/` above): `BaseEntity` (`@MappedSuperclass`)
+provides these four fields via Spring Data JPA auditing (`@CreatedDate`,
+`@CreatedBy`, `@LastModifiedDate`, `@LastModifiedBy` + `@EnableJpaAuditing`), and
+every JPA entity extends it (`User` is the first). `created_by`/`updated_by` are
+nullable, logical references to `users.id` (no FK constraint, since not every
+write has an acting user yet, e.g. seed data or unauthenticated requests). The
+acting user id is resolved by `CurrentUserFilter` reading the `userId` session
+attribute set at login into a request-scoped `CurrentUserHolder`, which
+`JpaAuditingConfig`'s `AuditorAware` bean reads from.
+
+### Auth mechanism
+
+Session-cookie based, no Spring Security (deliberately — only
+`spring-security-crypto` for `BCryptPasswordEncoder`, to avoid a default
+filter chain/login page/CSRF handling not needed at this stage). `POST
+/api/login` checks the password hash and, on success, calls
+`request.getSession(true)` and stores `userId`; the servlet container's
+`JSESSIONID` cookie is the session token. `POST /api/logout` invalidates the
+session. Both directions never distinguish "unknown email" from "wrong
+password" in their response.
 
 ## Build & run
 
