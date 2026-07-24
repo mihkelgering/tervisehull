@@ -21,6 +21,8 @@ Monorepo with two independently built/deployed services and no shared code betwe
 
 Schema management currently relies on `spring.jpa.hibernate.ddl-auto=update` (see `backend/src/main/resources/application.properties`) — no Flyway/Liquibase migrations are wired in yet, which will need to change before the `users` table lands (see `wiki/roadmap.md`).
 
+**Standing rule: every table gets audit columns** — `created_at`, `created_by`, `updated_at`, `updated_by`. No exceptions unless explicitly decided otherwise. See `wiki/backend.md` for the `BaseEntity`/JPA-auditing mechanism.
+
 Each service has its own `Dockerfile` and `railway.json` and deploys as a separate Railway service from the same repo; deployment details are in `wiki/operations.md`.
 
 ## Commands

@@ -28,16 +28,45 @@ frontend/backend are on different Railway domains), the landing page itself
       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
       email VARCHAR(255) NOT NULL UNIQUE,
       password_hash VARCHAR(255) NOT NULL,
-      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      created_by BIGINT,
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      updated_by BIGINT
   );
   ```
   (Identity column instead of UUID/`gen_random_uuid()` — avoids depending on the
-  `pgcrypto` extension being enabled on the `postgres:16-alpine` image.)
+  `pgcrypto` extension being enabled on the `postgres:16-alpine` image.
+  `created_by`/`updated_by` are nullable, logical references to `users.id` —
+  no FK constraint, since the first user and seed data have no acting user yet.
+  See "Audit fields convention" below — every table gets these four columns
+  from now on.)
 - `V2__seed_test_user.sql`: inserts one dev/test user, `test@tervisehull.ee` /
   password `DevPassword123!`, as a bcrypt hash computed ahead of time and pasted
   into the migration as a literal. A comment in the migration marks it as
   dev-only seed data, not for production use. Credentials are also recorded in
   `wiki/backend.md`.
+
+### Audit fields convention (project-wide, established here)
+
+Every table gets four audit columns: `created_at`, `created_by`, `updated_at`,
+`updated_by`. This is a standing convention (recorded in `wiki/backend.md` and
+`CLAUDE.md`, not just here) — apply it to every future migration/entity.
+
+- `BaseEntity.java` (`@MappedSuperclass`, in
+  `ee.tervisehull.backend.common` or similar): fields `createdAt`, `createdBy`,
+  `updatedAt`, `updatedBy`, annotated with Spring Data JPA auditing
+  (`@CreatedDate`, `@CreatedBy`, `@LastModifiedDate`, `@LastModifiedBy`) plus
+  `@EntityListeners(AuditingEntityListener.class)`.
+- `@EnableJpaAuditing` on `BackendApplication`.
+- `AuditorAware<Long>` bean resolves the acting user's id for `createdBy`/
+  `updatedBy`. For this task, since we don't have Spring Security's
+  `SecurityContext`, it reads from a request-scoped holder populated by a small
+  `Filter` that looks up the `userId` session attribute (the same one `AuthController`
+  sets on login) — returns `Optional.empty()` when there's no session (e.g. the
+  login request itself, or unauthenticated requests), which leaves `created_by`/
+  `updated_by` `NULL`.
+- `User extends BaseEntity` — first entity to use it, sets the pattern for
+  every entity added after this.
 
 ### Auth
 
@@ -45,8 +74,9 @@ frontend/backend are on different Railway domains), the landing page itself
   `spring-boot-starter-security`) — gives `BCryptPasswordEncoder` without pulling
   in a default security filter chain / login page / CSRF handling we'd have to
   fight with, since we're rolling session handling by hand for this scope.
-- `User` JPA entity (`id`, `email`, `passwordHash`, `createdAt`) + `UserRepository
-  extends JpaRepository<User, Long>` with `findByEmail`.
+- `User` JPA entity (`email`, `passwordHash`, extends `BaseEntity` for
+  `id`/audit fields) + `UserRepository extends JpaRepository<User, Long>` with
+  `findByEmail`.
 - `AuthController`:
   - `POST /api/login` — body `{email, password}`. Looks up user by email,
     checks `BCryptPasswordEncoder.matches`. On success: `request.getSession(true)`,
@@ -98,6 +128,7 @@ frontend/backend are on different Railway domains), the landing page itself
   handling); add the new open decisions (signup endpoint, production cookie
   settings) if not already listed.
 - `wiki/backend.md`: add `/api/login`, `/api/logout` to the endpoint table; note
-  Flyway is now in use; document the `users` table.
+  Flyway is now in use; document the `users` table and the `BaseEntity`/audit
+  fields convention.
 - `wiki/frontend.md`: add `/login` route, note `src/lib/api.ts`.
 - `wiki/log.md`: append entry.

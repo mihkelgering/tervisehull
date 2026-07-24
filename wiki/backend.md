@@ -38,6 +38,19 @@ Postgres, reached via the datasource config above. **No migration tool
 (Flyway/Liquibase) is wired into `build.gradle` yet** — `ddl-auto=update` is doing
 schema management for now. This is called out as needed in `roadmap.md`.
 
+### Convention: audit fields on every table
+
+**Every table gets four audit columns: `created_at`, `created_by`, `updated_at`,
+`updated_by`.** This is a standing rule, not a per-table decision — apply it to
+every new migration/entity, no exceptions unless explicitly decided otherwise.
+
+Planned mechanism (see `roadmap.md` for status): a `BaseEntity` (`@MappedSuperclass`)
+providing these four fields via Spring Data JPA auditing (`@CreatedDate`,
+`@CreatedBy`, `@LastModifiedDate`, `@LastModifiedBy` + `@EnableJpaAuditing`), with
+every JPA entity extending it. `created_by`/`updated_by` are nullable, logical
+references to `users.id` (no FK constraint, since not every write has an acting
+user yet, e.g. seed data or unauthenticated requests).
+
 ## Build & run
 
 ```bash

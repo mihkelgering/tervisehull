@@ -18,7 +18,7 @@ Status inferred from current repo state (see linked pages) as of 2026-07-24.
 | 2 | Backend setup: Spring Boot skeleton, healthcheck endpoint | done | `GET /actuator/health`, `GET /api/hello`. See `backend.md`. |
 | 3 | Postgres: local Docker container, connection from backend, Flyway/Liquibase migrations from the start | in progress | Container + datasource connection exist (`docker-compose.yml`, `application.properties`). **Flyway/Liquibase not yet added** — schema is currently managed via `ddl-auto=update`. |
 | 4 | Docker: Dockerfile for both services, docker-compose for local dev | done | `backend/Dockerfile`, `frontend/Dockerfile`, root `docker-compose.yml`. |
-| 5 | Backend: `users` table + migration | todo | No migration tool yet (blocks this — see #3). |
+| 5 | Backend: `users` table + migration | todo | No migration tool yet (blocks this — see #3). Table must include the audit columns (see "Technical ideas" below) from the start. |
 | 6 | Backend: login endpoint (email + password), session cookie | todo | No auth code exists yet. |
 | 7 | Backend: logout endpoint (session clear) | todo | Depends on #6. |
 | 8 | Frontend: landing page | todo | `+page.svelte` is currently a scaffold with no real content. |
@@ -32,9 +32,21 @@ Given the dependencies above: #3 (add Flyway/Liquibase) unblocks #5, which unblo
 #6 and #7 (auth), which unblocks #9 (frontend login). #8 (landing page) and #11
 (CI/CD) are independent and can happen anytime.
 
+## Technical ideas
+
+- **Audit fields on every table** (decided, standing rule — see `backend.md`):
+  every table gets `created_at`, `created_by`, `updated_at`, `updated_by`.
+  Mechanism: a `BaseEntity.java` (`@MappedSuperclass`) providing these four
+  fields via Spring Data JPA auditing, with every entity extending it. Apply
+  whenever a new table/entity is added — no exceptions unless explicitly
+  decided otherwise.
+
 ## Open decisions
 
 - Migration tool choice: Flyway vs Liquibase — not yet decided.
 - Session mechanism details (cookie store: in-memory, DB-backed, or Spring Session
   + Redis?) — not yet decided.
 - Domain model beyond `users` — not yet defined (depends on Purpose above).
+- `AuditorAware` resolution of the acting user (for `created_by`/`updated_by`)
+  before full Spring Security is in place — see login design spec for the
+  session-based approach being used initially.
