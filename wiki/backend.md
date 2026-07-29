@@ -10,9 +10,10 @@ backend/src/main/java/ee/tervisehull/backend/
 ├── web/
 │   └── HelloController.java  Sample REST controller
 ├── auth/
-│   ├── AuthController.java   Login/logout endpoints
+│   ├── AuthController.java   Login/logout/register/me endpoints
 │   ├── LoginRequest.java     Request DTO (email, password)
-│   └── LoginResponse.java    Response DTO (email)
+│   ├── LoginResponse.java    Response DTO (email) — reused by register and me
+│   └── RegisterRequest.java  Request DTO (email, password — Bean Validation)
 ├── user/
 │   ├── User.java              JPA entity (extends BaseEntity)
 │   └── UserRepository.java    Spring Data repository (findByEmail)
@@ -35,8 +36,8 @@ backend/src/main/resources/
 | GET | `/actuator/health` | Spring Actuator health probe (used by Railway healthcheck) | none |
 | POST | `/api/login` | Email+password login; creates a session cookie (`JSESSIONID`) | none (credentials in body) |
 | POST | `/api/logout` | Invalidates the current session | session cookie |
-
-No signup endpoint exists — see `roadmap.md` open decisions.
+| POST | `/api/register` | Email+password signup; creates the user and a session cookie (auto-login). 409 if email taken, 400 on validation failure (password &lt; 8 chars) | none (credentials in body) |
+| GET | `/api/me` | Returns the logged-in user's email, or 401 if not logged in | session cookie |
 
 ## Configuration (`application.properties`)
 

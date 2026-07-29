@@ -11,24 +11,33 @@ frontend/src/
 ├── app.d.ts            Ambient types
 ├── lib/
 │   ├── index.ts         (empty, scaffold)
-│   ├── api.ts            API client (login/logout — see below)
+│   ├── api.ts            API client (see below)
 │   └── assets/favicon.svg
 └── routes/
     ├── +layout.svelte   Root layout (scaffold)
-    ├── +page.svelte     Landing page (scaffold, no real content yet)
-    └── login/
-        └── +page.svelte  Login form (email + password)
+    ├── +page.svelte     Public marketing landing page (placeholder copy)
+    ├── login/
+    │   └── +page.svelte  Login form (email + password) → redirects to /dashboard
+    ├── register/
+    │   └── +page.svelte  Registration form (email + password) → redirects to /dashboard
+    └── dashboard/
+        └── +page.svelte  Auth-gated: checks session via me() on mount, redirects to
+                           /login if not logged in; otherwise shows a welcome + logout
 ```
 
-Landing page (`/`) is still a scaffold — see `roadmap.md`. No auth-aware layout
-(e.g. redirecting unauthenticated users) exists yet.
+Landing page (`/`) copy is placeholder — see `roadmap.md`. It is public/static
+with no auth-check. `/dashboard` is the only auth-gated page so far (client-side
+check via `me()`, not SSR-guarded).
 
 ## API client
 
 `src/lib/api.ts` wraps `fetch` with `credentials: 'include'` against
 `PUBLIC_API_URL` (`$env/dynamic/public`, defaults to `http://localhost:8080`
-for dev). Exports `login(email, password): Promise<{ email }>` (throws
-`InvalidCredentialsError` on 401) and `logout(): Promise<void>`.
+for dev). Exports:
+- `login(email, password): Promise<{ email }>` — throws `InvalidCredentialsError` on 401.
+- `register(email, password): Promise<{ email }>` — throws `EmailTakenError` on 409. Auto-logs in on success (same session as login).
+- `me(): Promise<{ email }>` — throws `NotLoggedInError` on 401. Used by `/dashboard` to check session state.
+- `logout(): Promise<void>`.
 
 ## Config
 

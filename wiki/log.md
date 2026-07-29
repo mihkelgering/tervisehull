@@ -16,3 +16,10 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   against the real docker-compose stack (curl: session cookie set, 401 on
   wrong password, CORS preflight). Pages touched: backend.md, frontend.md,
   roadmap.md.
+- 2026-07-29 — Added registration (POST /api/register, auto-login) and a
+  session-check endpoint (GET /api/me). Rewrote the landing page (/) as a
+  public marketing page with placeholder copy, added /register and
+  /dashboard pages; login and registration now redirect to /dashboard.
+  Verified against the real docker-compose stack (curl: register, duplicate
+  409, /api/me reflecting session state, logout invalidation, login).
+  Pages touched: backend.md, frontend.md, roadmap.md.
