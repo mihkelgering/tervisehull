@@ -14,7 +14,7 @@ export class InvalidCredentialsError extends Error {
 
 export class EmailTakenError extends Error {
 	constructor() {
-		super('That email is already registered');
+		super('Registration failed. If you already have an account, try logging in instead.');
 	}
 }
 

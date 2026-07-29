@@ -48,7 +48,8 @@ public class AuthController {
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest, HttpServletRequest request) {
 		if (userRepository.findByEmail(registerRequest.email()).isPresent()) {
-			return ResponseEntity.status(409).body(Map.of("message", "Email already registered"));
+			return ResponseEntity.status(409)
+				.body(Map.of("message", "Registration failed. If you already have an account, try logging in instead."));
 		}
 
 		User user = userRepository.save(

@@ -80,7 +80,8 @@ class AuthControllerTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"email\":\"test@tervisehull.ee\",\"password\":\"SomePassword123\"}"))
 			.andExpect(status().isConflict())
-			.andExpect(content().json("{\"message\":\"Email already registered\"}"));
+			.andExpect(content().json(
+				"{\"message\":\"Registration failed. If you already have an account, try logging in instead.\"}"));
 	}
 
 	@Test
