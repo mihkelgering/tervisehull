@@ -27,20 +27,33 @@ set manually.
 
 ## Railway deployment
 
-Same repo → three separate services in one Railway project:
+**Status: live.** Project `tervisehull` (workspace: Mihkel Gering's Projects),
+environment `production`, three services, GitHub-connected to `main`:
 
-1. **PostgreSQL** — Railway plugin (New → Database → PostgreSQL).
-2. **Backend** — Root Directory `backend`; builds from `backend/railway.json` +
-   `Dockerfile`; healthcheck `/actuator/health`; datasource vars reference the
-   Postgres plugin (`${{Postgres.PGHOST}}` etc).
-3. **Frontend** — Root Directory `frontend`; builds from `frontend/railway.json` +
-   `Dockerfile`; needs a `PUBLIC_API_URL`-style var once it talks to the backend.
+- **Postgres** — `railway add --database postgres`. Internal-only, no public domain.
+- **backend** — `https://backend-production-49fb.up.railway.app`. Root Directory
+  `backend` (dashboard-only setting, no CLI flag for it), builds from
+  `backend/railway.json` + `Dockerfile`, healthcheck `/actuator/health`.
+  Variables: `SPRING_DATASOURCE_URL`/`USERNAME`/`PASSWORD` reference the
+  Postgres service (`${{Postgres.PGHOST}}` etc), `SPRING_JPA_HIBERNATE_DDL_AUTO=validate`,
+  `CORS_ALLOWED_ORIGINS=https://frontend-production-4c11.up.railway.app`.
+- **frontend** — `https://frontend-production-4c11.up.railway.app`. Root
+  Directory `frontend`. Variable: `PUBLIC_API_URL=https://backend-production-49fb.up.railway.app`.
+  **Gotcha:** the domain's target port defaulted to 3000 (guessed from the
+  Dockerfile's `EXPOSE 3000`), but `adapter-node` actually listens on
+  whatever Railway injects as `PORT` (8080 in this environment) — this caused
+  a 502 until the domain's target port was updated to match
+  (`railway domain update <domain> --port 8080 --service frontend`). Check
+  this again if the frontend 502s after a fresh domain generation.
 
-Configure **Watch Paths** per service (e.g. `backend/**`) so a commit to one
-directory doesn't redeploy the other.
-
-**Status:** documented and ready to configure; whether the Railway services are
-actually provisioned yet is tracked in `roadmap.md`.
+Provisioned via the `railway` CLI (`brew install railway`, `railway login`,
+`railway init`, `railway add --database postgres`,
+`railway add --repo <owner>/<repo> --branch main --service <name>`,
+`railway variable set ...`). **Root Directory has no CLI equivalent** —
+set it in the dashboard (Service → Settings → Source → Root Directory) for
+each of `backend`/`frontend`; setting it triggers a redeploy automatically.
+Watch Paths (e.g. `backend/**`) were also set per service in the dashboard so
+a commit to one directory doesn't redeploy the other.
 
 ## CI/CD
 

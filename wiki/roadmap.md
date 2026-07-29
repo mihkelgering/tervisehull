@@ -23,7 +23,7 @@ Status inferred from current repo state (see linked pages) as of 2026-07-24.
 | 7 | Backend: logout endpoint (session clear) | done | `POST /api/logout`. |
 | 8 | Frontend: landing page | done | Public marketing page at `/` with placeholder copy — **needs the real product description, see "Pending content" below.** |
 | 9 | Frontend: login form + session handling (cookie automatic, `fetch` with `credentials: include`) | done | `/login` route + `src/lib/api.ts`. Redirects to `/dashboard` on success. |
-| 10 | Railway: provision two services, add env vars | in progress | Deployment process documented in `operations.md`; actual provisioning status unconfirmed — confirm and update this row. |
+| 10 | Railway: provision two services, add env vars | done | Project `tervisehull`: Postgres + `backend` + `frontend` services, GitHub-connected (`main` branch), Root Directory set per service, public domains generated. See `operations.md`. |
 | 11 | CI/CD: GitHub Actions — test + build + auto-deploy on `main` | todo | No `.github/workflows` in the repo yet. |
 | 12 | Backend + frontend: registration flow | done | `POST /api/register` (auto-login on success, 409 if email taken), `/register` page. See `backend.md`. |
 | 13 | Frontend: dashboard | done | `/dashboard`, auth-gated via `GET /api/me`. Placeholder content only ("Welcome, `{email}`" + logout) — **needs real dashboard content, see "Pending content" below.** |
@@ -73,6 +73,10 @@ on product description input, not on other engineering work.
   way, notify existing users by email) needs an email-sending flow that
   doesn't exist yet.
 - Production cross-site cookie hardening (`SameSite=None; Secure`) and CORS
-  origin — needed once frontend/backend are deployed to different Railway
-  domains; current `CorsConfig` only allows `http://localhost:3000`.
+  origin — ~~resolved~~: `CorsConfig` now reads allowed origins from
+  `CORS_ALLOWED_ORIGINS` (comma-separated), set to the deployed frontend's
+  Railway URL in production. `SameSite=None; Secure` cookie hardening is
+  still open, though frontend and backend are both HTTPS on Railway's own
+  domains so `SameSite=Lax` may already work — needs verifying with a real
+  cross-site login in production.
 - No rate-limiting on login attempts.

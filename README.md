@@ -90,6 +90,7 @@ Same repo → **three separate services** in one Railway project.
      SPRING_DATASOURCE_USERNAME=${{Postgres.PGUSER}}
      SPRING_DATASOURCE_PASSWORD=${{Postgres.PGPASSWORD}}
      SPRING_JPA_HIBERNATE_DDL_AUTO=validate
+     CORS_ALLOWED_ORIGINS=<frontend's public URL>
      ```
    - Healthcheck path (already in railway.json): `/actuator/health`
    - `PORT` is provided by Railway.
@@ -99,9 +100,14 @@ Same repo → **three separate services** in one Railway project.
    - Settings → **Root Directory**: `frontend`
    - Build: `frontend/railway.json` + `Dockerfile`
    - `PORT` is provided by Railway (adapter-node listens on it).
-   - If the frontend needs to talk to the backend, add a variable with the
-     backend's public URL (e.g. `PUBLIC_API_URL`) and use it in SvelteKit.
+   - Variable: `PUBLIC_API_URL=<backend's public URL>`.
+   - After generating the domain, double-check Settings → Networking →
+     target port matches what `adapter-node` actually listens on (the
+     injected `PORT`) — it can default to the Dockerfile's `EXPOSE` value
+     instead and cause a 502.
 
 Each service builds only from its own directory — a commit to one directory
 won't redeploy the other if you configure Settings → **Watch Paths**
 (e.g. `backend/**` on the backend service).
+
+See `wiki/operations.md` for this project's actual deployed URLs and setup notes.

@@ -23,3 +23,11 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   Verified against the real docker-compose stack (curl: register, duplicate
   409, /api/me reflecting session state, logout invalidation, login).
   Pages touched: backend.md, frontend.md, roadmap.md.
+- 2026-07-29 — Provisioned Railway (project `tervisehull`: Postgres, backend,
+  frontend, GitHub-connected to `main`) via the `railway` CLI. Made CORS
+  allowed origins configurable (`CORS_ALLOWED_ORIGINS` env var) instead of
+  hardcoded `localhost:3000`, needed for the deployed frontend. Fixed a 502
+  caused by the frontend's Railway domain defaulting to target port 3000
+  while `adapter-node` actually listens on the injected `PORT` (8080).
+  Verified end-to-end against the live URLs (health, CORS preflight,
+  registration with session cookie). Pages touched: roadmap.md, operations.md.
