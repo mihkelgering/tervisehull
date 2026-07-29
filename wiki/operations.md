@@ -27,12 +27,19 @@ set manually.
 
 ## Railway deployment
 
-**Status: provisioned but stopped.** Project `tervisehull` (workspace: Mihkel
-Gering's Projects), environment `production`, three services, GitHub-connected
-to `main`. `backend` and `frontend` were manually stopped after initial
-verification (likely to avoid running cost) — `Postgres` is still up. To
-resume: `railway redeploy --service backend` /
-`railway redeploy --service frontend`, or Resume/Deploy from the dashboard.
+**Status: live.** Project `tervisehull` (workspace: Mihkel Gering's Projects),
+environment `production`, three services, GitHub-connected to `main`, all
+online (`backend`, `frontend`, `Postgres`).
+
+Services were manually stopped once after initial verification and later
+resumed — if that happens again: `railway redeploy --service <name>` (or
+Resume/Deploy from the dashboard) for `backend`/`frontend`. **If `Postgres`
+itself was stopped**, resume it first — `railway redeploy`/`restart` can
+report "No deployment found for service" misleadingly while it's actually
+coming back up; re-check `railway status` after a few seconds before assuming
+it failed. Redeploy `backend` only after `Postgres` shows Online, since it
+needs a DB connection at startup (Flyway runs migrations before the app is
+considered healthy).
 
 - **Postgres** — `railway add --database postgres`. Internal-only, no public domain.
 - **backend** — `https://backend-production-49fb.up.railway.app`. Root Directory
