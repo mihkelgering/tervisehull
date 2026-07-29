@@ -67,6 +67,11 @@ on product description input, not on other engineering work.
 - Domain model beyond `users` — not yet defined (depends on Purpose above).
 - ~~No signup/registration endpoint~~ — resolved: `POST /api/register`.
 - No email verification on signup.
+- Registration still leaks some user-enumeration signal via the distinct 409
+  status code on duplicate email (message text was made vaguer, but the
+  status code differs from success). Full fix (identical response either
+  way, notify existing users by email) needs an email-sending flow that
+  doesn't exist yet.
 - Production cross-site cookie hardening (`SameSite=None; Secure`) and CORS
   origin — needed once frontend/backend are deployed to different Railway
   domains; current `CorsConfig` only allows `http://localhost:3000`.
