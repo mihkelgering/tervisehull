@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -88,5 +89,26 @@ class AuthControllerTest {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\"email\":\"shortpw@tervisehull.ee\",\"password\":\"short\"}"))
 			.andExpect(status().isBadRequest());
+	}
+
+	@Test
+	void meWithoutSessionReturns401() throws Exception {
+		mockMvc.perform(get("/api/me"))
+			.andExpect(status().isUnauthorized());
+	}
+
+	@Test
+	void meAfterLoginReturnsEmail() throws Exception {
+		MockHttpSession session = new MockHttpSession();
+
+		mockMvc.perform(post("/api/login")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"email\":\"test@tervisehull.ee\",\"password\":\"DevPassword123!\"}")
+				.session(session))
+			.andExpect(status().isOk());
+
+		mockMvc.perform(get("/api/me").session(session))
+			.andExpect(status().isOk())
+			.andExpect(content().json("{\"email\":\"test@tervisehull.ee\"}"));
 	}
 }

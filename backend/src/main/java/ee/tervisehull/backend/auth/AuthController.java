@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,5 +67,19 @@ public class AuthController {
 			session.invalidate();
 		}
 		return ResponseEntity.ok().build();
+	}
+
+	@GetMapping("/me")
+	public ResponseEntity<?> me(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		Object userId = session != null ? session.getAttribute("userId") : null;
+
+		if (!(userId instanceof Long id)) {
+			return ResponseEntity.status(401).body(Map.of("message", "Not logged in"));
+		}
+
+		return userRepository.findById(id)
+			.<ResponseEntity<?>>map(user -> ResponseEntity.ok(new LoginResponse(user.getEmail())))
+			.orElseGet(() -> ResponseEntity.status(401).body(Map.of("message", "Not logged in")));
 	}
 }
