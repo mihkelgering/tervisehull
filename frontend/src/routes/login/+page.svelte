@@ -14,7 +14,7 @@
 
 		try {
 			await login(email, password);
-			await goto('/');
+			await goto('/dashboard');
 		} catch (error) {
 			errorMessage =
 				error instanceof InvalidCredentialsError
