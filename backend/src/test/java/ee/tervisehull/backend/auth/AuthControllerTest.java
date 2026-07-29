@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -15,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 class AuthControllerTest {
 
 	@Autowired
@@ -56,5 +59,34 @@ class AuthControllerTest {
 	void logoutReturnsOk() throws Exception {
 		mockMvc.perform(post("/api/logout"))
 			.andExpect(status().isOk());
+	}
+
+	@Test
+	void registeringNewEmailCreatesSession() throws Exception {
+		MvcResult result = mockMvc.perform(post("/api/register")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"email\":\"newuser@tervisehull.ee\",\"password\":\"SomePassword123\"}"))
+			.andExpect(status().isOk())
+			.andExpect(content().json("{\"email\":\"newuser@tervisehull.ee\"}"))
+			.andReturn();
+
+		assertNotNull(result.getRequest().getSession(false));
+	}
+
+	@Test
+	void registeringExistingEmailReturns409() throws Exception {
+		mockMvc.perform(post("/api/register")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"email\":\"test@tervisehull.ee\",\"password\":\"SomePassword123\"}"))
+			.andExpect(status().isConflict())
+			.andExpect(content().json("{\"message\":\"Email already registered\"}"));
+	}
+
+	@Test
+	void registeringWithShortPasswordReturns400() throws Exception {
+		mockMvc.perform(post("/api/register")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"email\":\"shortpw@tervisehull.ee\",\"password\":\"short\"}"))
+			.andExpect(status().isBadRequest());
 	}
 }

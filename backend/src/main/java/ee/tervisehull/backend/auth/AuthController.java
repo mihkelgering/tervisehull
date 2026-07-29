@@ -8,6 +8,7 @@ import ee.tervisehull.backend.user.UserRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,6 +42,21 @@ public class AuthController {
 		session.setAttribute("userId", user.get().getId());
 
 		return ResponseEntity.ok(new LoginResponse(user.get().getEmail()));
+	}
+
+	@PostMapping("/register")
+	public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest, HttpServletRequest request) {
+		if (userRepository.findByEmail(registerRequest.email()).isPresent()) {
+			return ResponseEntity.status(409).body(Map.of("message", "Email already registered"));
+		}
+
+		User user = userRepository.save(
+			new User(registerRequest.email(), passwordEncoder.encode(registerRequest.password())));
+
+		HttpSession session = request.getSession(true);
+		session.setAttribute("userId", user.getId());
+
+		return ResponseEntity.ok(new LoginResponse(user.getEmail()));
 	}
 
 	@PostMapping("/logout")
