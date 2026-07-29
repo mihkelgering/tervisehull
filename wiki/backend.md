@@ -79,6 +79,22 @@ acting user id is resolved by `CurrentUserFilter` reading the `userId` session
 attribute set at login into a request-scoped `CurrentUserHolder`, which
 `JpaAuditingConfig`'s `AuditorAware` bean reads from.
 
+**Self-created rows (no other acting user exists yet):** rather than leaving
+`created_by`/`updated_by` `NULL`, self-reference the row's own id.
+Self-registration (`AuthController.register`) does this in code: save once
+(auditing leaves the fields `NULL` since there's no session yet), then
+`user.setCreatedBy(user.getId())` / `setUpdatedBy(...)` and save again —
+`BaseEntity` exposes setters for exactly this case (JPA auditing only
+overwrites these fields when `AuditorAware` has a value, so a manually-set
+value sticks). Seed/migration data does the equivalent in SQL, e.g.
+`UPDATE users SET created_by = id, updated_by = id WHERE ...` after the
+insert (see `V3__backfill_seed_user_created_by.sql`), or a
+`WITH inserted AS (INSERT ... RETURNING id) UPDATE ... FROM inserted` in a
+single statement for new seed rows going forward. **Never edit an
+already-applied migration file to fix this retroactively** — Flyway
+validates checksums of applied migrations on startup, so a follow-up
+migration is required instead.
+
 ### Auth mechanism
 
 Session-cookie based, no Spring Security (deliberately — only

@@ -55,6 +55,12 @@ public class AuthController {
 		User user = userRepository.save(
 			new User(registerRequest.email(), passwordEncoder.encode(registerRequest.password())));
 
+		// No other acting user exists yet for a self-registration, so the user
+		// is recorded as having created their own account.
+		user.setCreatedBy(user.getId());
+		user.setUpdatedBy(user.getId());
+		userRepository.save(user);
+
 		HttpSession session = request.getSession(true);
 		session.setAttribute("userId", user.getId());
 

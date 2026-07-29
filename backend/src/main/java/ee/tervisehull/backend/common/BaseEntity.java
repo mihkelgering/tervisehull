@@ -1,4 +1,4 @@
-package ee.tervisehull.backend.common;
+    package ee.tervisehull.backend.common;
 
 import java.time.Instant;
 
@@ -57,5 +57,16 @@ public abstract class BaseEntity {
 
 	public Long getUpdatedBy() {
 		return updatedBy;
+	}
+
+	// For rows with no other acting user at creation time (e.g. self-registration):
+	// JPA auditing only overwrites these when AuditorAware has a value, so a value
+	// set here before save (typically the row's own id, once known) sticks.
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public void setUpdatedBy(Long updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 }

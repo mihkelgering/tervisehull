@@ -1,5 +1,10 @@
 package ee.tervisehull.backend.auth;
 
+import java.util.Optional;
+
+import ee.tervisehull.backend.user.User;
+import ee.tervisehull.backend.user.UserRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
@@ -10,7 +15,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -23,6 +30,9 @@ class AuthControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Test
 	void loginWithValidCredentialsCreatesSession() throws Exception {
@@ -72,6 +82,20 @@ class AuthControllerTest {
 			.andReturn();
 
 		assertNotNull(result.getRequest().getSession(false));
+	}
+
+	@Test
+	void registeringSetsCreatedByAndUpdatedByToOwnId() throws Exception {
+		mockMvc.perform(post("/api/register")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\"email\":\"self-ref@tervisehull.ee\",\"password\":\"SomePassword123\"}"))
+			.andExpect(status().isOk());
+
+		Optional<User> saved = userRepository.findByEmail("self-ref@tervisehull.ee");
+
+		assertTrue(saved.isPresent());
+		assertEquals(saved.get().getId(), saved.get().getCreatedBy());
+		assertEquals(saved.get().getId(), saved.get().getUpdatedBy());
 	}
 
 	@Test

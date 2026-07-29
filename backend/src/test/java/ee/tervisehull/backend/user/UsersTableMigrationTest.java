@@ -32,4 +32,17 @@ class UsersTableMigrationTest {
 			(rs, rowNum) -> null,
 			"test@tervisehull.ee");
 	}
+
+	@Test
+	void seedUserCreatedByAndUpdatedBySelfReferenceItsOwnId() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+		Long[] row = jdbcTemplate.queryForObject(
+			"SELECT id, created_by, updated_by FROM users WHERE email = ?",
+			(rs, rowNum) -> new Long[] { rs.getLong("id"), rs.getLong("created_by"), rs.getLong("updated_by") },
+			"test@tervisehull.ee");
+
+		assertEquals(row[0], row[1]);
+		assertEquals(row[0], row[2]);
+	}
 }
