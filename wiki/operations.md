@@ -27,8 +27,12 @@ set manually.
 
 ## Railway deployment
 
-**Status: live.** Project `tervisehull` (workspace: Mihkel Gering's Projects),
-environment `production`, three services, GitHub-connected to `main`:
+**Status: provisioned but stopped.** Project `tervisehull` (workspace: Mihkel
+Gering's Projects), environment `production`, three services, GitHub-connected
+to `main`. `backend` and `frontend` were manually stopped after initial
+verification (likely to avoid running cost) — `Postgres` is still up. To
+resume: `railway redeploy --service backend` /
+`railway redeploy --service frontend`, or Resume/Deploy from the dashboard.
 
 - **Postgres** — `railway add --database postgres`. Internal-only, no public domain.
 - **backend** — `https://backend-production-49fb.up.railway.app`. Root Directory
