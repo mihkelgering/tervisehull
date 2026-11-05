@@ -2,6 +2,10 @@
 
 Monorepo where the backend and frontend are built and deployed independently.
 
+The standalone [health knowledge database](db/README.md) is available under `db/`,
+with its schema, demonstration data and separate PostgreSQL setup. It is independent
+of the backend's existing users database and migration history.
+
 ```
 /
 ├── backend/            # Spring Boot 4 (Java 21, Gradle), PostgreSQL, Dockerfile

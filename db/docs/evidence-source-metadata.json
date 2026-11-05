@@ -1,0 +1,3020 @@
+{
+  "duplicate_identifiers_skipped": [
+    {
+      "already_used_by": "SRC_0002_3",
+      "identifier": "15206993",
+      "identifier_type": "pmid",
+      "source_id": "SRC_0003_3"
+    },
+    {
+      "already_used_by": "SRC_0002_3",
+      "identifier": "10.1111/j.1365-2125.2004.02095.x",
+      "identifier_type": "doi",
+      "source_id": "SRC_0003_3"
+    }
+  ],
+  "resolved_article_rows": 30,
+  "search_only_rows": 270,
+  "sources": {
+    "SRC_0001_1": {
+      "doi": null,
+      "is_search_only": false,
+      "journal_or_publisher": "Thromb Haemost",
+      "pmcid": null,
+      "pmid": "10102468",
+      "publication_year": 1999,
+      "source_id": "SRC_0001_1",
+      "title": "Vitamin K intake and sensitivity to warfarin in patients consuming regular diets."
+    },
+    "SRC_0001_2": {
+      "doi": "10.1111/j.1365-2125.2010.03672.x",
+      "is_search_only": false,
+      "journal_or_publisher": "Br J Clin Pharmacol",
+      "pmcid": "PMC2911546",
+      "pmid": "20653669",
+      "publication_year": 2010,
+      "source_id": "SRC_0001_2",
+      "title": "Warfarin and vitamin K intake in the era of pharmacogenetics."
+    },
+    "SRC_0001_3": {
+      "doi": "10.7762/cnr.2015.4.4.235",
+      "is_search_only": false,
+      "journal_or_publisher": "Clin Nutr Res",
+      "pmcid": "PMC4641985",
+      "pmid": "26566518",
+      "publication_year": 2015,
+      "source_id": "SRC_0001_3",
+      "title": "Association Between Usual Vitamin K Intake and Anticoagulation in Patients Under Warfarin Therapy."
+    },
+    "SRC_0002_1": {
+      "doi": "10.1016/S0009-9236(98)90130-8",
+      "is_search_only": false,
+      "journal_or_publisher": "Clin Pharmacol Ther",
+      "pmcid": null,
+      "pmid": "9834039",
+      "publication_year": 1998,
+      "source_id": "SRC_0002_1",
+      "title": "Grapefruit juice-simvastatin interaction: effect on serum concentrations of simvastatin, simvastatin acid, and HMG-CoA reductase inhibitors."
+    },
+    "SRC_0002_2": {
+      "doi": "10.1067/mcp.2000.110216",
+      "is_search_only": false,
+      "journal_or_publisher": "Clin Pharmacol Ther",
+      "pmcid": null,
+      "pmid": "11061578",
+      "publication_year": 2000,
+      "source_id": "SRC_0002_2",
+      "title": "Duration of effect of grapefruit juice on the pharmacokinetics of the CYP3A4 substrate simvastatin."
+    },
+    "SRC_0002_3": {
+      "doi": "10.1111/j.1365-2125.2004.02095.x",
+      "is_search_only": false,
+      "journal_or_publisher": "Br J Clin Pharmacol",
+      "pmcid": "PMC508096",
+      "pmid": "15206993",
+      "publication_year": 2004,
+      "source_id": "SRC_0002_3",
+      "title": "Effects of regular consumption of grapefruit juice on the pharmacokinetics of simvastatin."
+    },
+    "SRC_0003_1": {
+      "doi": "10.1053/cp.1999.v66.100453001",
+      "is_search_only": false,
+      "journal_or_publisher": "Clin Pharmacol Ther",
+      "pmcid": null,
+      "pmid": "10460065",
+      "publication_year": 1999,
+      "source_id": "SRC_0003_1",
+      "title": "Grapefruit juice increases serum concentrations of atorvastatin and has no effect on pravastatin."
+    },
+    "SRC_0003_2": {
+      "doi": "10.1016/j.amjmed.2015.07.036",
+      "is_search_only": false,
+      "journal_or_publisher": "Am J Med",
+      "pmcid": null,
+      "pmid": "26299317",
+      "publication_year": 2016,
+      "source_id": "SRC_0003_2",
+      "title": "Grapefruit Juice and Statins."
+    },
+    "SRC_0003_3": {
+      "doi": null,
+      "is_search_only": false,
+      "journal_or_publisher": "Br J Clin Pharmacol",
+      "pmcid": "PMC1884539",
+      "pmid": null,
+      "publication_year": 2004,
+      "source_id": "SRC_0003_3",
+      "title": "Effects of regular consumption of grapefruit juice on the pharmacokinetics of simvastatin."
+    },
+    "SRC_0004_1": {
+      "doi": "10.1001/jama.283.21.2822",
+      "is_search_only": false,
+      "journal_or_publisher": "JAMA",
+      "pmcid": null,
+      "pmid": "10838651",
+      "publication_year": 2000,
+      "source_id": "SRC_0004_1",
+      "title": "Effect of calcium carbonate on the absorption of levothyroxine."
+    },
+    "SRC_0004_2": {
+      "doi": "10.1089/thy.2010.0296",
+      "is_search_only": false,
+      "journal_or_publisher": "Thyroid",
+      "pmcid": "PMC2858370",
+      "pmid": "21595516",
+      "publication_year": 2011,
+      "source_id": "SRC_0004_2",
+      "title": "Absorption of levothyroxine when coadministered with various calcium formulations."
+    },
+    "SRC_0004_3": {
+      "doi": null,
+      "is_search_only": false,
+      "journal_or_publisher": "Can Fam Physician",
+      "pmcid": "PMC2293315",
+      "pmid": "18208953",
+      "publication_year": 2008,
+      "source_id": "SRC_0004_3",
+      "title": "Interaction between levothyroxine and calcium carbonate."
+    },
+    "SRC_0005_1": {
+      "doi": "10.1089/thy.2007.0222",
+      "is_search_only": false,
+      "journal_or_publisher": "Thyroid",
+      "pmcid": null,
+      "pmid": "18341376",
+      "publication_year": 2008,
+      "source_id": "SRC_0005_1",
+      "title": "Altered intestinal absorption of L-thyroxine caused by coffee."
+    },
+    "SRC_0005_2": {
+      "doi": "10.1530/EJE-13-0693",
+      "is_search_only": false,
+      "journal_or_publisher": "Eur J Endocrinol",
+      "pmcid": null,
+      "pmid": "24123095",
+      "publication_year": 2014,
+      "source_id": "SRC_0005_2",
+      "title": "Oral liquid levothyroxine treatment at breakfast: a mistake?"
+    },
+    "SRC_0005_3": {
+      "doi": "10.1007/s12020-012-9772-2",
+      "is_search_only": false,
+      "journal_or_publisher": "Endocrine",
+      "pmcid": null,
+      "pmid": "22932947",
+      "publication_year": 2013,
+      "source_id": "SRC_0005_3",
+      "title": "A novel formulation of L-thyroxine (L-T4) reduces the problem of L-T4 malabsorption by coffee observed with traditional tablet formulations."
+    },
+    "SRC_0006_1": {
+      "doi": "10.7326/0003-4819-117-12-1010",
+      "is_search_only": false,
+      "journal_or_publisher": "Ann Intern Med",
+      "pmcid": null,
+      "pmid": "1443969",
+      "publication_year": 1992,
+      "source_id": "SRC_0006_1",
+      "title": "Ferrous sulfate reduces thyroxine efficacy in patients with hypothyroidism."
+    },
+    "SRC_0006_2": {
+      "doi": "10.1097/00007611-199706000-00011",
+      "is_search_only": false,
+      "journal_or_publisher": "South Med J",
+      "pmcid": null,
+      "pmid": "9191742",
+      "publication_year": 1997,
+      "source_id": "SRC_0006_2",
+      "title": "Ferrous sulfate-induced increase in requirement for thyroxine in a patient with primary hypothyroidism."
+    },
+    "SRC_0006_3": {
+      "doi": "10.1016/j.revmed.2009.09.038",
+      "is_search_only": false,
+      "journal_or_publisher": "Rev Med Interne",
+      "pmcid": null,
+      "pmid": "20554088",
+      "publication_year": 2010,
+      "source_id": "SRC_0006_3",
+      "title": "[Hypothyroidism as the result of drug interaction between ferrous sulfate and levothyroxine]."
+    },
+    "SRC_0007_1": {
+      "doi": "10.1038/clpt.1991.174",
+      "is_search_only": false,
+      "journal_or_publisher": "Clin Pharmacol Ther",
+      "pmcid": null,
+      "pmid": "1934862",
+      "publication_year": 1991,
+      "source_id": "SRC_0007_1",
+      "title": "Interference of dairy products with the absorption of ciprofloxacin."
+    },
+    "SRC_0007_2": {
+      "doi": null,
+      "is_search_only": false,
+      "journal_or_publisher": "Br J Clin Pharmacol",
+      "pmcid": "PMC1381579",
+      "pmid": "8471407",
+      "publication_year": 1993,
+      "source_id": "SRC_0007_2",
+      "title": "The influence of chronic administration of calcium carbonate on the bioavailability of oral ciprofloxacin."
+    },
+    "SRC_0007_3": {
+      "doi": "10.1128/AAC.35.5.1004",
+      "is_search_only": false,
+      "journal_or_publisher": "Antimicrob Agents Chemother",
+      "pmcid": "PMC245147",
+      "pmid": "1854156",
+      "publication_year": 1991,
+      "source_id": "SRC_0007_3",
+      "title": "Effect of staggered dose of calcium on the bioavailability of ciprofloxacin."
+    },
+    "SRC_0008_1": {
+      "doi": "10.2165/00003495-197611010-00004",
+      "is_search_only": false,
+      "journal_or_publisher": "Drugs",
+      "pmcid": null,
+      "pmid": "946598",
+      "publication_year": 1976,
+      "source_id": "SRC_0008_1",
+      "title": "Interactions with the absorption of tetracyclines."
+    },
+    "SRC_0008_2": {
+      "doi": "10.1002/(sici)1099-081x(199707)18:5<459::aid-bdd31>3.0.co;2-g",
+      "is_search_only": false,
+      "journal_or_publisher": "Biopharm Drug Dispos",
+      "pmcid": null,
+      "pmid": "9210983",
+      "publication_year": 1997,
+      "source_id": "SRC_0008_2",
+      "title": "The influence of coffee with milk and tea with milk on the bioavailability of tetracycline."
+    },
+    "SRC_0008_3": {
+      "doi": "10.1007/BF01639529",
+      "is_search_only": false,
+      "journal_or_publisher": "Infection",
+      "pmcid": null,
+      "pmid": "2767766",
+      "publication_year": 1989,
+      "source_id": "SRC_0008_3",
+      "title": "Influence of milk on the bioavailability of doxycycline--new aspects."
+    },
+    "SRC_0009_1": {
+      "doi": "10.1016/0009-9236(95)90245-7",
+      "is_search_only": false,
+      "journal_or_publisher": "Clin Pharmacol Ther",
+      "pmcid": null,
+      "pmid": "7554702",
+      "publication_year": 1995,
+      "source_id": "SRC_0009_1",
+      "title": "Studies of the oral bioavailability of alendronate."
+    },
+    "SRC_0009_2": {
+      "doi": "10.2165/00003088-199936050-00002",
+      "is_search_only": false,
+      "journal_or_publisher": "Clin Pharmacokinet",
+      "pmcid": null,
+      "pmid": "10384857",
+      "publication_year": 1999,
+      "source_id": "SRC_0009_2",
+      "title": "Pharmacokinetics of alendronate."
+    },
+    "SRC_0009_3": {
+      "doi": "10.1016/j.clinthera.2017.07.012",
+      "is_search_only": false,
+      "journal_or_publisher": "Foods",
+      "pmcid": "PMC8067335",
+      "pmid": "33805435",
+      "publication_year": 2021,
+      "source_id": "SRC_0009_3",
+      "title": "Optimal Dosing Regimen of Osteoporosis Drugs in Relation to Food Intake as the Key for the Enhancement of the Treatment Effectiveness-A Concise Literature Review."
+    },
+    "SRC_0010_1": {
+      "doi": "10.1038/sj.jhh.1000890",
+      "is_search_only": false,
+      "journal_or_publisher": "J Hum Hypertens",
+      "pmcid": null,
+      "pmid": "10516744",
+      "publication_year": 1999,
+      "source_id": "SRC_0010_1",
+      "title": "Severe hyperkalaemia due to the concomitant use of salt substitutes and ACE inhibitors in hypertension: a potentially life threatening interaction."
+    },
+    "SRC_0010_2": {
+      "doi": "10.1136/bmj.326.7379.35",
+      "is_search_only": false,
+      "journal_or_publisher": "BMJ",
+      "pmcid": "PMC1124926",
+      "pmid": "12511461",
+      "publication_year": 2003,
+      "source_id": "SRC_0010_2",
+      "title": "Danger of salt substitutes that contain potassium in patients with renal failure."
+    },
+    "SRC_0010_3": {
+      "doi": "10.1111/j.1755-5922.2010.00258.x",
+      "is_search_only": false,
+      "journal_or_publisher": "Cardiovasc Ther",
+      "pmcid": null,
+      "pmid": "21883995",
+      "publication_year": 2012,
+      "source_id": "SRC_0010_3",
+      "title": "Hyperkalemia associated with use of angiotensin-converting enzyme inhibitors and angiotensin receptor blockers."
+    },
+    "SRC_0011_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0011_1",
+      "title": "simvastatin grapefruit juice pharmacokinetic interaction"
+    },
+    "SRC_0011_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0011_2",
+      "title": "atorvastatin grapefruit juice CYP3A4 interaction"
+    },
+    "SRC_0011_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0011_3",
+      "title": "grapefruit juice statin rhabdomyolysis review"
+    },
+    "SRC_0012_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0012_1",
+      "title": "lovastatin grapefruit juice interaction"
+    },
+    "SRC_0012_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0012_2",
+      "title": "lovastatin grapefruit CYP3A4 pharmacokinetics"
+    },
+    "SRC_0012_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0012_3",
+      "title": "grapefruit juice lovastatin clinical study"
+    },
+    "SRC_0013_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0013_1",
+      "title": "felodipine grapefruit juice interaction clinical study"
+    },
+    "SRC_0013_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0013_2",
+      "title": "nifedipine grapefruit juice pharmacokinetics"
+    },
+    "SRC_0013_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0013_3",
+      "title": "amlodipine grapefruit juice interaction"
+    },
+    "SRC_0014_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0014_1",
+      "title": "sildenafil grapefruit juice pharmacokinetics"
+    },
+    "SRC_0014_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0014_2",
+      "title": "tadalafil grapefruit juice CYP3A4 interaction"
+    },
+    "SRC_0014_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0014_3",
+      "title": "PDE5 inhibitor grapefruit interaction"
+    },
+    "SRC_0015_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0015_1",
+      "title": "buspirone grapefruit juice interaction"
+    },
+    "SRC_0015_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0015_2",
+      "title": "buspirone CYP3A4 grapefruit pharmacokinetic"
+    },
+    "SRC_0015_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0015_3",
+      "title": "grapefruit juice buspirone clinical study"
+    },
+    "SRC_0016_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0016_1",
+      "title": "cyclosporine grapefruit juice interaction"
+    },
+    "SRC_0016_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0016_2",
+      "title": "tacrolimus grapefruit juice interaction"
+    },
+    "SRC_0016_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0016_3",
+      "title": "grapefruit juice calcineurin inhibitor pharmacokinetics"
+    },
+    "SRC_0017_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0017_1",
+      "title": "warfarin cranberry juice interaction INR"
+    },
+    "SRC_0017_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0017_2",
+      "title": "cranberry warfarin clinical trial"
+    },
+    "SRC_0017_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0017_3",
+      "title": "warfarin cranberry case report"
+    },
+    "SRC_0018_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0018_1",
+      "title": "warfarin alcohol interaction bleeding risk"
+    },
+    "SRC_0018_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0018_2",
+      "title": "warfarin ethanol metabolism interaction"
+    },
+    "SRC_0018_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0018_3",
+      "title": "anticoagulant warfarin alcohol INR"
+    },
+    "SRC_0019_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0019_1",
+      "title": "metronidazole alcohol disulfiram reaction study"
+    },
+    "SRC_0019_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0019_2",
+      "title": "metronidazole ethanol interaction clinical"
+    },
+    "SRC_0019_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0019_3",
+      "title": "metronidazole alcohol reaction review"
+    },
+    "SRC_0020_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0020_1",
+      "title": "cefotetan alcohol disulfiram like reaction"
+    },
+    "SRC_0020_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0020_2",
+      "title": "cefoperazone alcohol interaction"
+    },
+    "SRC_0020_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0020_3",
+      "title": "cephalosporin alcohol disulfiram reaction review"
+    },
+    "SRC_0021_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0021_1",
+      "title": "doxycycline calcium milk absorption interaction"
+    },
+    "SRC_0021_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0021_2",
+      "title": "tetracycline dairy calcium chelation pharmacokinetics"
+    },
+    "SRC_0021_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0021_3",
+      "title": "doxycycline food milk bioavailability"
+    },
+    "SRC_0022_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0022_1",
+      "title": "ciprofloxacin calcium milk interaction absorption"
+    },
+    "SRC_0022_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0022_2",
+      "title": "ciprofloxacin dairy bioavailability study"
+    },
+    "SRC_0022_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0022_3",
+      "title": "fluoroquinolone calcium chelation interaction"
+    },
+    "SRC_0023_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0023_1",
+      "title": "levofloxacin iron magnesium zinc interaction"
+    },
+    "SRC_0023_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0023_2",
+      "title": "moxifloxacin mineral chelation pharmacokinetics"
+    },
+    "SRC_0023_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0023_3",
+      "title": "fluoroquinolone iron magnesium antacid interaction"
+    },
+    "SRC_0024_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0024_1",
+      "title": "levothyroxine calcium carbonate absorption interaction"
+    },
+    "SRC_0024_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0024_2",
+      "title": "levothyroxine calcium supplement TSH study"
+    },
+    "SRC_0024_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0024_3",
+      "title": "thyroxine calcium interaction clinical"
+    },
+    "SRC_0025_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0025_1",
+      "title": "levothyroxine ferrous sulfate interaction TSH"
+    },
+    "SRC_0025_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0025_2",
+      "title": "thyroxine iron absorption interaction"
+    },
+    "SRC_0025_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0025_3",
+      "title": "levothyroxine iron supplement clinical study"
+    },
+    "SRC_0026_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0026_1",
+      "title": "levothyroxine soy interaction absorption"
+    },
+    "SRC_0026_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0026_2",
+      "title": "soy formula levothyroxine hypothyroidism"
+    },
+    "SRC_0026_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0026_3",
+      "title": "soy protein thyroid hormone absorption"
+    },
+    "SRC_0027_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0027_1",
+      "title": "levothyroxine coffee absorption study"
+    },
+    "SRC_0027_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0027_2",
+      "title": "thyroxine coffee interaction TSH"
+    },
+    "SRC_0027_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0027_3",
+      "title": "levothyroxine espresso bioavailability"
+    },
+    "SRC_0028_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0028_1",
+      "title": "alendronate food coffee absorption interaction"
+    },
+    "SRC_0028_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0028_2",
+      "title": "risedronate calcium interaction bioavailability"
+    },
+    "SRC_0028_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0028_3",
+      "title": "bisphosphonate food mineral absorption review"
+    },
+    "SRC_0029_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0029_1",
+      "title": "penicillamine zinc interaction absorption"
+    },
+    "SRC_0029_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0029_2",
+      "title": "penicillamine iron interaction pharmacokinetics"
+    },
+    "SRC_0029_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0029_3",
+      "title": "penicillamine metal chelation interaction"
+    },
+    "SRC_0030_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0030_1",
+      "title": "metformin alcohol lactic acidosis risk"
+    },
+    "SRC_0030_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0030_2",
+      "title": "metformin ethanol interaction lactate"
+    },
+    "SRC_0030_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0030_3",
+      "title": "metformin alcohol hypoglycemia lactic acidosis"
+    },
+    "SRC_0031_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0031_1",
+      "title": "insulin alcohol delayed hypoglycemia"
+    },
+    "SRC_0031_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0031_2",
+      "title": "alcohol type 1 diabetes hypoglycemia insulin"
+    },
+    "SRC_0031_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0031_3",
+      "title": "ethanol gluconeogenesis hypoglycemia diabetes"
+    },
+    "SRC_0032_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0032_1",
+      "title": "sulfonylurea alcohol hypoglycemia"
+    },
+    "SRC_0032_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0032_2",
+      "title": "glimepiride alcohol hypoglycemia interaction"
+    },
+    "SRC_0032_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0032_3",
+      "title": "gliclazide alcohol interaction diabetes"
+    },
+    "SRC_0033_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0033_1",
+      "title": "ACE inhibitor potassium supplement hyperkalemia"
+    },
+    "SRC_0033_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0033_2",
+      "title": "ramipril potassium salt substitute hyperkalemia"
+    },
+    "SRC_0033_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0033_3",
+      "title": "enalapril potassium interaction study"
+    },
+    "SRC_0034_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0034_1",
+      "title": "ARB potassium supplement hyperkalemia"
+    },
+    "SRC_0034_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0034_2",
+      "title": "losartan potassium salt substitute interaction"
+    },
+    "SRC_0034_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0034_3",
+      "title": "valsartan potassium hyperkalemia study"
+    },
+    "SRC_0035_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0035_1",
+      "title": "spironolactone potassium supplement hyperkalemia"
+    },
+    "SRC_0035_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0035_2",
+      "title": "eplerenone potassium interaction hyperkalemia"
+    },
+    "SRC_0035_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0035_3",
+      "title": "potassium sparing diuretic salt substitute hyperkalemia"
+    },
+    "SRC_0036_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0036_1",
+      "title": "digoxin licorice hypokalemia interaction"
+    },
+    "SRC_0036_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0036_2",
+      "title": "glycyrrhizin hypokalemia digoxin toxicity"
+    },
+    "SRC_0036_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0036_3",
+      "title": "licorice cardiac glycosides interaction"
+    },
+    "SRC_0037_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0037_1",
+      "title": "digoxin St John wort P-glycoprotein interaction"
+    },
+    "SRC_0037_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0037_2",
+      "title": "hypericum digoxin pharmacokinetic study"
+    },
+    "SRC_0037_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0037_3",
+      "title": "St Johns wort digoxin serum concentration"
+    },
+    "SRC_0038_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0038_1",
+      "title": "St Johns wort oral contraceptive interaction"
+    },
+    "SRC_0038_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0038_2",
+      "title": "hypericum contraceptive breakthrough bleeding study"
+    },
+    "SRC_0038_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0038_3",
+      "title": "St Johns wort ethinyl estradiol pharmacokinetics"
+    },
+    "SRC_0039_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0039_1",
+      "title": "St Johns wort SSRI serotonin syndrome"
+    },
+    "SRC_0039_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0039_2",
+      "title": "hypericum antidepressant interaction serotonin syndrome"
+    },
+    "SRC_0039_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0039_3",
+      "title": "St Johns wort sertraline interaction case report"
+    },
+    "SRC_0040_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0040_1",
+      "title": "MAOI tyramine hypertensive crisis diet"
+    },
+    "SRC_0040_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0040_2",
+      "title": "monoamine oxidase inhibitor tyramine interaction"
+    },
+    "SRC_0040_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0040_3",
+      "title": "phenelzine tyramine food study"
+    },
+    "SRC_0041_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0041_1",
+      "title": "linezolid tyramine interaction blood pressure"
+    },
+    "SRC_0041_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0041_2",
+      "title": "linezolid monoamine oxidase tyramine food"
+    },
+    "SRC_0041_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0041_3",
+      "title": "linezolid tyramine clinical study"
+    },
+    "SRC_0042_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0042_1",
+      "title": "clozapine smoking cessation CYP1A2 toxicity"
+    },
+    "SRC_0042_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0042_2",
+      "title": "olanzapine smoking CYP1A2 pharmacokinetics"
+    },
+    "SRC_0042_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0042_3",
+      "title": "smoking antipsychotic clozapine interaction"
+    },
+    "SRC_0043_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0043_1",
+      "title": "theophylline smoking CYP1A2 clearance"
+    },
+    "SRC_0043_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0043_2",
+      "title": "theophylline caffeine interaction"
+    },
+    "SRC_0043_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0043_3",
+      "title": "smoking cessation theophylline toxicity"
+    },
+    "SRC_0044_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0044_1",
+      "title": "clozapine caffeine interaction CYP1A2"
+    },
+    "SRC_0044_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0044_2",
+      "title": "caffeine clozapine serum concentration study"
+    },
+    "SRC_0044_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0044_3",
+      "title": "clozapine coffee interaction"
+    },
+    "SRC_0045_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0045_1",
+      "title": "lithium sodium intake dehydration toxicity"
+    },
+    "SRC_0045_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0045_2",
+      "title": "lithium salt restriction interaction"
+    },
+    "SRC_0045_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0045_3",
+      "title": "lithium fluid sodium balance toxicity"
+    },
+    "SRC_0046_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0046_1",
+      "title": "lithium caffeine interaction serum levels"
+    },
+    "SRC_0046_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0046_2",
+      "title": "caffeine withdrawal lithium toxicity"
+    },
+    "SRC_0046_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0046_3",
+      "title": "lithium coffee caffeine pharmacokinetics"
+    },
+    "SRC_0047_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0047_1",
+      "title": "NSAID alcohol gastrointestinal bleeding risk"
+    },
+    "SRC_0047_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0047_2",
+      "title": "ibuprofen alcohol GI bleeding study"
+    },
+    "SRC_0047_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0047_3",
+      "title": "naproxen alcohol interaction bleeding"
+    },
+    "SRC_0048_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0048_1",
+      "title": "acetaminophen alcohol hepatotoxicity risk"
+    },
+    "SRC_0048_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0048_2",
+      "title": "paracetamol ethanol liver injury study"
+    },
+    "SRC_0048_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0048_3",
+      "title": "acetaminophen alcoholic patients toxicity"
+    },
+    "SRC_0049_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0049_1",
+      "title": "aspirin alcohol gastrointestinal bleeding"
+    },
+    "SRC_0049_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0049_2",
+      "title": "acetylsalicylic acid ethanol interaction gastric bleeding"
+    },
+    "SRC_0049_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0049_3",
+      "title": "aspirin alcohol platelet bleeding risk"
+    },
+    "SRC_0050_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0050_1",
+      "title": "clopidogrel grapefruit juice CYP interaction"
+    },
+    "SRC_0050_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0050_2",
+      "title": "clopidogrel grapefruit platelet study"
+    },
+    "SRC_0050_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0050_3",
+      "title": "grapefruit juice antiplatelet clopidogrel"
+    },
+    "SRC_0051_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0051_1",
+      "title": "dabigatran St Johns wort P-glycoprotein interaction"
+    },
+    "SRC_0051_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0051_2",
+      "title": "St Johns wort direct oral anticoagulant interaction"
+    },
+    "SRC_0051_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0051_3",
+      "title": "dabigatran herbal supplement interaction"
+    },
+    "SRC_0052_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0052_1",
+      "title": "apixaban St Johns wort interaction"
+    },
+    "SRC_0052_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0052_2",
+      "title": "rivaroxaban St Johns wort CYP3A4 P-gp"
+    },
+    "SRC_0052_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0052_3",
+      "title": "direct oral anticoagulants St Johns wort interaction"
+    },
+    "SRC_0053_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0053_1",
+      "title": "apixaban grapefruit interaction CYP3A4"
+    },
+    "SRC_0053_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0053_2",
+      "title": "rivaroxaban grapefruit juice interaction"
+    },
+    "SRC_0053_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0053_3",
+      "title": "DOAC grapefruit P-glycoprotein interaction"
+    },
+    "SRC_0054_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0054_1",
+      "title": "warfarin ginkgo bleeding interaction"
+    },
+    "SRC_0054_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0054_2",
+      "title": "ginkgo biloba anticoagulant interaction study"
+    },
+    "SRC_0054_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0054_3",
+      "title": "ginkgo warfarin case report intracranial hemorrhage"
+    },
+    "SRC_0055_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0055_1",
+      "title": "warfarin garlic supplement bleeding interaction"
+    },
+    "SRC_0055_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0055_2",
+      "title": "garlic platelet aggregation warfarin"
+    },
+    "SRC_0055_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0055_3",
+      "title": "garlic anticoagulant interaction clinical study"
+    },
+    "SRC_0056_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0056_1",
+      "title": "warfarin ginseng interaction INR"
+    },
+    "SRC_0056_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0056_2",
+      "title": "ginseng warfarin pharmacodynamic interaction"
+    },
+    "SRC_0056_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0056_3",
+      "title": "Panax ginseng warfarin study"
+    },
+    "SRC_0057_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0057_1",
+      "title": "warfarin fish oil omega 3 bleeding INR"
+    },
+    "SRC_0057_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0057_2",
+      "title": "omega-3 anticoagulant bleeding risk study"
+    },
+    "SRC_0057_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0057_3",
+      "title": "fish oil warfarin interaction clinical trial"
+    },
+    "SRC_0058_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0058_1",
+      "title": "SSRI NSAID gastrointestinal bleeding meta analysis"
+    },
+    "SRC_0058_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0058_2",
+      "title": "serotonin reuptake inhibitor aspirin bleeding risk"
+    },
+    "SRC_0058_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0058_3",
+      "title": "SSRI alcohol NSAID bleeding interaction"
+    },
+    "SRC_0059_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0059_1",
+      "title": "benzodiazepine alcohol interaction respiratory depression"
+    },
+    "SRC_0059_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0059_2",
+      "title": "alprazolam ethanol pharmacodynamic interaction"
+    },
+    "SRC_0059_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0059_3",
+      "title": "diazepam alcohol psychomotor impairment study"
+    },
+    "SRC_0060_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0060_1",
+      "title": "opioid alcohol respiratory depression interaction"
+    },
+    "SRC_0060_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0060_2",
+      "title": "oxycodone ethanol pharmacokinetic pharmacodynamic study"
+    },
+    "SRC_0060_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0060_3",
+      "title": "tramadol alcohol CNS depression interaction"
+    },
+    "SRC_0061_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0061_1",
+      "title": "tramadol St Johns wort serotonin syndrome"
+    },
+    "SRC_0061_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0061_2",
+      "title": "tramadol 5-HTP serotonin syndrome"
+    },
+    "SRC_0061_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0061_3",
+      "title": "tramadol serotonergic supplements interaction"
+    },
+    "SRC_0062_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0062_1",
+      "title": "SSRI 5-HTP serotonin syndrome"
+    },
+    "SRC_0062_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0062_2",
+      "title": "tryptophan antidepressant serotonin syndrome"
+    },
+    "SRC_0062_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0062_3",
+      "title": "5-hydroxytryptophan serotonergic drug interaction"
+    },
+    "SRC_0063_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0063_1",
+      "title": "diphenhydramine alcohol psychomotor impairment"
+    },
+    "SRC_0063_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0063_2",
+      "title": "first generation antihistamine ethanol interaction"
+    },
+    "SRC_0063_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0063_3",
+      "title": "antihistamine alcohol sedation study"
+    },
+    "SRC_0064_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0064_1",
+      "title": "zolpidem alcohol interaction psychomotor"
+    },
+    "SRC_0064_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0064_2",
+      "title": "zopiclone ethanol interaction"
+    },
+    "SRC_0064_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0064_3",
+      "title": "hypnotic alcohol respiratory depression risk"
+    },
+    "SRC_0065_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0065_1",
+      "title": "proton pump inhibitor vitamin B12 deficiency study"
+    },
+    "SRC_0065_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0065_2",
+      "title": "omeprazole B12 absorption interaction"
+    },
+    "SRC_0065_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0065_3",
+      "title": "PPI long term vitamin B12 meta analysis"
+    },
+    "SRC_0066_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0066_1",
+      "title": "proton pump inhibitor hypomagnesemia study"
+    },
+    "SRC_0066_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0066_2",
+      "title": "PPI magnesium deficiency meta analysis"
+    },
+    "SRC_0066_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0066_3",
+      "title": "omeprazole hypomagnesemia case control"
+    },
+    "SRC_0067_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0067_1",
+      "title": "proton pump inhibitor iron absorption interaction"
+    },
+    "SRC_0067_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0067_2",
+      "title": "omeprazole iron deficiency study"
+    },
+    "SRC_0067_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0067_3",
+      "title": "gastric acid suppression nonheme iron absorption"
+    },
+    "SRC_0068_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0068_1",
+      "title": "H2 receptor antagonist vitamin B12 deficiency"
+    },
+    "SRC_0068_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0068_2",
+      "title": "famotidine iron absorption interaction"
+    },
+    "SRC_0068_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0068_3",
+      "title": "acid suppression B12 iron absorption study"
+    },
+    "SRC_0069_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0069_1",
+      "title": "isotretinoin vitamin A toxicity interaction"
+    },
+    "SRC_0069_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0069_2",
+      "title": "retinoid vitamin A supplement hypervitaminosis"
+    },
+    "SRC_0069_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0069_3",
+      "title": "isotretinoin dietary vitamin A warning"
+    },
+    "SRC_0070_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0070_1",
+      "title": "methotrexate folic acid supplementation trial"
+    },
+    "SRC_0070_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0070_2",
+      "title": "low dose methotrexate folate meta analysis"
+    },
+    "SRC_0070_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0070_3",
+      "title": "methotrexate folinic acid rheumatoid arthritis study"
+    },
+    "SRC_0071_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0071_1",
+      "title": "methotrexate alcohol liver toxicity risk"
+    },
+    "SRC_0071_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0071_2",
+      "title": "methotrexate alcohol hepatotoxicity rheumatoid arthritis"
+    },
+    "SRC_0071_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0071_3",
+      "title": "low dose methotrexate alcohol study"
+    },
+    "SRC_0072_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0072_1",
+      "title": "isoniazid alcohol hepatotoxicity risk"
+    },
+    "SRC_0072_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0072_2",
+      "title": "isoniazid ethanol liver injury study"
+    },
+    "SRC_0072_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0072_3",
+      "title": "tuberculosis isoniazid alcohol interaction"
+    },
+    "SRC_0073_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0073_1",
+      "title": "isoniazid tyramine histamine food interaction"
+    },
+    "SRC_0073_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0073_2",
+      "title": "isoniazid cheese reaction study"
+    },
+    "SRC_0073_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0073_3",
+      "title": "isoniazid monoamine oxidase tyramine"
+    },
+    "SRC_0074_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0074_1",
+      "title": "rifampin St Johns wort interaction CYP induction"
+    },
+    "SRC_0074_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0074_2",
+      "title": "rifampicin herbal interaction hypericum"
+    },
+    "SRC_0074_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0074_3",
+      "title": "rifampin CYP3A4 inducer St Johns wort"
+    },
+    "SRC_0075_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0075_1",
+      "title": "rifampin oral contraceptive interaction"
+    },
+    "SRC_0075_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0075_2",
+      "title": "rifampicin ethinyl estradiol pharmacokinetics"
+    },
+    "SRC_0075_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0075_3",
+      "title": "rifampin contraceptive failure study"
+    },
+    "SRC_0076_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0076_1",
+      "title": "carbamazepine grapefruit juice interaction"
+    },
+    "SRC_0076_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0076_2",
+      "title": "carbamazepine CYP3A4 grapefruit pharmacokinetics"
+    },
+    "SRC_0076_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0076_3",
+      "title": "grapefruit carbamazepine serum concentration study"
+    },
+    "SRC_0077_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0077_1",
+      "title": "carbamazepine St Johns wort interaction"
+    },
+    "SRC_0077_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0077_2",
+      "title": "hypericum antiepileptic drug interaction"
+    },
+    "SRC_0077_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0077_3",
+      "title": "St Johns wort carbamazepine pharmacokinetics"
+    },
+    "SRC_0078_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0078_1",
+      "title": "phenytoin alcohol interaction serum levels"
+    },
+    "SRC_0078_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0078_2",
+      "title": "ethanol phenytoin pharmacokinetics"
+    },
+    "SRC_0078_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0078_3",
+      "title": "phenytoin chronic alcohol metabolism"
+    },
+    "SRC_0079_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0079_1",
+      "title": "phenytoin folic acid interaction serum levels"
+    },
+    "SRC_0079_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0079_2",
+      "title": "phenytoin folate deficiency supplementation"
+    },
+    "SRC_0079_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0079_3",
+      "title": "folic acid phenytoin pharmacokinetic study"
+    },
+    "SRC_0080_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0080_1",
+      "title": "valproate carnitine deficiency supplementation"
+    },
+    "SRC_0080_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0080_2",
+      "title": "valproic acid L-carnitine toxicity study"
+    },
+    "SRC_0080_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0080_3",
+      "title": "valproate hyperammonemia carnitine review"
+    },
+    "SRC_0081_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0081_1",
+      "title": "allopurinol vitamin C uric acid interaction"
+    },
+    "SRC_0081_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0081_2",
+      "title": "vitamin C uric acid gout study"
+    },
+    "SRC_0081_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0081_3",
+      "title": "ascorbic acid kidney stones uric acid allopurinol"
+    },
+    "SRC_0082_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0082_1",
+      "title": "thiazide diuretic vitamin D calcium hypercalcemia"
+    },
+    "SRC_0082_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0082_2",
+      "title": "hydrochlorothiazide calcium supplement interaction"
+    },
+    "SRC_0082_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0082_3",
+      "title": "thiazide vitamin D hypercalcemia study"
+    },
+    "SRC_0083_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0083_1",
+      "title": "furosemide licorice hypokalemia interaction"
+    },
+    "SRC_0083_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0083_2",
+      "title": "licorice diuretic potassium loss"
+    },
+    "SRC_0083_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0083_3",
+      "title": "glycyrrhizin loop diuretic hypokalemia"
+    },
+    "SRC_0084_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0084_1",
+      "title": "digoxin laxative hypokalemia toxicity"
+    },
+    "SRC_0084_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0084_2",
+      "title": "senna digoxin interaction hypokalemia"
+    },
+    "SRC_0084_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0084_3",
+      "title": "cardiac glycoside laxative potassium depletion"
+    },
+    "SRC_0085_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0085_1",
+      "title": "verapamil grapefruit juice interaction"
+    },
+    "SRC_0085_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0085_2",
+      "title": "diltiazem grapefruit pharmacokinetics"
+    },
+    "SRC_0085_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0085_3",
+      "title": "grapefruit calcium channel blocker interaction review"
+    },
+    "SRC_0086_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0086_1",
+      "title": "amiodarone grapefruit juice interaction"
+    },
+    "SRC_0086_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0086_2",
+      "title": "amiodarone CYP3A4 grapefruit pharmacokinetics"
+    },
+    "SRC_0086_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0086_3",
+      "title": "grapefruit amiodarone P-glycoprotein interaction"
+    },
+    "SRC_0087_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0087_1",
+      "title": "amiodarone St Johns wort interaction"
+    },
+    "SRC_0087_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0087_2",
+      "title": "hypericum amiodarone CYP3A4 interaction"
+    },
+    "SRC_0087_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0087_3",
+      "title": "St Johns wort antiarrhythmic interaction"
+    },
+    "SRC_0088_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0088_1",
+      "title": "licorice hypokalemia QT prolongation torsades"
+    },
+    "SRC_0088_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0088_2",
+      "title": "glycyrrhizin QT prolongation drug interaction"
+    },
+    "SRC_0088_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0088_3",
+      "title": "licorice arrhythmia hypokalemia case report"
+    },
+    "SRC_0089_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0089_1",
+      "title": "melatonin antidepressant interaction sedation"
+    },
+    "SRC_0089_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0089_2",
+      "title": "melatonin hypnotic drug interaction"
+    },
+    "SRC_0089_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0089_3",
+      "title": "melatonin pharmacokinetic drug interactions review"
+    },
+    "SRC_0090_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0090_1",
+      "title": "licorice hypertension antihypertensive interaction"
+    },
+    "SRC_0090_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0090_2",
+      "title": "glycyrrhizin blood pressure antihypertensive drug"
+    },
+    "SRC_0090_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0090_3",
+      "title": "licorice pseudoaldosteronism hypertension study"
+    },
+    "SRC_0091_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0091_1",
+      "title": "St Johns wort indinavir interaction"
+    },
+    "SRC_0091_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0091_2",
+      "title": "hypericum HIV protease inhibitor CYP3A4"
+    },
+    "SRC_0091_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0091_3",
+      "title": "St Johns wort antiretroviral interaction study"
+    },
+    "SRC_0092_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0092_1",
+      "title": "grapefruit juice HIV protease inhibitor interaction"
+    },
+    "SRC_0092_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0092_2",
+      "title": "ritonavir grapefruit CYP3A4 interaction"
+    },
+    "SRC_0092_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0092_3",
+      "title": "saquinavir grapefruit juice pharmacokinetics"
+    },
+    "SRC_0093_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0093_1",
+      "title": "itraconazole proton pump inhibitor absorption interaction"
+    },
+    "SRC_0093_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0093_2",
+      "title": "ketoconazole gastric pH absorption interaction"
+    },
+    "SRC_0093_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0093_3",
+      "title": "azole antifungal acid suppression bioavailability"
+    },
+    "SRC_0094_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0094_1",
+      "title": "posaconazole food effect absorption"
+    },
+    "SRC_0094_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0094_2",
+      "title": "posaconazole high fat meal pharmacokinetics"
+    },
+    "SRC_0094_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0094_3",
+      "title": "posaconazole oral suspension food bioavailability"
+    },
+    "SRC_0095_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0095_1",
+      "title": "atovaquone food fat absorption pharmacokinetics"
+    },
+    "SRC_0095_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0095_2",
+      "title": "atovaquone bioavailability meal study"
+    },
+    "SRC_0095_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0095_3",
+      "title": "atovaquone high fat meal interaction"
+    },
+    "SRC_0096_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0096_1",
+      "title": "albendazole fatty meal absorption"
+    },
+    "SRC_0096_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0096_2",
+      "title": "albendazole food effect pharmacokinetics"
+    },
+    "SRC_0096_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0096_3",
+      "title": "albendazole sulfoxide high fat meal study"
+    },
+    "SRC_0097_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0097_1",
+      "title": "SGLT2 inhibitor alcohol ketoacidosis"
+    },
+    "SRC_0097_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0097_2",
+      "title": "SGLT2 inhibitor fasting euglycemic ketoacidosis"
+    },
+    "SRC_0097_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0097_3",
+      "title": "dapagliflozin alcohol ketoacidosis case"
+    },
+    "SRC_0098_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0098_1",
+      "title": "GLP-1 receptor agonist alcohol interaction"
+    },
+    "SRC_0098_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0098_2",
+      "title": "semaglutide alcohol nausea glucose"
+    },
+    "SRC_0098_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0098_3",
+      "title": "liraglutide alcohol pancreatitis risk"
+    },
+    "SRC_0099_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0099_1",
+      "title": "cholestyramine fat soluble vitamins absorption"
+    },
+    "SRC_0099_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0099_2",
+      "title": "colesevelam vitamin K absorption interaction"
+    },
+    "SRC_0099_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0099_3",
+      "title": "bile acid sequestrant vitamin D E K deficiency"
+    },
+    "SRC_0100_1": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0100_1",
+      "title": "orlistat fat soluble vitamin absorption"
+    },
+    "SRC_0100_2": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0100_2",
+      "title": "orlistat vitamin D E K deficiency study"
+    },
+    "SRC_0100_3": {
+      "doi": null,
+      "is_search_only": true,
+      "journal_or_publisher": null,
+      "pmcid": null,
+      "pmid": null,
+      "publication_year": null,
+      "source_id": "SRC_0100_3",
+      "title": "orlistat multivitamin supplementation trial"
+    }
+  }
+}

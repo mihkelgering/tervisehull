@@ -10,6 +10,8 @@ maintaining this wiki (ingesting new work, querying for context, or linting).
 
 ## Technical
 
+- [database.md](database.md) - standalone health knowledge schema, fixtures and
+  database-only setup; separate from the application database.
 - [architecture.md](architecture.md) — monorepo shape, service boundaries,
   deployment topology.
 - [backend.md](backend.md) — Spring Boot service: layout, endpoints, config, data

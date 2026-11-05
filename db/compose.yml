@@ -1,0 +1,22 @@
+name: tervisehull-database
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: tervisehull
+      POSTGRES_USER: tervisehull
+      POSTGRES_PASSWORD: ${TERVISEHULL_DB_PASSWORD:-tervisehull_dev_password}
+    ports:
+      - "127.0.0.1:${TERVISEHULL_DB_PORT:-55432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tervisehull -d tervisehull"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  postgres_data:

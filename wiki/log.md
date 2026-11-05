@@ -31,3 +31,7 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   while `adapter-node` actually listens on the injected `PORT` (8080).
   Verified end-to-end against the live URLs (health, CORS preflight,
   registration with session cookie). Pages touched: roadmap.md, operations.md.
+- 2026-11-05 - Added the standalone health knowledge database package, including
+  schema, fixtures, source metadata, PostgreSQL setup and smoke checks. Documented
+  its separation from the existing backend schema. Pages touched: database.md,
+  index.md.
