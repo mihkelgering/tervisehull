@@ -48,6 +48,79 @@ With auth, registration, and a basic dashboard in place: #11 (CI/CD) is the
 main independent remaining item. The "Pending content" work above is blocked
 on product description input, not on other engineering work.
 
+## Planned: health knowledge database integration
+
+Status: **todo**. The standalone schema exists (`database.md`, decisions in
+`decisions.md`); nothing below is implemented in the backend yet.
+
+**Integration and migrations**
+- Bring the schema in as forward Flyway migrations (`V4+`); don't reuse version
+  numbers or blindly baseline the bootstrap scripts. Decide first: one `users`
+  table (backend's), identifier mapping, module ownership, audit columns.
+- Prefer CSV-based import scripts over handwritten seed SQL; keep every row
+  traceable to workbook sheet and original ID.
+- Population descriptor and pharmacogenomic tables only after privacy/compliance
+  approval.
+
+**Backend modules** (by domain): `auth`, `users`, `profile`, `content`, `evidence`,
+`rules` (incl. match engine), `search`, `review`, `audit`.
+
+**Target matching flow**
+1. Resolve entries through the selected search lane (aliases, EE products).
+2. Store the selected/raw item in `user_profile_items`.
+3. Expand published EE products to their published active ingredients.
+4. Expand concepts through approved `concept_relationships` (`is_a` descendants).
+5. Find eligible rules whose required participants are all present; each
+   participant must map to a distinct saved item.
+6. Evaluate approved rule conditions; unmet or missing values → no match unless
+   the condition explicitly allows unknowns.
+7. Apply approved risk modifiers from flags, conditions, current observations and
+   MVP measurements; numeric checks are exact-unit only (mismatch logged, not
+   converted).
+8. Return risk label + escalation, approved copy, personal relevance flags,
+   timing context, approved sources and a GP/pharmacist prompt.
+
+Requirements for the public service beyond the eligibility view: usable
+participant concepts, complete copy in the user's locale, approved substantive
+evidence, all ingredient mappings usable for product matches, cycle-safe
+descendant expansion. An empty result never establishes safety — report
+unmatched items and unsupported rules as coverage. Demo rules are excluded.
+
+**API surface (MVP)**
+- Profile: `GET/PUT /api/me/profile/demographics`; CRUD on
+  `/api/me/profile/items`, `/observations`; `GET/POST` on `/conditions`,
+  `/measurements`.
+- Search: `GET /api/search/profile-entry?entryType=…&q=…` (`/api/search/all`
+  as admin/debug fallback); `GET /api/risk-levels`.
+- Interactions: `POST /api/me/interactions/check`, `GET /api/me/interactions/summary`.
+- Editor/admin: rules CRUD + `submit-review`/`approve`/`publish`/`retire`,
+  evidence sources CRUD, review task decisions, `POST /api/admin/import/workbook`
+  (import and user/permission management admin-only).
+
+**Workbook import order**: risk levels → profile risk factors → concepts →
+measurement types → aliases → products/aliases/ingredients (brand candidates stay
+candidates) → evidence sources → rules → participants → conditions and their
+sources → rule sources → timing → modifiers (+ conditions, sources) → copy →
+review tasks. Imported rows default to non-public statuses.
+
+**Content normalization before production**
+- Merge duplicate substances (warfarin, levothyroxine, ciprofloxacin).
+- Decide group rules vs ingredient rules (statins, tetracyclines,
+  bisphosphonates, NSAIDs, SSRIs/SNRIs).
+- Split broad non-drug groups (calcium supplement vs calcium-rich food, iron,
+  magnesium, zinc, antacid, potassium supplement / salt substitute / rich food).
+- Verify brand aliases against Ravimiregister / Estonian SPC/PIL.
+- Every evidence source needs an `evidence_grade` before publication; consolidate
+  the known duplicate article; review the 270 `search_only` sources.
+- Write real English copy (current `en` rows are Estonian placeholders).
+
+**Open product questions**
+- Diagnosis input: free-text autocomplete, short risk-factor questions, or both?
+- Blood pressure UI: one combined systolic/diastolic form or two fields?
+
+**Schema stop rule**: further schema design stops once an external review rates
+the model ≥9/10 for MVP fitness; after that, changes go into implementation tasks.
+
 ## Technical ideas
 
 - **Audit fields on every table** (implemented, standing rule — see

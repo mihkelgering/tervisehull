@@ -4,7 +4,9 @@ Standalone PostgreSQL 16 schema and demonstration data for the health knowledge
 model. It includes 40 tables, 100 interaction rules, 300 evidence-source records,
 139 concepts, 750 aliases, English/Estonian translation rows, and six fixture users.
 Internal primary/foreign keys are integers; externally addressable records also
-have UUIDs. See [the data model](docs/data-model.md) for relationships and decisions.
+have UUIDs. Data model, decisions and plans live in the wiki:
+[`wiki/database.md`](../wiki/database.md), [`wiki/decisions.md`](../wiki/decisions.md)
+and [`wiki/roadmap.md`](../wiki/roadmap.md).
 
 ## Scope
 

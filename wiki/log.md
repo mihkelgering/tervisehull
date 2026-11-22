@@ -31,7 +31,13 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   while `adapter-node` actually listens on the injected `PORT` (8080).
   Verified end-to-end against the live URLs (health, CORS preflight,
   registration with session cookie). Pages touched: roadmap.md, operations.md.
-- 2026-11-05 - Added the standalone health knowledge database package, including
+- 2026-11-05 — Added the standalone health knowledge database package, including
   schema, fixtures, source metadata, PostgreSQL setup and smoke checks. Documented
   its separation from the existing backend schema. Pages touched: database.md,
   index.md.
+- 2026-11-22 — Split `db/docs/data-model.md` into the wiki and deleted it:
+  decisions → new `decisions.md`; planned integration, API, matching flow, import
+  and normalization → `roadmap.md` "Planned" section; current state → rewritten
+  `database.md`. Per-table column reference dropped (SQL is the source of truth;
+  it had drifted). Removed the false "implemented public query path" claim.
+  Pages touched: database.md, decisions.md, roadmap.md, index.md, schema.md.
