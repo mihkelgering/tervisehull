@@ -59,7 +59,18 @@ workbook IDs (`RULE_0001`, `SRC_0001_1`) as text trace fields.
 ## Relationship to the backend
 
 The backend owns its own schema via Flyway (`V1`–`V3`, `ddl-auto=validate`).
-This package has a different `users` table and does not follow the backend's
-audit-column rule (`created_by`/`updated_by` missing everywhere). Do not point the
-backend at this database. Integration needs an explicit decision on users,
-identifiers, ownership and audit columns — see `roadmap.md`.
+This package has a different `users` table. Do not point the backend at this
+database. Integration needs an explicit decision on users, identifiers and
+ownership — see `roadmap.md`.
+
+## Audit columns
+
+Every table follows the standing rule (see `backend.md`): `created_at`,
+`created_by`, `updated_at`, `updated_by`, emitted as the last columns of each
+table. `created_by`/`updated_by` are nullable `bigint` logical references to
+`users.id` with no FK, matching the backend. A `set_updated_at()` trigger is
+attached to every table with an `updated_at` column (discovered dynamically at
+the end of `001_schema.sql`, not a hand-kept list). Seed users self-reference
+their own id; other seed rows leave `created_by`/`updated_by` NULL. The smoke
+test asserts all four columns and the trigger exist on every table and that an
+UPDATE succeeds on each.

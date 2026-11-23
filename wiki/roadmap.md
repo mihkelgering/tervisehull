@@ -56,7 +56,8 @@ Status: **todo**. The standalone schema exists (`database.md`, decisions in
 **Integration and migrations**
 - Bring the schema in as forward Flyway migrations (`V4+`); don't reuse version
   numbers or blindly baseline the bootstrap scripts. Decide first: one `users`
-  table (backend's), identifier mapping, module ownership, audit columns.
+  table (backend's), identifier mapping, module ownership. (Audit columns are
+  already in place on every table.)
 - Prefer CSV-based import scripts over handwritten seed SQL; keep every row
   traceable to workbook sheet and original ID.
 - Population descriptor and pharmacogenomic tables only after privacy/compliance

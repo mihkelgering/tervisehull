@@ -41,3 +41,9 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   `database.md`. Per-table column reference dropped (SQL is the source of truth;
   it had drifted). Removed the false "implemented public query path" claim.
   Pages touched: database.md, decisions.md, roadmap.md, index.md, schema.md.
+- 2026-11-23 — Added the four standard audit columns to all 40 tables in the
+  standalone `db/` schema (replacing `created_by_user_id` on `health_concepts`
+  and `drug_products`), made the `updated_at` trigger attach dynamically (fixes
+  UPDATE failing on `locales`/`countries`/`measurement_types`), self-referenced
+  seed users, and extended the smoke test. Pages touched: database.md,
+  roadmap.md.

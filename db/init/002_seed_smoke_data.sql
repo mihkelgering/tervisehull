@@ -35,6 +35,11 @@ VALUES
   (103, 'simva.only@example.test', NULL, 1),
   (104, 'crossed.items@example.test', NULL, 1);
 
+-- No other acting user exists for seed users, so self-reference them, as the
+-- backend does for self-registration (see wiki/backend.md). Other seed rows
+-- leave created_by/updated_by NULL: there is no acting user for fixture data.
+UPDATE users SET created_by = id, updated_by = id;
+
 INSERT INTO user_sessions (id, user_id, expires_at)
 VALUES
   (9601, 101, now() + interval '7 days'),

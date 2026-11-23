@@ -21,6 +21,33 @@ BEGIN
       RAISE EXCEPTION 'Fixture table % is empty', item.tablename;
     END IF;
   END LOOP;
+
+  -- Standing rule: every table has the four audit columns, and UPDATE works on
+  -- every table (the set_updated_at trigger must find its column).
+  FOR item IN SELECT tablename FROM pg_tables WHERE schemaname = 'public' LOOP
+    SELECT count(*) INTO row_count
+    FROM information_schema.columns
+    WHERE table_schema = 'public'
+      AND table_name = item.tablename
+      AND column_name IN ('created_at', 'created_by', 'updated_at', 'updated_by');
+    IF row_count <> 4 THEN
+      RAISE EXCEPTION 'Table % has % of 4 audit columns', item.tablename, row_count;
+    END IF;
+    IF NOT EXISTS (
+      SELECT 1 FROM pg_trigger
+      WHERE tgrelid = format('public.%I', item.tablename)::regclass
+        AND tgname = 'set_' || item.tablename || '_updated_at'
+    ) THEN
+      RAISE EXCEPTION 'Table % has no updated_at trigger', item.tablename;
+    END IF;
+    EXECUTE format('UPDATE public.%I SET updated_by = updated_by', item.tablename);
+  END LOOP;
+  IF EXISTS (
+    SELECT 1 FROM users
+    WHERE created_by IS DISTINCT FROM id OR updated_by IS DISTINCT FROM id
+  ) THEN
+    RAISE EXCEPTION 'Seed users must self-reference created_by/updated_by';
+  END IF;
   IF (SELECT count(*) FROM users) <> 6
      OR (SELECT count(*) FROM interaction_rules) <> 100
      OR (SELECT count(*) FROM interaction_rule_sources) <> 300

@@ -8,6 +8,9 @@ CREATE TABLE user_roles (
   display_name text NOT NULL,
   can_publish_directly boolean NOT NULL DEFAULT false,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT user_roles_code_not_empty CHECK (length(trim(code)) > 0)
 );
 
@@ -20,6 +23,9 @@ CREATE TABLE units (
   unit_family text NOT NULL CHECK (unit_family IN ('mass', 'pressure', 'time', 'count', 'volume', 'other')),
   is_active boolean NOT NULL DEFAULT true,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT units_code_not_empty CHECK (length(trim(code)) > 0)
 );
 
@@ -32,6 +38,9 @@ CREATE TABLE data_sources (
   is_clinician_entered boolean NOT NULL DEFAULT false,
   is_device_generated boolean NOT NULL DEFAULT false,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT data_sources_code_not_empty CHECK (length(trim(code)) > 0)
 );
 
@@ -41,9 +50,11 @@ CREATE TABLE users (
   email citext NOT NULL UNIQUE,
   password_hash text,
   role_id bigint NOT NULL REFERENCES user_roles(id) ON DELETE RESTRICT,
+  deleted_at timestamptz,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
-  deleted_at timestamptz
+  updated_by bigint
 );
 
 CREATE INDEX idx_users_role ON users(role_id);
@@ -53,7 +64,10 @@ CREATE TABLE user_sessions (
   uid uuid NOT NULL DEFAULT gen_random_uuid() UNIQUE,
   user_id bigint NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   expires_at timestamptz NOT NULL,
-  created_at timestamptz NOT NULL DEFAULT now()
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_user_sessions_user_expires ON user_sessions(user_id, expires_at);
@@ -66,6 +80,9 @@ CREATE TABLE locales (
   is_mvp_required boolean NOT NULL DEFAULT false,
   is_active boolean NOT NULL DEFAULT true,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT locales_code_format CHECK (code ~ '^[a-z]{2}$')
 );
 
@@ -76,6 +93,9 @@ CREATE TABLE countries (
   display_name text NOT NULL,
   is_active boolean NOT NULL DEFAULT true,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT countries_code_format CHECK (code ~ '^[A-Z]{2}$')
 );
 
@@ -85,7 +105,9 @@ CREATE TABLE translation_keys (
   key text NOT NULL UNIQUE,
   description text,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT translation_keys_key_not_empty CHECK (length(trim(key)) > 0)
 );
 
@@ -94,7 +116,9 @@ CREATE TABLE translations (
   locale_id bigint NOT NULL REFERENCES locales(id) ON DELETE RESTRICT,
   text text NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   PRIMARY KEY (text_id, locale_id),
   CONSTRAINT translations_text_not_empty CHECK (length(trim(text)) > 0)
 );
@@ -138,11 +162,12 @@ CREATE TABLE health_concepts (
     review_status IN ('not_started', 'in_review', 'changes_requested', 'approved', 'rejected')
   ),
   can_trigger_matching boolean NOT NULL DEFAULT true,
-  created_by_user_id bigint REFERENCES users(id) ON DELETE SET NULL,
   approved_by_user_id bigint REFERENCES users(id) ON DELETE SET NULL,
   approved_at timestamptz,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_health_concepts_type_status ON health_concepts(concept_type, status);
@@ -162,7 +187,9 @@ CREATE TABLE concept_aliases (
   verification_source_id bigint,
   search_priority int,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT concept_alias_not_empty CHECK (length(trim(alias)) > 0),
   CONSTRAINT uq_concept_alias UNIQUE (concept_id, alias, locale_id)
 );
@@ -181,7 +208,11 @@ CREATE TABLE concept_relationships (
     relationship_type IN ('is_a', 'contains', 'active_component_of', 'same_as', 'broader_than', 'narrower_than', 'interacts_like')
   ),
   status text NOT NULL CHECK (status IN ('draft', 'approved', 'retired')),
-  review_note text
+  review_note text,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE UNIQUE INDEX uq_concept_relationship ON concept_relationships(from_concept_id, to_concept_id, relationship_type);
@@ -198,11 +229,12 @@ CREATE TABLE drug_products (
   country_id bigint NOT NULL REFERENCES countries(id) ON DELETE RESTRICT,
   status text NOT NULL CHECK (status IN ('candidate', 'approved', 'published', 'rejected', 'retired')),
   has_verified_ingredients boolean NOT NULL DEFAULT false,
-  created_by_user_id bigint REFERENCES users(id) ON DELETE SET NULL,
   approved_by_user_id bigint REFERENCES users(id) ON DELETE SET NULL,
   approved_at timestamptz,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_drug_products_brand_country ON drug_products(brand_name, country_id);
@@ -218,7 +250,9 @@ CREATE TABLE drug_product_aliases (
   status text NOT NULL CHECK (status IN ('candidate', 'approved', 'published', 'rejected', 'retired')),
   search_priority int,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT drug_product_alias_not_empty CHECK (length(trim(alias)) > 0),
   CONSTRAINT uq_drug_product_alias UNIQUE (drug_product_id, alias, locale_id)
 );
@@ -234,7 +268,9 @@ CREATE TABLE drug_product_ingredients (
   is_active_ingredient boolean NOT NULL DEFAULT true,
   is_published boolean NOT NULL DEFAULT false,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   PRIMARY KEY (drug_product_id, concept_id)
 );
 
@@ -263,7 +299,9 @@ CREATE TABLE evidence_sources (
   reviewed_by_user_id bigint REFERENCES users(id) ON DELETE SET NULL,
   reviewed_at timestamptz,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE UNIQUE INDEX uq_evidence_sources_pmid ON evidence_sources(pmid) WHERE pmid IS NOT NULL;
@@ -285,6 +323,10 @@ CREATE TABLE risk_levels (
   requires_gp_discussion boolean NOT NULL DEFAULT false,
   requires_pharmacist_discussion boolean NOT NULL DEFAULT false,
   show_as_blocking_warning boolean NOT NULL DEFAULT false,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT risk_levels_code_not_empty CHECK (length(trim(code)) > 0)
 );
 
@@ -308,7 +350,9 @@ CREATE TABLE interaction_rules (
   supersedes_rule_id bigint REFERENCES interaction_rules(id) ON DELETE SET NULL,
   source_workbook_rule_id text,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_interaction_rules_public_status ON interaction_rules(publication_status, medical_review_status, copy_review_status);
@@ -322,7 +366,11 @@ CREATE TABLE interaction_rule_participants (
   concept_id bigint NOT NULL REFERENCES health_concepts(id) ON DELETE RESTRICT,
   participant_role text NOT NULL CHECK (participant_role IN ('primary', 'interacting_factor', 'risk_context', 'measurement_context')),
   match_scope text NOT NULL CHECK (match_scope IN ('exact_concept', 'include_descendants', 'group_only', 'alias_only')),
-  required_for_match boolean NOT NULL DEFAULT true
+  required_for_match boolean NOT NULL DEFAULT true,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_rule_participants_rule ON interaction_rule_participants(interaction_rule_id);
@@ -335,6 +383,10 @@ CREATE TABLE interaction_rule_sources (
   source_order int NOT NULL,
   evidence_role text NOT NULL CHECK (evidence_role IN ('primary_support', 'mechanism', 'safety_label', 'background', 'conflicting', 'verification')),
   note text,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   PRIMARY KEY (interaction_rule_id, evidence_source_id)
 );
 
@@ -349,7 +401,9 @@ CREATE TABLE rule_condition_groups (
   sort_order int NOT NULL DEFAULT 1,
   status text NOT NULL CHECK (status IN ('draft', 'approved', 'retired')),
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT rule_condition_group_has_one_parent CHECK (
     num_nonnulls(interaction_rule_id, rule_risk_modifier_id) = 1
   )
@@ -386,7 +440,9 @@ CREATE TABLE rule_conditions (
   ),
   status text NOT NULL CHECK (status IN ('draft', 'approved', 'retired')),
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT numeric_conditions_need_unit CHECK (
     condition_kind NOT IN ('item_dose', 'measurement_value') OR unit_id IS NOT NULL
   )
@@ -406,6 +462,10 @@ CREATE TABLE rule_condition_sources (
     evidence_role IN ('threshold_support', 'dose_threshold_support', 'measurement_threshold_support', 'population_threshold_support', 'mechanism', 'background', 'conflicting')
   ),
   evidence_summary text,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   PRIMARY KEY (rule_condition_id, evidence_source_id)
 );
 
@@ -425,7 +485,9 @@ CREATE TABLE interaction_rule_copy (
   reviewed_by_user_id bigint REFERENCES users(id) ON DELETE SET NULL,
   reviewed_at timestamptz,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT uq_rule_copy_locale UNIQUE (interaction_rule_id, locale_id)
 );
 
@@ -443,7 +505,9 @@ CREATE TABLE timing_recommendations (
   instruction_text_id bigint NOT NULL REFERENCES translation_keys(id) ON DELETE RESTRICT,
   status text NOT NULL CHECK (status IN ('draft', 'approved', 'retired')),
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_timing_recommendations_rule_status ON timing_recommendations(interaction_rule_id, status);
@@ -457,7 +521,9 @@ CREATE TABLE profile_risk_factors (
   value_type text NOT NULL CHECK (value_type IN ('boolean', 'enum', 'number', 'date')),
   status text NOT NULL CHECK (status IN ('draft', 'approved', 'published', 'retired')),
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE TABLE rule_risk_modifiers (
@@ -473,7 +539,9 @@ CREATE TABLE rule_risk_modifiers (
   clinician_note_text_id bigint REFERENCES translation_keys(id) ON DELETE RESTRICT,
   status text NOT NULL CHECK (status IN ('draft', 'approved', 'retired')),
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 ALTER TABLE rule_condition_groups
@@ -496,6 +564,10 @@ CREATE TABLE rule_risk_modifier_sources (
     evidence_role IN ('personal_risk_support', 'contraindication_context', 'monitoring_context', 'mechanism', 'background', 'conflicting')
   ),
   evidence_summary text,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   PRIMARY KEY (rule_risk_modifier_id, evidence_source_id)
 );
 
@@ -511,7 +583,9 @@ CREATE TABLE user_demographics (
   ),
   gender_identity text,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   CONSTRAINT demographics_birth_fields_do_not_conflict CHECK (
     date_of_birth IS NULL OR birth_year IS NULL OR extract(year FROM date_of_birth)::int = birth_year
   )
@@ -535,7 +609,9 @@ CREATE TABLE user_profile_items (
   stopped_at date,
   is_current boolean NOT NULL DEFAULT true,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_user_profile_items_user ON user_profile_items(user_id);
@@ -553,7 +629,9 @@ CREATE TABLE user_conditions (
   status text NOT NULL CHECK (status IN ('active', 'past', 'unknown')),
   diagnosed_at date,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_user_conditions_user ON user_conditions(user_id);
@@ -574,7 +652,9 @@ CREATE TABLE user_observations (
   ended_at date,
   source_id bigint NOT NULL REFERENCES data_sources(id) ON DELETE RESTRICT,
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_user_observations_user ON user_observations(user_id);
@@ -589,7 +669,9 @@ CREATE TABLE user_profile_flags (
   value_text text,
   value_number numeric,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
   updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   PRIMARY KEY (user_id, profile_risk_factor_id)
 );
 
@@ -601,7 +683,11 @@ CREATE TABLE measurement_types (
   concept_id bigint NOT NULL REFERENCES health_concepts(id) ON DELETE RESTRICT,
   default_unit_id bigint NOT NULL REFERENCES units(id) ON DELETE RESTRICT,
   normal_range_text text,
-  status text NOT NULL CHECK (status IN ('draft', 'approved', 'published', 'retired'))
+  status text NOT NULL CHECK (status IN ('draft', 'approved', 'published', 'retired')),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE UNIQUE INDEX uq_measurement_types_concept_unit ON measurement_types(concept_id, default_unit_id);
@@ -611,6 +697,9 @@ CREATE TABLE measurement_type_units (
   unit_id bigint NOT NULL REFERENCES units(id) ON DELETE RESTRICT,
   is_default boolean NOT NULL DEFAULT false,
   created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint,
   PRIMARY KEY (measurement_type_id, unit_id)
 );
 
@@ -631,7 +720,10 @@ CREATE TABLE user_measurement_events (
   event_type text NOT NULL CHECK (event_type IN ('blood_pressure', 'lab_panel', 'vital_sign', 'body_measurement', 'other')),
   measured_at timestamptz,
   source_id bigint NOT NULL REFERENCES data_sources(id) ON DELETE RESTRICT,
-  created_at timestamptz NOT NULL DEFAULT now()
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_measurement_events_user ON user_measurement_events(user_id);
@@ -648,7 +740,10 @@ CREATE TABLE user_measurements (
   unit_id bigint NOT NULL REFERENCES units(id) ON DELETE RESTRICT,
   measured_at timestamptz,
   source_id bigint NOT NULL REFERENCES data_sources(id) ON DELETE RESTRICT,
-  created_at timestamptz NOT NULL DEFAULT now()
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_user_measurements_user ON user_measurements(user_id);
@@ -669,7 +764,9 @@ CREATE TABLE review_tasks (
   assigned_to_user_id bigint REFERENCES users(id) ON DELETE SET NULL,
   priority text NOT NULL CHECK (priority IN ('low', 'medium', 'high')),
   created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_review_tasks_assigned ON review_tasks(assigned_to_user_id);
@@ -682,7 +779,10 @@ CREATE TABLE review_decisions (
   actor_user_id bigint NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
   decision text NOT NULL CHECK (decision IN ('approve', 'request_changes', 'reject', 'comment')),
   comment text,
-  created_at timestamptz NOT NULL DEFAULT now()
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_review_decisions_task ON review_decisions(review_task_id);
@@ -697,7 +797,10 @@ CREATE TABLE content_audit_log (
   action text NOT NULL CHECK (action IN ('create', 'update', 'approve', 'publish', 'retire', 'import')),
   old_value_json jsonb,
   new_value_json jsonb,
-  created_at timestamptz NOT NULL DEFAULT now()
+  created_at timestamptz NOT NULL DEFAULT now(),
+  created_by bigint,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by bigint
 );
 
 CREATE INDEX idx_content_audit_log_actor ON content_audit_log(actor_user_id);
@@ -911,42 +1014,27 @@ AS $$
     AND (p_locale_id IS NULL OR irc.locale_id = p_locale_id);
 $$;
 
+-- Every table carries the standard audit columns (created_at, created_by,
+-- updated_at, updated_by), so attach the updated_at trigger to every table
+-- that has the column rather than maintaining a hand-written list.
 DO $$
 DECLARE
-  table_name text;
+  tbl text;
 BEGIN
-  FOREACH table_name IN ARRAY ARRAY[
-    'users',
-    'locales',
-    'countries',
-    'translation_keys',
-    'translations',
-    'health_concepts',
-    'concept_aliases',
-    'drug_products',
-    'drug_product_aliases',
-    'drug_product_ingredients',
-    'evidence_sources',
-    'interaction_rules',
-    'rule_condition_groups',
-    'rule_conditions',
-    'interaction_rule_copy',
-    'timing_recommendations',
-    'profile_risk_factors',
-    'rule_risk_modifiers',
-    'user_demographics',
-    'user_profile_items',
-    'user_conditions',
-    'user_observations',
-    'user_profile_flags',
-    'measurement_types',
-    'review_tasks'
-  ]
+  FOR tbl IN
+    SELECT c.table_name
+    FROM information_schema.columns c
+    JOIN information_schema.tables t
+      ON t.table_schema = c.table_schema AND t.table_name = c.table_name
+    WHERE c.table_schema = current_schema()
+      AND c.column_name = 'updated_at'
+      AND t.table_type = 'BASE TABLE'
+    ORDER BY c.table_name
   LOOP
     EXECUTE format(
       'CREATE TRIGGER %I BEFORE UPDATE ON %I FOR EACH ROW EXECUTE FUNCTION set_updated_at()',
-      'set_' || table_name || '_updated_at',
-      table_name
+      'set_' || tbl || '_updated_at',
+      tbl
     );
   END LOOP;
 END;
