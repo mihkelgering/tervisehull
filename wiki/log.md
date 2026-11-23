@@ -58,3 +58,6 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   Pages touched: database.md.
 - 2026-11-23 — `db/`: dropped `interaction_rules.copy_review_status`; copy
   review is per locale only. Pages touched: database.md.
+- 2026-11-23 — `db/`: row constraints for rule conditions, risk modifiers,
+  profile flags and measurements (review item 8), with negative smoke tests.
+  Pages touched: database.md.

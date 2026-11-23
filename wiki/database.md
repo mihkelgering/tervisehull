@@ -82,6 +82,22 @@ rather than naming languages. `locales.code` is a BCP 47 subset (`et`, `en-GB`,
 `pt-BR`, `zh-Hant`). Matching is language-independent; locale only selects
 display copy.
 
+## Row constraints on conditions and values
+
+- `rule_conditions`: `has_concept`/`item_dose`/`item_frequency` need
+  `concept_id`, `measurement_value` needs `measurement_type_id`, `profile_flag`
+  needs `profile_risk_factor_id`; `between` needs `numeric_min <= numeric_max`
+  (and only `between` may set bounds); `lookback_days >= 0`.
+- `(measurement_type_id, unit_id)` on `rule_conditions` and `user_measurements`
+  must be a pair in `measurement_type_units` (composite FK, checked when both
+  are set).
+- `rule_risk_modifiers`: `is_true`/`present` take no `condition_value`; other
+  operators require one. Whether a modifier has a profile risk factor or
+  condition groups is not enforced (cross-table).
+- `user_profile_flags`: exactly one of the three value columns;
+  `user_measurements`: exactly one of `value_number`/`value_text`. Whether the
+  value matches `profile_risk_factors.value_type` is not enforced.
+
 ## Copy review status
 
 Copy review is tracked only per locale, in `interaction_rule_copy.review_status`.

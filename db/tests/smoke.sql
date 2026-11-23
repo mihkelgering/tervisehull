@@ -10,6 +10,82 @@ LANGUAGE sql AS $$
   );
 $$;
 
+-- Runs a statement that must fail with the given SQLSTATE condition.
+CREATE FUNCTION pg_temp.th_expect_error(p_label text, p_sql text, p_condition text)
+RETURNS void LANGUAGE plpgsql AS $$
+DECLARE
+  got text;
+BEGIN
+  BEGIN
+    EXECUTE p_sql;
+  EXCEPTION WHEN OTHERS THEN
+    GET STACKED DIAGNOSTICS got = RETURNED_SQLSTATE;
+    IF (p_condition = 'check_violation' AND got = '23514')
+       OR (p_condition = 'foreign_key_violation' AND got = '23503') THEN
+      RETURN;
+    END IF;
+    RAISE EXCEPTION '%: expected %, got SQLSTATE % (%)', p_label, p_condition, got, SQLERRM;
+  END;
+  RAISE EXCEPTION '%: invalid row was accepted', p_label;
+END;
+$$;
+
+-- Condition and value constraints (review item 8).
+DO $$
+DECLARE
+  grp bigint := (SELECT min(id) FROM rule_condition_groups);
+  mtype bigint := (SELECT min(measurement_type_id) FROM measurement_type_units);
+  ok_unit bigint;
+  bad_unit bigint;
+  concept bigint := (SELECT min(id) FROM health_concepts);
+  base text;
+BEGIN
+  SELECT min(unit_id) INTO ok_unit FROM measurement_type_units WHERE measurement_type_id = mtype;
+  SELECT min(id) INTO bad_unit FROM units
+  WHERE id NOT IN (SELECT unit_id FROM measurement_type_units WHERE measurement_type_id = mtype);
+  IF bad_unit IS NULL THEN
+    RAISE EXCEPTION 'Fixtures need a unit not allowed for measurement type %', mtype;
+  END IF;
+  base := 'INSERT INTO rule_conditions (condition_group_id, condition_kind, concept_id, measurement_type_id, operator, numeric_value, numeric_min, numeric_max, unit_id, lookback_days, status) VALUES (' || grp || ', ';
+
+  PERFORM pg_temp.th_expect_error('between without bounds',
+    base || format('''measurement_value'', NULL, %s, ''between'', NULL, NULL, NULL, %s, NULL, ''draft'')', mtype, ok_unit), 'check_violation');
+  PERFORM pg_temp.th_expect_error('between with min > max',
+    base || format('''measurement_value'', NULL, %s, ''between'', NULL, 10, 5, %s, NULL, ''draft'')', mtype, ok_unit), 'check_violation');
+  PERFORM pg_temp.th_expect_error('bounds on a non-between operator',
+    base || format('''measurement_value'', NULL, %s, ''greater_than'', 1, 0, 5, %s, NULL, ''draft'')', mtype, ok_unit), 'check_violation');
+  PERFORM pg_temp.th_expect_error('has_concept without concept',
+    base || '''has_concept'', NULL, NULL, ''exists'', NULL, NULL, NULL, NULL, NULL, ''draft'')', 'check_violation');
+  PERFORM pg_temp.th_expect_error('measurement_value without measurement type',
+    base || format('''measurement_value'', NULL, NULL, ''greater_than'', 1, NULL, NULL, %s, NULL, ''draft'')', ok_unit), 'check_violation');
+  PERFORM pg_temp.th_expect_error('negative lookback',
+    base || format('''has_concept'', %s, NULL, ''exists'', NULL, NULL, NULL, NULL, -1, ''draft'')', concept), 'check_violation');
+  PERFORM pg_temp.th_expect_error('unit not allowed for measurement type',
+    base || format('''measurement_value'', NULL, %s, ''greater_than'', 1, NULL, NULL, %s, NULL, ''draft'')', mtype, bad_unit), 'foreign_key_violation');
+
+  PERFORM pg_temp.th_expect_error('modifier comparison without value',
+    'INSERT INTO rule_risk_modifiers (interaction_rule_id, profile_risk_factor_id, condition_operator, condition_value, risk_change, personal_flag_title_text_id, extra_warning_text_id, clinician_note_text_id, status)
+     SELECT interaction_rule_id, profile_risk_factor_id, ''greater_than'', NULL, risk_change, personal_flag_title_text_id, extra_warning_text_id, clinician_note_text_id, ''draft''
+     FROM rule_risk_modifiers ORDER BY id LIMIT 1', 'check_violation');
+  PERFORM pg_temp.th_expect_error('profile flag without value',
+    'UPDATE user_profile_flags SET value_boolean = NULL WHERE user_id = (SELECT min(user_id) FROM user_profile_flags)', 'check_violation');
+  PERFORM pg_temp.th_expect_error('profile flag with two values',
+    'UPDATE user_profile_flags SET value_text = ''x'' WHERE user_id = (SELECT min(user_id) FROM user_profile_flags)', 'check_violation');
+  PERFORM pg_temp.th_expect_error('measurement without value',
+    'UPDATE user_measurements SET value_number = NULL WHERE id = (SELECT min(id) FROM user_measurements)', 'check_violation');
+  PERFORM pg_temp.th_expect_error('measurement unit not allowed for its type',
+    format('UPDATE user_measurements SET unit_id = %s WHERE id = (SELECT min(id) FROM user_measurements WHERE measurement_type_id = %s)', bad_unit, mtype), 'foreign_key_violation');
+
+  -- A valid between condition is still accepted (then undone, so the draft
+  -- condition doesn't affect the gate checks below).
+  BEGIN
+    EXECUTE base || format('''measurement_value'', NULL, %s, ''between'', NULL, 5, 10, %s, 0, ''draft'')', mtype, ok_unit);
+    RAISE EXCEPTION USING ERRCODE = 'TH000', MESSAGE = 'undo';
+  EXCEPTION WHEN SQLSTATE 'TH000' THEN NULL;
+  END;
+END;
+$$;
+
 -- Publication gate. Each case runs in its own block and undoes itself
 -- (custom SQLSTATE TH000), starting from the eligible RULE_0001.
 DO $$
