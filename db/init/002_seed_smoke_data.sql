@@ -1,3 +1,7 @@
+-- One transaction: published rules are inserted before their copy, participants
+-- and sources, and the deferred publication-gate trigger checks them at COMMIT.
+BEGIN;
+
 INSERT INTO user_roles (id, code, display_name, can_publish_directly)
 VALUES
   (1, 'user', 'User', false),
@@ -4661,3 +4665,5 @@ SELECT setval(pg_get_serial_sequence('user_measurements', 'id'), (SELECT max(id)
 SELECT setval(pg_get_serial_sequence('review_tasks', 'id'), (SELECT max(id) FROM review_tasks));
 SELECT setval(pg_get_serial_sequence('review_decisions', 'id'), (SELECT max(id) FROM review_decisions));
 SELECT setval(pg_get_serial_sequence('content_audit_log', 'id'), (SELECT max(id) FROM content_audit_log));
+
+COMMIT;

@@ -1,6 +1,95 @@
 \set ON_ERROR_STOP on
 BEGIN;
 
+CREATE FUNCTION pg_temp.th_eligible(p_public_id text) RETURNS boolean
+LANGUAGE sql AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM public_interaction_rule_eligibility e
+    JOIN interaction_rules r ON r.id = e.interaction_rule_id
+    WHERE r.public_id = p_public_id
+  );
+$$;
+
+-- Publication gate. Each case runs in its own block and undoes itself
+-- (custom SQLSTATE TH000), starting from the eligible RULE_0001.
+DO $$
+DECLARE
+  rule_pk bigint;
+BEGIN
+  SELECT id INTO rule_pk FROM interaction_rules WHERE public_id = 'RULE_0001';
+  IF NOT pg_temp.th_eligible('RULE_0001') THEN
+    RAISE EXCEPTION 'RULE_0001 should be eligible in the fixtures';
+  END IF;
+
+  -- Published requires both approvals (row CHECK).
+  BEGIN
+    UPDATE interaction_rules SET medical_review_status = 'in_review' WHERE id = rule_pk;
+    RAISE EXCEPTION 'Published rule without medical approval was accepted';
+  EXCEPTION WHEN check_violation THEN NULL;
+  END;
+
+  -- A retired participant concept makes the rule ineligible, and the deferred
+  -- trigger refuses to (re)publish it.
+  BEGIN
+    UPDATE health_concepts SET status = 'retired'
+    WHERE id = (SELECT min(concept_id) FROM interaction_rule_participants WHERE interaction_rule_id = rule_pk);
+    IF pg_temp.th_eligible('RULE_0001') THEN
+      RAISE EXCEPTION 'Rule with a retired participant concept is eligible';
+    END IF;
+    BEGIN
+      SET CONSTRAINTS interaction_rules_publication_gate IMMEDIATE;
+      UPDATE interaction_rules SET publication_status = 'published' WHERE id = rule_pk;
+      RAISE EXCEPTION 'Ineligible rule was published';
+    EXCEPTION WHEN check_violation THEN NULL;
+    END;
+    RAISE EXCEPTION USING ERRCODE = 'TH000', MESSAGE = 'undo';
+  EXCEPTION WHEN SQLSTATE 'TH000' THEN NULL;
+  END;
+
+  -- A concept that may not trigger matching makes the rule ineligible.
+  BEGIN
+    UPDATE health_concepts SET can_trigger_matching = false
+    WHERE id = (SELECT min(concept_id) FROM interaction_rule_participants WHERE interaction_rule_id = rule_pk);
+    IF pg_temp.th_eligible('RULE_0001') THEN
+      RAISE EXCEPTION 'Rule with a non-matching participant concept is eligible';
+    END IF;
+    RAISE EXCEPTION USING ERRCODE = 'TH000', MESSAGE = 'undo';
+  EXCEPTION WHEN SQLSTATE 'TH000' THEN NULL;
+  END;
+
+  -- One concept under two roles counts as one participant.
+  BEGIN
+    DELETE FROM interaction_rule_participants
+    WHERE interaction_rule_id = rule_pk
+      AND concept_id <> (SELECT min(concept_id) FROM interaction_rule_participants WHERE interaction_rule_id = rule_pk);
+    INSERT INTO interaction_rule_participants (interaction_rule_id, concept_id, participant_role, match_scope, required_for_match)
+    SELECT rule_pk, min(concept_id), 'risk_context', 'exact_concept', true
+    FROM interaction_rule_participants WHERE interaction_rule_id = rule_pk;
+    IF pg_temp.th_eligible('RULE_0001') THEN
+      RAISE EXCEPTION 'Rule with one distinct required concept is eligible';
+    END IF;
+    RAISE EXCEPTION USING ERRCODE = 'TH000', MESSAGE = 'undo';
+  EXCEPTION WHEN SQLSTATE 'TH000' THEN NULL;
+  END;
+
+  -- A draft risk modifier makes the rule ineligible; a retired one does not.
+  BEGIN
+    INSERT INTO rule_risk_modifiers (interaction_rule_id, profile_risk_factor_id, condition_operator, condition_value, risk_change, personal_flag_title_text_id, extra_warning_text_id, clinician_note_text_id, status)
+    SELECT rule_pk, profile_risk_factor_id, condition_operator, condition_value, risk_change, personal_flag_title_text_id, extra_warning_text_id, clinician_note_text_id, 'retired'
+    FROM rule_risk_modifiers ORDER BY id LIMIT 1;
+    IF NOT pg_temp.th_eligible('RULE_0001') THEN
+      RAISE EXCEPTION 'Retired risk modifier blocked eligibility';
+    END IF;
+    UPDATE rule_risk_modifiers SET status = 'draft' WHERE interaction_rule_id = rule_pk;
+    IF pg_temp.th_eligible('RULE_0001') THEN
+      RAISE EXCEPTION 'Rule with a draft risk modifier is eligible';
+    END IF;
+    RAISE EXCEPTION USING ERRCODE = 'TH000', MESSAGE = 'undo';
+  EXCEPTION WHEN SQLSTATE 'TH000' THEN NULL;
+  END;
+END;
+$$;
+
 -- Locale scalability. Runs first and undoes itself (custom SQLSTATE TH000),
 -- so the checks below see untouched fixtures.
 DO $$

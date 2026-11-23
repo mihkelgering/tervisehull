@@ -39,8 +39,9 @@ The numbered files in `init/` execute once, in order, on an empty volume:
 | `003_enrich_evidence_sources.sql` | Publication identifiers and metadata |
 
 This setup requires no backend build, spreadsheet libraries or network lookup
-after the PostgreSQL image is available. Initialization can take a few seconds
-beyond initial server startup; run the smoke test below to confirm completion.
+after the PostgreSQL image is available. The healthcheck connects over TCP, which
+the entrypoint's temporary init server does not accept, so `--wait` returns only
+after the init scripts have finished.
 
 The Compose project has its own persistent volume. It does not automatically
 attach a pre-existing database. If a database is already available on port 55432,

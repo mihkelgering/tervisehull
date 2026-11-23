@@ -814,12 +814,22 @@ FROM interaction_rules ir
 WHERE ir.publication_status = 'published'
   AND ir.medical_review_status = 'approved'
   AND ir.copy_review_status = 'approved'
+  -- At least two distinct required concepts (one concept under two roles is
+  -- not an interaction).
   AND (
-    SELECT COUNT(*)
+    SELECT COUNT(DISTINCT irp.concept_id)
     FROM interaction_rule_participants irp
     WHERE irp.interaction_rule_id = ir.id
       AND irp.required_for_match = true
   ) >= 2
+  -- Every participant concept is published and allowed to trigger matching.
+  AND NOT EXISTS (
+    SELECT 1
+    FROM interaction_rule_participants irp
+    JOIN health_concepts hc ON hc.id = irp.concept_id
+    WHERE irp.interaction_rule_id = ir.id
+      AND (hc.status <> 'published' OR NOT hc.can_trigger_matching)
+  )
   -- Every active locale flagged is_mvp_required must have approved, complete
   -- copy (incl. the risk label, which public_rule_matches_for_user inner-joins).
   -- Adding a required language is a locales row, not a view change.
@@ -881,7 +891,69 @@ WHERE ir.publication_status = 'published'
     FROM timing_recommendations tr
     WHERE tr.interaction_rule_id = ir.id
       AND tr.status <> 'approved'
+  )
+  -- Risk modifiers pass the same gate as the rule: every non-retired modifier
+  -- is approved, has approved evidence, and its condition groups and
+  -- conditions are approved.
+  AND NOT EXISTS (
+    SELECT 1
+    FROM rule_risk_modifiers rrm
+    WHERE rrm.interaction_rule_id = ir.id
+      AND rrm.status <> 'retired'
+      AND (
+        rrm.status <> 'approved'
+        OR NOT EXISTS (
+          SELECT 1
+          FROM rule_risk_modifier_sources rrms
+          JOIN evidence_sources es ON es.id = rrms.evidence_source_id
+          WHERE rrms.rule_risk_modifier_id = rrm.id
+            AND es.verification_status = 'approved'
+        )
+        OR EXISTS (
+          SELECT 1
+          FROM rule_condition_groups rcg
+          LEFT JOIN rule_conditions rc ON rc.condition_group_id = rcg.id
+          WHERE rcg.rule_risk_modifier_id = rrm.id
+            AND (rcg.status <> 'approved' OR rc.status <> 'approved')
+        )
+      )
   );
+
+-- Publication gate enforcement.
+-- 1. A rule cannot be marked published without both approvals.
+ALTER TABLE interaction_rules
+  ADD CONSTRAINT interaction_rules_published_requires_approval CHECK (
+    publication_status <> 'published'
+    OR (medical_review_status = 'approved' AND copy_review_status = 'approved')
+  );
+
+-- 2. A rule cannot be committed as published unless it passes the full gate
+--    in public_interaction_rule_eligibility. Deferred to commit so a rule and
+--    its copy, participants and sources can be written in one transaction.
+--    This guards the act of publishing; later edits to child rows that make a
+--    published rule ineligible are still caught at read time by the view.
+CREATE OR REPLACE FUNCTION enforce_rule_publication_gate()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF NEW.publication_status = 'published' AND NOT EXISTS (
+    SELECT 1 FROM public_interaction_rule_eligibility e
+    WHERE e.interaction_rule_id = NEW.id
+  ) THEN
+    RAISE EXCEPTION 'Rule % does not pass the publication gate', NEW.public_id
+      USING ERRCODE = 'check_violation',
+            HINT = 'See public_interaction_rule_eligibility for the required conditions.';
+  END IF;
+  RETURN NULL;
+END;
+$$;
+
+CREATE CONSTRAINT TRIGGER interaction_rules_publication_gate
+  AFTER INSERT OR UPDATE OF publication_status ON interaction_rules
+  DEFERRABLE INITIALLY DEFERRED
+  FOR EACH ROW
+  EXECUTE FUNCTION enforce_rule_publication_gate();
 
 CREATE VIEW user_public_rule_matches AS
 SELECT

@@ -51,3 +51,8 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   label) for every active `is_mvp_required` locale instead of hard-coded
   `et`/`en`; `locales.code` widened from `char(2)` to a BCP 47 subset. Smoke test
   covers both. Pages touched: database.md, decisions.md.
+- 2026-11-23 — `db/`: publication gate tightened (distinct participants,
+  published + matchable concepts, risk modifiers gated) and enforced on publish
+  (approval CHECK + deferred constraint trigger; seed wrapped in one
+  transaction); compose healthcheck now uses TCP so `--wait` covers init.
+  Pages touched: database.md.

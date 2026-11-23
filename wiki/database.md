@@ -43,12 +43,20 @@ workbook IDs (`RULE_0001`, `SRC_0001_1`) as text trace fields.
 ## Publication gate and matcher (current behaviour)
 
 - `public_interaction_rule_eligibility` (view) lists rules that are published,
-  medical- and copy-approved, have ≥2 required participants, approved complete
-  copy (title, risk label, headline, explanation, prompt) in every active locale
+  medical- and copy-approved, have ≥2 distinct required participant concepts,
+  all of them `published` with `can_trigger_matching`, approved complete copy
+  (title, risk label, headline, explanation, prompt) in every active locale
   with `is_mvp_required = true` (currently `et` and `en`), at least one approved
-  evidence source, only approved conditions and
-  timing, and direct approved evidence for numeric thresholds. It only reports —
-  nothing prevents setting `publication_status = 'published'` on an ineligible rule.
+  evidence source, only approved conditions and timing, direct approved evidence
+  for numeric thresholds, and every non-retired risk modifier approved with
+  approved evidence and approved condition groups/conditions.
+- **Enforced on publish:** a row CHECK requires both approvals for
+  `publication_status = 'published'`, and a deferred constraint trigger
+  (`interaction_rules_publication_gate`) refuses to commit a rule inserted or
+  updated as published unless it is in the view. Deferral lets a rule and its
+  children be written in one transaction (the seed file is one transaction for
+  this reason). Later child-row edits that break a published rule are not
+  blocked; the view still filters them out at read time.
 - `public_rule_matches_for_user(user_id, locale_id)` matches eligible rules whose
   required participant concepts all appear among the user's current
   (`is_current`) profile items — exact concept match only.
