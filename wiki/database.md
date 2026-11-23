@@ -43,14 +43,14 @@ workbook IDs (`RULE_0001`, `SRC_0001_1`) as text trace fields.
 ## Publication gate and matcher (current behaviour)
 
 - `public_interaction_rule_eligibility` (view) lists rules that are published,
-  medical- and copy-approved, have ≥2 distinct required participant concepts,
+  medically approved, have ≥2 distinct required participant concepts,
   all of them `published` with `can_trigger_matching`, approved complete copy
   (title, risk label, headline, explanation, prompt) in every active locale
   with `is_mvp_required = true` (currently `et` and `en`), at least one approved
   evidence source, only approved conditions and timing, direct approved evidence
   for numeric thresholds, and every non-retired risk modifier approved with
   approved evidence and approved condition groups/conditions.
-- **Enforced on publish:** a row CHECK requires both approvals for
+- **Enforced on publish:** a row CHECK requires medical approval for
   `publication_status = 'published'`, and a deferred constraint trigger
   (`interaction_rules_publication_gate`) refuses to commit a rule inserted or
   updated as published unless it is in the view. Deferral lets a rule and its
@@ -81,6 +81,14 @@ make its copy a publication requirement; the eligibility view reads that flag
 rather than naming languages. `locales.code` is a BCP 47 subset (`et`, `en-GB`,
 `pt-BR`, `zh-Hant`). Matching is language-independent; locale only selects
 display copy.
+
+## Copy review status
+
+Copy review is tracked only per locale, in `interaction_rule_copy.review_status`.
+There is no rule-level copy status (`interaction_rules.copy_review_status` was
+dropped: it duplicated the per-locale value with a different vocabulary and could
+disagree with it). For a per-rule "copy approved" figure, derive it: every
+required locale's copy row is `approved`.
 
 ## Audit columns
 

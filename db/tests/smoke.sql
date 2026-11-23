@@ -21,7 +21,7 @@ BEGIN
     RAISE EXCEPTION 'RULE_0001 should be eligible in the fixtures';
   END IF;
 
-  -- Published requires both approvals (row CHECK).
+  -- Published requires medical approval (row CHECK).
   BEGIN
     UPDATE interaction_rules SET medical_review_status = 'in_review' WHERE id = rule_pk;
     RAISE EXCEPTION 'Published rule without medical approval was accepted';

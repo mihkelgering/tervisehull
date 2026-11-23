@@ -346,7 +346,6 @@ CREATE TABLE interaction_rules (
   base_risk_level_id bigint NOT NULL REFERENCES risk_levels(id) ON DELETE RESTRICT,
   mechanism_text_id bigint REFERENCES translation_keys(id) ON DELETE RESTRICT,
   medical_review_status text NOT NULL CHECK (medical_review_status IN ('not_started', 'in_review', 'changes_requested', 'approved', 'rejected')),
-  copy_review_status text NOT NULL CHECK (copy_review_status IN ('not_started', 'draft_ready', 'in_review', 'approved', 'rejected')),
   publication_status text NOT NULL CHECK (publication_status IN ('draft', 'approved_not_published', 'published', 'retired')),
   version int NOT NULL DEFAULT 1,
   supersedes_rule_id bigint REFERENCES interaction_rules(id) ON DELETE SET NULL,
@@ -357,7 +356,7 @@ CREATE TABLE interaction_rules (
   updated_by bigint
 );
 
-CREATE INDEX idx_interaction_rules_public_status ON interaction_rules(publication_status, medical_review_status, copy_review_status);
+CREATE INDEX idx_interaction_rules_public_status ON interaction_rules(publication_status, medical_review_status);
 CREATE INDEX idx_interaction_rules_base_risk_level ON interaction_rules(base_risk_level_id);
 CREATE INDEX idx_interaction_rules_supersedes_rule ON interaction_rules(supersedes_rule_id);
 
@@ -813,7 +812,6 @@ SELECT ir.id AS interaction_rule_id
 FROM interaction_rules ir
 WHERE ir.publication_status = 'published'
   AND ir.medical_review_status = 'approved'
-  AND ir.copy_review_status = 'approved'
   -- At least two distinct required concepts (one concept under two roles is
   -- not an interaction).
   AND (
@@ -920,11 +918,12 @@ WHERE ir.publication_status = 'published'
   );
 
 -- Publication gate enforcement.
--- 1. A rule cannot be marked published without both approvals.
+-- 1. A rule cannot be marked published without medical approval. Copy
+--    approval is per locale (interaction_rule_copy.review_status) and is
+--    checked by the eligibility view.
 ALTER TABLE interaction_rules
   ADD CONSTRAINT interaction_rules_published_requires_approval CHECK (
-    publication_status <> 'published'
-    OR (medical_review_status = 'approved' AND copy_review_status = 'approved')
+    publication_status <> 'published' OR medical_review_status = 'approved'
   );
 
 -- 2. A rule cannot be committed as published unless it passes the full gate

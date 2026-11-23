@@ -56,3 +56,5 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   (approval CHECK + deferred constraint trigger; seed wrapped in one
   transaction); compose healthcheck now uses TCP so `--wait` covers init.
   Pages touched: database.md.
+- 2026-11-23 — `db/`: dropped `interaction_rules.copy_review_status`; copy
+  review is per locale only. Pages touched: database.md.
