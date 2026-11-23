@@ -17,7 +17,8 @@ only summarizes. Use `COMMENT ON` in SQL for per-column explanations.
   fixtures), `003_enrich_evidence_sources.sql` (PMID/PMCID/DOI metadata).
   Rerunning them never upgrades an existing volume.
 - Smoke test: `db/tests/smoke.sql`, command in `db/README.md`. Needs a fresh
-  fixture DB; all temporary changes are rolled back. Not run in CI.
+  fixture DB; all temporary changes are rolled back. Runs in CI on changes to `db/**`
+  (`.github/workflows/db-smoke.yml`, see `operations.md`).
 
 ## Contents
 

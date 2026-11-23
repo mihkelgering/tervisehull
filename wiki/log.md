@@ -61,3 +61,6 @@ Append-only. One line per wiki update: date, what changed, pages touched.
 - 2026-11-23 — `db/`: row constraints for rule conditions, risk modifiers,
   profile flags and measurements (review item 8), with negative smoke tests.
   Pages touched: database.md.
+- 2026-11-23 — Added the first CI workflow, `.github/workflows/db-smoke.yml`
+  (builds `db/` from scratch and runs the smoke test on changes to `db/**`).
+  Pages touched: operations.md, architecture.md, database.md, roadmap.md.

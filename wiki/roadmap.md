@@ -24,7 +24,7 @@ Status inferred from current repo state (see linked pages) as of 2026-07-24.
 | 8 | Frontend: landing page | done | Public marketing page at `/` with placeholder copy — **needs the real product description, see "Pending content" below.** |
 | 9 | Frontend: login form + session handling (cookie automatic, `fetch` with `credentials: include`) | done | `/login` route + `src/lib/api.ts`. Redirects to `/dashboard` on success. |
 | 10 | Railway: provision two services, add env vars | done | Project `tervisehull`: Postgres + `backend` + `frontend` services, GitHub-connected (`main` branch), Root Directory set per service, public domains generated. All services online — see `operations.md`. |
-| 11 | CI/CD: GitHub Actions — test + build + auto-deploy on `main` | todo | No `.github/workflows` in the repo yet. |
+| 11 | CI/CD: GitHub Actions — test + build + auto-deploy on `main` | in progress | Only `db-smoke.yml` (standalone `db/` smoke test) so far; backend/frontend test + build and deploy still todo. See `operations.md`. |
 | 12 | Backend + frontend: registration flow | done | `POST /api/register` (auto-login on success, 409 if email taken), `/register` page. See `backend.md`. |
 | 13 | Frontend: dashboard | done | `/dashboard`, auth-gated via `GET /api/me`. Placeholder content only ("Welcome, `{email}`" + logout) — **needs real dashboard content, see "Pending content" below.** |
 

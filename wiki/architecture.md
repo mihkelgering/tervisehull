@@ -38,4 +38,5 @@ change to one doesn't redeploy the other.
 
 - No auth/session architecture implemented yet (see `roadmap.md`).
 - No migration tool wired up yet (Flyway/Liquibase planned, see `roadmap.md`).
-- No CI/CD pipeline yet.
+- CI covers only the standalone `db/` smoke test (see `operations.md`); no
+  backend/frontend CI or CD yet.

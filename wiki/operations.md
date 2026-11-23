@@ -68,5 +68,14 @@ a commit to one directory doesn't redeploy the other.
 
 ## CI/CD
 
-No pipeline exists yet (no `.github/workflows`). Planned: GitHub Actions running
-tests + build, auto-deploy on push to `main`. See `roadmap.md`.
+One GitHub Actions workflow so far:
+
+- `.github/workflows/db-smoke.yml` — on pull requests and pushes to `main` that
+  touch `db/**` (or the workflow itself), plus manual runs: builds the
+  standalone `db/` package from scratch with `db/compose.yml` and runs
+  `db/tests/smoke.sql`. A failing init script fails the "Start database" step
+  (the container exits and `up --wait` returns non-zero); Postgres logs are
+  printed on failure.
+
+Still planned: backend tests + build, frontend check + build, auto-deploy on
+push to `main`. See `roadmap.md`.

@@ -64,7 +64,8 @@ Optional overrides are documented in `.env.example`; load a private file with
 
 Run against a fresh fixture database. The test checks population, source metadata,
 both locales, matching/nonmatching profiles, sequence allocation, and publication
-gates. Temporary updates are rolled back.
+gates. Temporary updates are rolled back. CI runs the same steps on every pull
+request that touches `db/` (`.github/workflows/db-smoke.yml`).
 
 ```bash
 docker compose -f db/compose.yml exec -T postgres \
