@@ -43,8 +43,10 @@ workbook IDs (`RULE_0001`, `SRC_0001_1`) as text trace fields.
 ## Publication gate and matcher (current behaviour)
 
 - `public_interaction_rule_eligibility` (view) lists rules that are published,
-  medical- and copy-approved, have ≥2 required participants, approved `et` and
-  `en` copy, at least one approved evidence source, only approved conditions and
+  medical- and copy-approved, have ≥2 required participants, approved complete
+  copy (title, risk label, headline, explanation, prompt) in every active locale
+  with `is_mvp_required = true` (currently `et` and `en`), at least one approved
+  evidence source, only approved conditions and
   timing, and direct approved evidence for numeric thresholds. It only reports —
   nothing prevents setting `publication_status = 'published'` on an ineligible rule.
 - `public_rule_matches_for_user(user_id, locale_id)` matches eligible rules whose
@@ -62,6 +64,15 @@ The backend owns its own schema via Flyway (`V1`–`V3`, `ddl-auto=validate`).
 This package has a different `users` table. Do not point the backend at this
 database. Integration needs an explicit decision on users, identifiers and
 ownership — see `roadmap.md`.
+
+## Languages
+
+Adding a language needs no schema change: insert a `locales` row and its
+`translations` / `interaction_rule_copy` rows. Set `is_mvp_required = true` to
+make its copy a publication requirement; the eligibility view reads that flag
+rather than naming languages. `locales.code` is a BCP 47 subset (`et`, `en-GB`,
+`pt-BR`, `zh-Hant`). Matching is language-independent; locale only selects
+display copy.
 
 ## Audit columns
 

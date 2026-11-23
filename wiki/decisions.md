@@ -50,7 +50,7 @@ Personal data changes *relevance*, never instructions: it produces evidence-back
 | 14 | Direct publishing | Editors and admins may publish directly; mitigated by strict gates and an immutable `content_audit_log`. |
 | 15 | Product market | Estonia only for MVP (`countries.code = EE`), verified against Ravimiregister / Estonian SPC/PIL. Others stay candidates. |
 | 16 | MVP scope hardening | Profile covers medicines/supplements/foods/drinks, optional dose/frequency, conditions, observations and blood pressure. Kidney/liver markers, glucose, body metrics, population descriptors and PGx are future-gated. Numeric thresholds need direct approved evidence; matching is exact-unit only (no conversion). |
-| 17 | Localization | Display text in `translations(text_id, locale_id, text)` keyed by `translation_keys`; no per-language columns. MVP requires approved `et` and `en` copy. |
+| 17 | Localization | Display text in `translations(text_id, locale_id, text)` keyed by `translation_keys`; no per-language columns. Required languages are the active `locales` with `is_mvp_required` (MVP: `et`, `en`); locale codes are a BCP 47 subset. |
 | 18 | Identifiers | Internal `bigint` identity PKs/FKs; `uid uuid` for external references; sequential IDs never exposed in APIs; workbook IDs (`RULE_0001`, …) kept as text trace fields. |
 
 Conventions that follow:

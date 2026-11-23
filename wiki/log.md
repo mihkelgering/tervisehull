@@ -47,3 +47,7 @@ Append-only. One line per wiki update: date, what changed, pages touched.
   UPDATE failing on `locales`/`countries`/`measurement_types`), self-referenced
   seed users, and extended the smoke test. Pages touched: database.md,
   roadmap.md.
+- 2026-11-23 — `db/`: eligibility view now requires complete copy (incl. risk
+  label) for every active `is_mvp_required` locale instead of hard-coded
+  `et`/`en`; `locales.code` widened from `char(2)` to a BCP 47 subset. Smoke test
+  covers both. Pages touched: database.md, decisions.md.

@@ -1,6 +1,64 @@
 \set ON_ERROR_STOP on
 BEGIN;
 
+-- Locale scalability. Runs first and undoes itself (custom SQLSTATE TH000),
+-- so the checks below see untouched fixtures.
+DO $$
+BEGIN
+  BEGIN
+    IF NOT EXISTS (
+      SELECT 1 FROM public_interaction_rule_eligibility e
+      JOIN interaction_rules r ON r.id = e.interaction_rule_id
+      WHERE r.public_id = 'RULE_0001'
+    ) THEN
+      RAISE EXCEPTION 'RULE_0001 should be eligible in the fixtures';
+    END IF;
+
+    -- Region/script variants are valid locale codes; malformed ones are not.
+    INSERT INTO locales (code, display_name) VALUES
+      ('pt-BR', 'Portuguese (Brazil)'), ('zh-Hant', 'Chinese (Traditional)'), ('fil', 'Filipino');
+    BEGIN
+      INSERT INTO locales (code, display_name) VALUES ('EN', 'Bad code');
+      RAISE EXCEPTION 'Malformed locale code EN was accepted';
+    EXCEPTION WHEN check_violation THEN NULL;
+    END;
+
+    -- A non-required locale without copy does not affect eligibility...
+    IF NOT EXISTS (
+      SELECT 1 FROM public_interaction_rule_eligibility e
+      JOIN interaction_rules r ON r.id = e.interaction_rule_id
+      WHERE r.public_id = 'RULE_0001'
+    ) THEN
+      RAISE EXCEPTION 'Optional locale without copy blocked eligibility';
+    END IF;
+    -- ...but making it required does, with no view change.
+    UPDATE locales SET is_mvp_required = true WHERE code = 'pt-BR';
+    IF EXISTS (SELECT 1 FROM public_interaction_rule_eligibility) THEN
+      RAISE EXCEPTION 'Rule eligible without copy in a required locale';
+    END IF;
+    UPDATE locales SET is_mvp_required = false WHERE code = 'pt-BR';
+
+    -- A missing risk-label translation in a required locale blocks eligibility.
+    DELETE FROM translations t
+    USING interaction_rules r, risk_levels rl, locales l
+    WHERE r.public_id = 'RULE_0001'
+      AND rl.id = r.base_risk_level_id
+      AND t.text_id = rl.label_text_id
+      AND l.id = t.locale_id AND l.code = 'en';
+    IF EXISTS (
+      SELECT 1 FROM public_interaction_rule_eligibility e
+      JOIN interaction_rules r ON r.id = e.interaction_rule_id
+      WHERE r.public_id = 'RULE_0001'
+    ) THEN
+      RAISE EXCEPTION 'Rule eligible without an en risk label';
+    END IF;
+
+    RAISE EXCEPTION USING ERRCODE = 'TH000', MESSAGE = 'undo locale checks';
+  EXCEPTION WHEN SQLSTATE 'TH000' THEN NULL;
+  END;
+END;
+$$;
+
 DO $$
 DECLARE
   item record;
