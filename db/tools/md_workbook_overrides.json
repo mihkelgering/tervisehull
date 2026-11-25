@@ -1,0 +1,1323 @@
+{
+  "_about": [
+    "Hand-reviewed decisions the MD workbook import (import_md_workbook.py) cannot derive from the workbook or the seed catalog.",
+    "concepts: resolution for every workbook factor name that does not match one single seed concept by exact name or by alias.",
+    "  A key is the factor name as written in the workbook (matched case-insensitively) or 'Sheet name::factor name' when the",
+    "  same name means different things on different tabs. Forms:",
+    "    {\"existing\": \"<public_id>\", \"alias\": true}  -> use that seed or new concept; add the workbook name as a candidate alias",
+    "    {\"new\": \"<public_id>\", \"name\": ..., \"type\": ..., \"category\": ..., \"aliases\": [...], \"is_a\": ..., \"narrower_than\": ...}",
+    "    {\"formulation\": \"<public_id>\", \"name\": ..., \"of\": \"<substance public_id>\", \"dosage_form\": ..., \"route\": ..., \"strength_text\": ...}",
+    "    {\"alternatives\": [name, name, ...]}  -> one participant per member, all in one alternative_group ('any one of these')",
+    "  A seed alias that matches the name of a NEW concept is re-pointed to it (this is how combined seed concepts are split).",
+    "retype: seed concepts whose concept_type/category the workbook content contradicts.",
+    "reject_aliases: seed aliases that point at the wrong concept and are not re-pointed by a new concept.",
+    "timing: structured timing_recommendations rows for the Tühja kõhuga / Päevaaeg cases, keyed 'Sheet::Case name'.",
+    "  Only windows the MD text states plainly; the instruction text itself is always stored, these columns are the typed reading.",
+    "evidence_effects: typed effect numbers for evidence rows that state them plainly, keyed 'Sheet::row', guarded by the source string."
+  ],
+  "concepts": {
+    "Levotüroksiin": {
+      "existing": "SUB_0004",
+      "note": "Exact name matches two seed concepts (SUB_0004, SUB_0021 duplicate); SUB_0004 chosen, merge pending (roadmap)."
+    },
+    "Varfariin": {
+      "existing": "SUB_0001",
+      "note": "Exact name matches two seed concepts (SUB_0001, SUB_0015 duplicate); SUB_0001 chosen (fixture profiles use it), merge pending."
+    },
+    "Tsiprofloksatsiin": {
+      "existing": "SUB_0005",
+      "note": "Exact name matches two seed concepts (SUB_0005, SUB_0019 duplicate); SUB_0005 chosen, merge pending."
+    },
+    "Digoksiin; glütsürritsiini sisaldav lagrits": {
+      "existing": "SUB_0030",
+      "alias": false,
+      "note": "Factor 1 cell repeats both sides of the pair; factor 1 is digoxin, factor 2 (lagrits) carries the licorice side. Not added as an alias."
+    },
+    "Soja": {
+      "existing": "ITEM_0019",
+      "note": "Seed alias on ITEM_0019 (Soja / sojaproteiin) is right; the second seed alias 'soja' on ITEM_0032 (Kofeiini järsk vähendamine) is wrong and rejected."
+    },
+    "lagrits": {
+      "existing": "ITEM_0051",
+      "note": "Exact name (case-insensitive). Seed alias 'lagrits' on ITEM_0022 (Tsink/raud) is wrong and rejected."
+    },
+    "Lovastatiin": {
+      "existing": "SUB_0010",
+      "alias": true,
+      "note": "Seed spells it 'Lovastatin'."
+    },
+    "Linesoliid": {
+      "existing": "SUB_0034",
+      "alias": true,
+      "note": "Seed spells it 'Linezoliid'."
+    },
+    "Insuliinid": {
+      "existing": "SUB_0025",
+      "alias": true
+    },
+    "Suukaudsed rasestumisvastased ravimid": {
+      "existing": "SUB_0031",
+      "alias": true,
+      "note": "Oral contraceptives; the seed also has ITEM_0046 'Hormonaalsed kontratseptiivid' (retyped below)."
+    },
+    "Vererõhuravimid üldiselt": {
+      "existing": "SUB_0069",
+      "alias": true
+    },
+    "Prootonpumba inhibiitorid": {
+      "existing": "SUB_0053",
+      "alias": true,
+      "note": "Seed 'PPI-d' (retyped to drug_group); the combined SUB_0052 'PPI-d: omeprasool/pantoprasool' is not used."
+    },
+    "H2-retseptori inhibiitorid": {
+      "existing": "SUB_0054",
+      "alias": true,
+      "note": "Seed 'H2-blokaatorid: famotidiin' (retyped to drug_group)."
+    },
+    "Suukaudsed bisfosfonaadid": {
+      "existing": "SUB_0022",
+      "alias": true,
+      "note": "Seed 'Bisfosfonaadid: alendronaat/risedronaat' (retyped to drug_group)."
+    },
+    "Metotreksaat, eeskätt väikese annusega RA-ravi": {
+      "existing": "SUB_0056",
+      "alias": false,
+      "note": "Methotrexate; the low-dose RA context stays in the case's conditions text, not in the concept."
+    },
+    "Prednisoloon, tavaline üks kord päevas skeem": {
+      "existing": "SUB_0123",
+      "alias": false,
+      "note": "Prednisolone; the once-daily regimen is the timing rule's content, not a concept."
+    },
+    "Askorbiinhape": {
+      "existing": "NUT_0002",
+      "alias": true,
+      "note": "Ascorbic acid = vitamin C."
+    },
+    "Kaltsiumilisandid": {
+      "existing": "SUP_0001",
+      "alias": true,
+      "note": "Plural of Kaltsiumilisand; seed alias on the combined ITEM_0006 is re-pointed."
+    },
+    "Suukaudne raud": {
+      "existing": "SUP_0002",
+      "alias": true
+    },
+    "Rauasoolad, nt raudsulfaat": {
+      "existing": "SUP_0002",
+      "alias": true,
+      "note": "Iron salts in general = oral iron supplement; Raudsulfaat (SUP_0003) is the specific salt."
+    },
+    "Rybelsus": {
+      "existing": "FORM_0008",
+      "alias": true
+    },
+    "CYP3A4 inhibiitorid": {
+      "existing": "GRP_0003",
+      "alias": false
+    },
+    "Serotonergilised ravimid": {
+      "existing": "GRP_0008",
+      "alias": false
+    },
+    "Antatsiidid": {
+      "existing": "GRP_0001",
+      "alias": false,
+      "note": "Seed alias 'antatsiidid' on the combined ITEM_0007 is re-pointed to the new group."
+    },
+    "Opioidi sisaldavad kombinatsioonid, nt tramadool/paratsetamool": {
+      "existing": "GRP_0007",
+      "alias": true
+    },
+    "KKB ja greip::Klassi üldpõhimõte": {
+      "existing": "GRP_0006",
+      "alias": false,
+      "note": "'Class general principle' on the calcium channel blocker tab = the class itself."
+    },
+    "Alkohol ja antibiootikumid::Klassi üldpõhimõte": {
+      "existing": "GRP_0002",
+      "alias": false,
+      "note": "'Class general principle' on the antibiotics tab = antibiotics as a class."
+    },
+    "Alkohol ja diabeediravimid::Klassi üldpõhimõte": {
+      "existing": "GRP_0004",
+      "alias": false,
+      "note": "'Class general principle' on the diabetes drugs tab = glucose-lowering drugs as a class."
+    },
+    "Kogu rühm: diasepaam, alprasolaam, lorasepaam, oksasepaam": {
+      "alternatives": [
+        "Diasepaam",
+        "Alprasolaam",
+        "Lorasepaam",
+        "Oksasepaam"
+      ],
+      "note": "Whole group listed as members: any one of these."
+    },
+    "Kogu rühm; morfiin, oksükodoon, kodeiin": {
+      "alternatives": [
+        "Morfiin",
+        "Oksükodoon",
+        "Kodeiin"
+      ]
+    },
+    "MSPVA-d: ibuprofeen, naprokseen, diklofenak; aspiriin": {
+      "alternatives": [
+        "Ibuprofeen",
+        "Naprokseen",
+        "Diklofenak",
+        "Aspiriin"
+      ]
+    },
+    "Amoksitsilliin; penitsilliin V": {
+      "alternatives": [
+        "Amoksitsilliin",
+        "Penitsilliin V"
+      ]
+    },
+    "Gliklasiid; glimepiriid (sulfonüüluuread)": {
+      "alternatives": [
+        "Gliklasiid",
+        "Glimepiriid"
+      ]
+    },
+    "SGLT2 inhibiitorid; empagliflosiin": {
+      "alternatives": [
+        "SGLT2 inhibiitorid",
+        "Empagliflosiin"
+      ],
+      "note": "The class or its named example."
+    },
+    "GLP-1 agonistid (semaglutiid); DPP-4 inhibiitorid (sitagliptiin)": {
+      "alternatives": [
+        "GLP-1 agonistid",
+        "Semaglutiid",
+        "DPP-4 inhibiitorid",
+        "Sitagliptiin"
+      ],
+      "note": "Two classes with one named example each."
+    },
+    "Abirateroon": {
+      "new": "SUB_0079",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Alprasolaam": {
+      "new": "SUB_0080",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0046"
+    },
+    "Alumiiniumhüdroksiid": {
+      "new": "SUB_0081",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "GRP_0001"
+    },
+    "Amitriptüliin": {
+      "new": "SUB_0082",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Amlodipiin": {
+      "new": "SUB_0083",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0011",
+      "note": "Split from the combined seed concept 'Amlodipiin / nifedipiin / felodipiin'."
+    },
+    "Amoksitsilliin": {
+      "new": "SUB_0084",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "GRP_0002"
+    },
+    "Apiksabaan": {
+      "new": "SUB_0085",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0044",
+      "note": "Split from 'Apiksabaan/rivaroksabaan'."
+    },
+    "Buprenorfiin": {
+      "new": "SUB_0086",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0047"
+    },
+    "Diasepaam": {
+      "new": "SUB_0087",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0046"
+    },
+    "Diklofenak": {
+      "new": "SUB_0088",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0039"
+    },
+    "Diltiaseem": {
+      "new": "SUB_0089",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0065",
+      "is_a": "GRP_0006",
+      "note": "Split from 'Verapamiil/diltiaseem'."
+    },
+    "Edoksabaan": {
+      "new": "SUB_0090",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Empagliflosiin": {
+      "new": "SUB_0091",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0075"
+    },
+    "Feksofenadiin": {
+      "new": "SUB_0092",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Felodipiin": {
+      "new": "SUB_0093",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0011",
+      "is_a": "GRP_0006",
+      "note": "Split from 'Amlodipiin / nifedipiin / felodipiin'."
+    },
+    "Fenprokumoon": {
+      "new": "SUB_0094",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Flukloksatsilliin": {
+      "new": "SUB_0095",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "GRP_0002"
+    },
+    "Furosemiid": {
+      "new": "SUB_0096",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0064"
+    },
+    "Gliklasiid": {
+      "new": "SUB_0097",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0026"
+    },
+    "Glimepiriid": {
+      "new": "SUB_0098",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0026"
+    },
+    "Ibandronaat": {
+      "new": "SUB_0099",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0022"
+    },
+    "Ibuprofeen": {
+      "new": "SUB_0100",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0039"
+    },
+    "Indinaviir": {
+      "new": "SUB_0101",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0070"
+    },
+    "Kodeiin": {
+      "new": "SUB_0102",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0047"
+    },
+    "Kolesevelaam": {
+      "new": "SUB_0103",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0077",
+      "note": "Split from 'Kolestüramiin/kolesevelaam'."
+    },
+    "Kolestüramiin": {
+      "new": "SUB_0104",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0077",
+      "note": "Split from 'Kolestüramiin/kolesevelaam'."
+    },
+    "Lansoprasool": {
+      "new": "SUB_0105",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0053"
+    },
+    "Lantaan": {
+      "new": "SUB_0106",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Lerkanidipiin": {
+      "new": "SUB_0107",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "GRP_0006"
+    },
+    "Lorasepaam": {
+      "new": "SUB_0108",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0046"
+    },
+    "Metadoon": {
+      "new": "SUB_0109",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0047"
+    },
+    "Metüülfenidaat": {
+      "new": "SUB_0110",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Midasolaam": {
+      "new": "SUB_0111",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0046"
+    },
+    "Mirtasapiin": {
+      "new": "SUB_0112",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Morfiin": {
+      "new": "SUB_0113",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0047"
+    },
+    "Naprokseen": {
+      "new": "SUB_0114",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0039"
+    },
+    "Nevirapiin": {
+      "new": "SUB_0115",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Nifedipiin": {
+      "new": "SUB_0116",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0011",
+      "is_a": "GRP_0006",
+      "note": "Split from 'Amlodipiin / nifedipiin / felodipiin'."
+    },
+    "Oksasepaam": {
+      "new": "SUB_0117",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0046"
+    },
+    "Oksükodoon": {
+      "new": "SUB_0118",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0047"
+    },
+    "Omeprasool": {
+      "new": "SUB_0119",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0053"
+    },
+    "Pantoprasool": {
+      "new": "SUB_0120",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0053",
+      "note": "Seed alias on the combined SUB_0052 'PPI-d: omeprasool/pantoprasool' is re-pointed."
+    },
+    "Paroksetiin": {
+      "new": "SUB_0121",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0045"
+    },
+    "Penitsilliin V": {
+      "new": "SUB_0122",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "GRP_0002"
+    },
+    "Prednisoloon": {
+      "new": "SUB_0123",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Risedronaat": {
+      "new": "SUB_0124",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0022"
+    },
+    "Rivaroksabaan": {
+      "new": "SUB_0125",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0044",
+      "note": "Split from 'Apiksabaan/rivaroksabaan'."
+    },
+    "Rosuvastatiin": {
+      "new": "SUB_0126",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Semaglutiid": {
+      "new": "SUB_0127",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0076"
+    },
+    "Sertraliin": {
+      "new": "SUB_0128",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0045"
+    },
+    "Sevelameer": {
+      "new": "SUB_0129",
+      "type": "active_substance",
+      "category": "drug"
+    },
+    "Sitagliptiin": {
+      "new": "SUB_0130",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "GRP_0005"
+    },
+    "Takroliimus": {
+      "new": "SUB_0131",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0014",
+      "note": "Split from 'Tsüklosporiin / takroliimus'."
+    },
+    "Tinidasool": {
+      "new": "SUB_0132",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "GRP_0002"
+    },
+    "Tsefoperasoon": {
+      "new": "SUB_0133",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0017"
+    },
+    "Tsefotetaan": {
+      "new": "SUB_0134",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0017"
+    },
+    "Tsüklosporiin": {
+      "new": "SUB_0135",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0014",
+      "note": "Split from 'Tsüklosporiin / takroliimus'."
+    },
+    "Verapamiil": {
+      "new": "SUB_0136",
+      "type": "active_substance",
+      "category": "drug",
+      "narrower_than": "SUB_0065",
+      "is_a": "GRP_0006",
+      "note": "Split from 'Verapamiil/diltiaseem'."
+    },
+    "Antatsiidid (rühm)": {
+      "new": "GRP_0001",
+      "name": "Antatsiidid",
+      "type": "drug_group",
+      "category": "drug"
+    },
+    "Antibiootikumid": {
+      "new": "GRP_0002",
+      "type": "drug_group",
+      "category": "drug"
+    },
+    "CYP3A4 inhibiitorid (rühm)": {
+      "new": "GRP_0003",
+      "name": "CYP3A4 inhibiitorid",
+      "type": "drug_group",
+      "category": "drug",
+      "note": "The workbook names no members; membership is MD work."
+    },
+    "Diabeediravimid": {
+      "new": "GRP_0004",
+      "type": "drug_group",
+      "category": "drug"
+    },
+    "DPP-4 inhibiitorid": {
+      "new": "GRP_0005",
+      "type": "drug_group",
+      "category": "drug"
+    },
+    "Kaltsiumikanali blokaatorid": {
+      "new": "GRP_0006",
+      "type": "drug_group",
+      "category": "drug",
+      "aliases": [
+        "KKB"
+      ]
+    },
+    "Opioidi sisaldavad kombinatsioonid": {
+      "new": "GRP_0007",
+      "type": "drug_group",
+      "category": "drug",
+      "is_a": "SUB_0047"
+    },
+    "Serotonergilised ravimid (rühm)": {
+      "new": "GRP_0008",
+      "name": "Serotonergilised ravimid",
+      "type": "drug_group",
+      "category": "drug"
+    },
+    "Apelsinimahl": {
+      "new": "ITEM_0058",
+      "type": "drink",
+      "category": "food_drink",
+      "note": "Seed alias 'apelsinimahl' on ITEM_0044 (Foolhape/folaat) was wrong; it is re-pointed here."
+    },
+    "Greibimahl": {
+      "new": "ITEM_0059",
+      "type": "drink",
+      "category": "food_drink",
+      "note": "The workbook separates grapefruit (ITEM_0011) from grapefruit juice. Seed alias on the combined ITEM_0002 is re-pointed; the one on ITEM_0010 is rejected."
+    },
+    "Kala": {
+      "new": "ITEM_0060",
+      "type": "food",
+      "category": "food_drink"
+    },
+    "Liha": {
+      "new": "ITEM_0061",
+      "type": "food",
+      "category": "food_drink"
+    },
+    "Linnuliha": {
+      "new": "ITEM_0062",
+      "type": "food",
+      "category": "food_drink"
+    },
+    "Piim": {
+      "new": "ITEM_0063",
+      "type": "drink",
+      "category": "food_drink",
+      "note": "Seed aliases on the combined ITEM_0006 and ITEM_0008 are re-pointed."
+    },
+    "Sojaoad": {
+      "new": "ITEM_0064",
+      "type": "food",
+      "category": "food_drink",
+      "narrower_than": "ITEM_0019"
+    },
+    "Tee": {
+      "new": "ITEM_0065",
+      "type": "drink",
+      "category": "food_drink"
+    },
+    "Teraviljad": {
+      "new": "ITEM_0066",
+      "type": "food",
+      "category": "food_drink"
+    },
+    "C-vitamiin": {
+      "new": "NUT_0002",
+      "type": "nutrient",
+      "category": "supplement",
+      "note": "Seed alias 'C-vitamiin' on ITEM_0053 (Melatoniin) was wrong; it is re-pointed here. ITEM_0049 'C-vitamiin suurtes annustes' stays a separate, dose-qualified concept."
+    },
+    "Kiudained": {
+      "new": "NUT_0003",
+      "type": "nutrient",
+      "category": "food_drink",
+      "note": "Seed alias 'kiudained' on ITEM_0031 (Madal soolatarbimine / dehüdratsioon) was wrong; it is re-pointed here."
+    },
+    "Polüfenoolid": {
+      "new": "NUT_0004",
+      "type": "nutrient",
+      "category": "food_drink"
+    },
+    "Fütaadid": {
+      "new": "NUT_0005",
+      "type": "nutrient",
+      "category": "food_drink"
+    },
+    "Kaltsiumilisand": {
+      "new": "SUP_0001",
+      "type": "supplement",
+      "category": "supplement"
+    },
+    "Raualisand": {
+      "new": "SUP_0002",
+      "type": "supplement",
+      "category": "supplement",
+      "note": "Oral iron supplement, as opposed to dietary iron (ITEM_0018 Raud)."
+    },
+    "Raudsulfaat": {
+      "new": "SUP_0003",
+      "type": "supplement",
+      "category": "supplement",
+      "is_a": "SUP_0002",
+      "note": "Split from the combined ITEM_0005 iron-salt listing; its seed alias is re-pointed."
+    },
+    "Levotüroksiin (pehmekapsel)": {
+      "formulation": "FORM_0001",
+      "of": "SUB_0004",
+      "dosage_form": "soft_capsule",
+      "route": "oral"
+    },
+    "Levotüroksiin (suukaudne lahus)": {
+      "formulation": "FORM_0002",
+      "of": "SUB_0004",
+      "dosage_form": "oral_solution",
+      "route": "oral"
+    },
+    "Levotüroksiini tabletid": {
+      "formulation": "FORM_0003",
+      "of": "SUB_0004",
+      "dosage_form": "tablet",
+      "route": "oral"
+    },
+    "Ibandronaat 150 mg osteoporoosiravis": {
+      "formulation": "FORM_0004",
+      "of": "SUB_0099",
+      "dosage_form": "tablet",
+      "route": "oral",
+      "strength_text": "150 mg"
+    },
+    "Risedronaat, tavaline tablett": {
+      "formulation": "FORM_0005",
+      "of": "SUB_0124",
+      "dosage_form": "tablet",
+      "route": "oral"
+    },
+    "Suukaudne amiodaroon": {
+      "formulation": "FORM_0006",
+      "of": "SUB_0066",
+      "route": "oral"
+    },
+    "Abirateroon (Zytiga tavapreparaat)": {
+      "formulation": "FORM_0007",
+      "of": "SUB_0079",
+      "dosage_form": "tablet",
+      "route": "oral",
+      "note": "Conventional (Zytiga) tablets; other abiraterone formulations differ in food effect."
+    },
+    "Rybelsus (suukaudne semaglutiid)": {
+      "formulation": "FORM_0008",
+      "of": "SUB_0127",
+      "dosage_form": "tablet",
+      "route": "oral"
+    },
+    "Metüülfenidaat, lühitoimeline Ritalin": {
+      "formulation": "FORM_0009",
+      "of": "SUB_0110",
+      "dosage_form": "immediate_release",
+      "route": "oral"
+    },
+    "Kaltsiumkarbonaat": {
+      "new": "SUP_0004",
+      "type": "supplement",
+      "category": "supplement",
+      "is_a": "SUP_0001",
+      "note": "Split from the combined ITEM_0003 calcium-salt listing; its seed alias is re-pointed."
+    },
+    "Kaltsiumtsitraat": {
+      "new": "SUP_0005",
+      "type": "supplement",
+      "category": "supplement",
+      "is_a": "SUP_0001",
+      "note": "Split from the combined ITEM_0003 calcium-salt listing; its seed alias is re-pointed."
+    },
+    "Kaltsiumatsetaat": {
+      "new": "SUP_0006",
+      "type": "supplement",
+      "category": "supplement",
+      "is_a": "SUP_0001",
+      "note": "Split from the combined ITEM_0003 calcium-salt listing; its seed alias is re-pointed."
+    },
+    "Zolpideem": {
+      "new": "SUB_0137",
+      "type": "active_substance",
+      "category": "drug",
+      "is_a": "SUB_0051",
+      "note": "Seed has only the group 'Z-ravimid: zolpideem/zopikloon'."
+    }
+  },
+  "retype": {
+    "ITEM_0026": {
+      "type": "supplement",
+      "category": "supplement",
+      "note": "Naistepuna (St John's wort) is a herbal supplement, not a food group."
+    },
+    "ITEM_0013": {
+      "type": "lifestyle_factor",
+      "category": "lifestyle",
+      "note": "Alkohol: intake pattern matters (binge vs chronic); drug_lifestyle rules."
+    },
+    "ITEM_0046": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Hormonaalsed kontratseptiivid are medicines, not a food group."
+    },
+    "SUB_0017": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a members (tsefotetaan, tsefoperasoon)."
+    },
+    "SUB_0022": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a members (ibandronaat, risedronaat)."
+    },
+    "SUB_0026": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a members (gliklasiid, glimepiriid)."
+    },
+    "SUB_0039": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a members (ibuprofeen, naprokseen, diklofenak)."
+    },
+    "SUB_0045": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a members (sertraliin, paroksetiin)."
+    },
+    "SUB_0046": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a members (benzodiazepines)."
+    },
+    "SUB_0047": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a members (opioids)."
+    },
+    "SUB_0053": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "PPI-d: receives is_a members (omeprasool, pantoprasool, lansoprasool)."
+    },
+    "SUB_0064": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a member (furosemiid)."
+    },
+    "SUB_0070": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a member (indinaviir)."
+    },
+    "SUB_0075": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a member (empagliflosiin)."
+    },
+    "SUB_0076": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a member (semaglutiid)."
+    },
+    "SUB_0051": {
+      "type": "drug_group",
+      "category": "drug",
+      "note": "Receives is_a member (zolpideem)."
+    }
+  },
+  "reject_aliases": [
+    {
+      "concept": "ITEM_0022",
+      "alias": "lagrits",
+      "note": "Licorice is not 'Tsink/raud'."
+    },
+    {
+      "concept": "ITEM_0032",
+      "alias": "soja",
+      "note": "Soy is not 'Kofeiini järsk vähendamine'."
+    },
+    {
+      "concept": "ITEM_0010",
+      "alias": "greibimahl",
+      "note": "ITEM_0010 'Greip / grapefruit juice' is a bilingual label for grapefruit; juice is now ITEM_0059."
+    },
+    {
+      "concept": "ITEM_0013",
+      "alias": "naistepuna",
+      "note": "St John's wort is not alcohol."
+    },
+    {
+      "concept": "ITEM_0012",
+      "alias": "alkohol",
+      "note": "Alcohol is not cranberry."
+    },
+    {
+      "concept": "ITEM_0028",
+      "alias": "kaltsium",
+      "note": "Calcium is not 'Suitsetamine ja järsk loobumine'."
+    },
+    {
+      "concept": "ITEM_0029",
+      "alias": "magneesium",
+      "note": "Magnesium is not 'Suitsetamine ja kofeiin'."
+    },
+    {
+      "concept": "ITEM_0018",
+      "alias": "aspiriin",
+      "note": "Aspirin is not iron (Raud)."
+    }
+  ],
+  "timing": {
+    "Tühja kõhuga::Alendronaat + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "first_food_or_drink",
+          "relation": "before",
+          "min_minutes": 30,
+          "stay_upright_minutes": 30,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Risedronaat, tavaline tablett + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "first_food_or_drink",
+          "relation": "before",
+          "min_minutes": 30,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Ibandronaat 150 mg osteoporoosiravis + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "after",
+          "min_minutes": 360,
+          "requirement_strength": "strict_label_requirement"
+        },
+        {
+          "anchor": "first_food_or_drink",
+          "relation": "before",
+          "min_minutes": 60,
+          "stay_upright_minutes": 60,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Levotüroksiini tabletid + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "breakfast",
+          "relation": "before",
+          "min_minutes": 30,
+          "max_minutes": 60,
+          "requirement_strength": "consistency_only"
+        }
+      ]
+    },
+    "Tühja kõhuga::Rybelsus (suukaudne semaglutiid) + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "after",
+          "min_minutes": 480,
+          "with_water_ml_max": 120,
+          "requirement_strength": "strict_label_requirement"
+        },
+        {
+          "anchor": "first_food_or_drink",
+          "relation": "before",
+          "min_minutes": 30,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Rauasoolad, nt raudsulfaat + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 60,
+          "alternative_group": 1,
+          "requirement_strength": "practical_preference"
+        },
+        {
+          "anchor": "meal",
+          "relation": "after",
+          "min_minutes": 120,
+          "alternative_group": 1,
+          "requirement_strength": "practical_preference"
+        }
+      ]
+    },
+    "Tühja kõhuga::Flukloksatsilliin + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 60,
+          "alternative_group": 1,
+          "requirement_strength": "strict_label_requirement"
+        },
+        {
+          "anchor": "meal",
+          "relation": "after",
+          "min_minutes": 120,
+          "alternative_group": 1,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Rifampitsiin + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 30,
+          "alternative_group": 1,
+          "requirement_strength": "label_recommendation"
+        },
+        {
+          "anchor": "meal",
+          "relation": "after",
+          "min_minutes": 120,
+          "alternative_group": 1,
+          "requirement_strength": "label_recommendation"
+        }
+      ]
+    },
+    "Tühja kõhuga::Isoniasiid + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 30,
+          "alternative_group": 1,
+          "requirement_strength": "strict_label_requirement"
+        },
+        {
+          "anchor": "meal",
+          "relation": "after",
+          "min_minutes": 120,
+          "alternative_group": 1,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Lansoprasool + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 30,
+          "time_of_day": "morning",
+          "requirement_strength": "label_recommendation"
+        }
+      ]
+    },
+    "Tühja kõhuga::Pantoprasool + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 60,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Omeprasool + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 30,
+          "time_of_day": "morning",
+          "requirement_strength": "label_recommendation"
+        }
+      ]
+    },
+    "Tühja kõhuga::Lerkanidipiin + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 15,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Tühja kõhuga::Abirateroon (Zytiga tavapreparaat) + Toit": {
+      "timing_type": "take_on_empty_stomach",
+      "rows": [
+        {
+          "anchor": "meal",
+          "relation": "after",
+          "min_minutes": 120,
+          "requirement_strength": "strict_label_requirement"
+        },
+        {
+          "anchor": "meal",
+          "relation": "before",
+          "min_minutes": 60,
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Päevaaeg::Simvastatiin + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "evening",
+          "requirement_strength": "label_recommendation"
+        }
+      ]
+    },
+    "Päevaaeg::Atorvastatiin + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "consistent_time",
+          "requirement_strength": "not_required"
+        }
+      ]
+    },
+    "Päevaaeg::Rosuvastatiin + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "consistent_time",
+          "requirement_strength": "not_required"
+        }
+      ]
+    },
+    "Päevaaeg::Prednisoloon, tavaline üks kord päevas skeem + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "morning",
+          "anchor": "breakfast",
+          "relation": "after",
+          "requirement_strength": "label_recommendation"
+        }
+      ]
+    },
+    "Päevaaeg::Furosemiid + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "morning",
+          "requirement_strength": "practical_preference"
+        }
+      ]
+    },
+    "Päevaaeg::Mirtasapiin + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "bedtime",
+          "requirement_strength": "label_recommendation"
+        }
+      ]
+    },
+    "Päevaaeg::Zolpideem + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "bedtime",
+          "requirement_strength": "indication_linked"
+        }
+      ]
+    },
+    "Päevaaeg::Metüülfenidaat, lühitoimeline Ritalin + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "morning",
+          "requirement_strength": "label_recommendation"
+        }
+      ]
+    },
+    "Päevaaeg::Levotüroksiin + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "requirement_strength": "consistency_only"
+        }
+      ]
+    },
+    "Päevaaeg::Prootonpumba inhibiitorid + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "anchor": "breakfast",
+          "relation": "before",
+          "requirement_strength": "practical_preference"
+        }
+      ]
+    },
+    "Päevaaeg::Suukaudsed bisfosfonaadid + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "morning",
+          "anchor": "waking",
+          "relation": "after",
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Päevaaeg::Rybelsus + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "morning",
+          "requirement_strength": "strict_label_requirement"
+        }
+      ]
+    },
+    "Päevaaeg::Vererõhuravimid üldiselt + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "any",
+          "requirement_strength": "not_required"
+        }
+      ]
+    },
+    "Päevaaeg::Suukaudne raud + Päevaaeg": {
+      "timing_type": "take_at_time_of_day",
+      "rows": [
+        {
+          "time_of_day": "morning",
+          "requirement_strength": "practical_preference"
+        }
+      ]
+    }
+  },
+  "evidence_effects": {
+    "Statiinid::57": {
+      "source": "10.1111/j.1365-2125.2004.02095.x",
+      "effect_metric": "auc_ratio",
+      "effect_value": 3.6,
+      "effect_note": "simvastatiini AUC (Lilja 2004); Cmax 3,9-kordne; simvastatiinhappe AUC 3,3- ja Cmax 4,3-kordne",
+      "sample_size": 10
+    },
+    "Statiinid::61": {
+      "source": "10.1053/cp.1999.v66.100453001",
+      "effect_metric": "auc_ratio",
+      "effect_value": 2.5,
+      "effect_note": "atorvastatiinhappe AUC(0–72); laktooni AUC 3,3- ja Cmax 2,6-kordne",
+      "sample_size": 12
+    },
+    "Naistepuna::69": {
+      "source": "10.1053/cp.1999.v66.a101944",
+      "effect_metric": "auc_percent_change",
+      "effect_value": -25,
+      "p_value": 0.0035,
+      "effect_note": "digoksiini AUC 10 päeva järel; Cmax −26%",
+      "sample_size": 25,
+      "population": "healthy_volunteers"
+    },
+    "PPI::53": {
+      "source": "10.1111/joim.12826",
+      "effect_metric": "odds_ratio",
+      "effect_value": 3.6,
+      "effect_ci_low": 3.32,
+      "effect_ci_high": 3.91,
+      "effect_note": "kohandatud rauapuuduse OR, pidev ≥1 aasta PPI kasutus; vahelduv kasutus 1,51 (1,44–1,58)",
+      "study_design": "case_control",
+      "population": "patients"
+    },
+    "Antikoagulandid ja naistepuna::52": {
+      "source": "10.1111/bcp.14553",
+      "effect_metric": "auc_ratio",
+      "effect_value": 0.76,
+      "effect_ci_low": 0.7,
+      "effect_ci_high": 0.82,
+      "effect_note": "rivaroksabaani AUC suhe (90% UV); Cmax 0,86",
+      "sample_size": 12,
+      "population": "healthy_volunteers"
+    },
+    "KKB ja greip::71": {
+      "source": "Coadministration of grapefruit juice increases systemic exposure of diltiazem in healthy volunteers.",
+      "effect_metric": "auc_percent_change",
+      "effect_value": 20,
+      "p_value": 0.02,
+      "effect_note": "diltiaseemi AUC +20 ± 25%; Cmax +22 ± 37% (p=0,14)",
+      "sample_size": 10,
+      "population": "healthy_volunteers"
+    },
+    "Alkohol ja varfariin::46": {
+      "source": "Roth jt. Pharmacoepidemiol Drug Saf, 2015. Alcohol misuse, genetics, and major bleeding among warfarin therapy patients in a community setting.",
+      "effect_metric": "odds_ratio",
+      "effect_value": 2.1,
+      "effect_note": "raske verejooks, probleemne tarvitamine; rohke episoodiline tarvitamine OR 2,36",
+      "study_design": "case_control",
+      "sample_size": 570
+    },
+    "Alkohol ja valuvaigistid::48": {
+      "source": "Kaufman jt. Am J Gastroenterol, 1999;94:3189–3196. The risk of acute major upper gastrointestinal bleeding among users of aspirin and ibuprofen at various levels of alcohol consumption.",
+      "effect_metric": "relative_risk",
+      "effect_value": 7.0,
+      "effect_note": "aspiriin >325 mg regulaarne kasutus alkoholi tarvitajatel; regulaarne ibuprofeen RR 2,7"
+    },
+    "Alkohol ja metotreksaat::46": {
+      "source": "Humphreys jt. Ann Rheum Dis, 2017. Quantifying the hepatotoxic risk of alcohol consumption in patients with rheumatoid arthritis taking methotrexate. DOI 10.1136/annrheumdis-2016-210629.",
+      "effect_metric": "hazard_ratio",
+      "effect_value": 1.85,
+      "effect_note": ">21 UK ühikut/nädal; 1–7 ühikut HR 1,02; 8–14 ühikut HR 0,98",
+      "sample_size": 11839,
+      "population": "patients"
+    },
+    "Päevaaeg::75": {
+      "source": "Mackenzie jt. Lancet, 2022;400:1417–1425. TIME study: evening versus morning dosing of usual antihypertensives.",
+      "effect_metric": "hazard_ratio",
+      "effect_value": 0.95,
+      "effect_ci_low": 0.83,
+      "effect_ci_high": 1.1,
+      "effect_note": "TIME; BedMed HR 0,96 (0,77–1,19)",
+      "study_design": "rct"
+    }
+  }
+}

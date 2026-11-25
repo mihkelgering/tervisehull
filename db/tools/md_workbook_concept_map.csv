@@ -1,0 +1,172 @@
+factor_name,sheets,resolution,public_ids,concept_type,concept_category,how,alias_action,relationships,member_of,note
+Atorvastatiin,Statiinid; Päevaaeg,existing,SUB_0003,active_substance,drug,exact,,,,
+Greip,Statiinid; Amiodaroon ja greip; KKB ja greip,existing,ITEM_0011,food_group,food_drink,exact,,,,
+Lovastatiin,Statiinid,existing,SUB_0010,active_substance,drug,override,alias added to SUB_0010,,,Seed spells it 'Lovastatin'.
+Simvastatiin,Statiinid; Naistepuna; Päevaaeg,existing,SUB_0002,active_substance,drug,exact,,,,
+Greibimahl,Statiinid; Antikoagulandid ja greip,new,ITEM_0059,drink,food_drink,override,alias 'greibimahl' moved from ITEM_0002,,,The workbook separates grapefruit (ITEM_0011) from grapefruit juice. Seed alias on the combined ITEM_0002 is re-pointed; the one on ITEM_0010 is rejected.
+CYP3A4 inhibiitorid,Statiinid,new (shared),GRP_0003,drug_group,drug,override,alias added to GRP_0003,,,
+Levotüroksiin,Levotüroksiin; Päevaaeg,existing,SUB_0004,active_substance,drug,override,,,,"Exact name matches two seed concepts (SUB_0004, SUB_0021 duplicate); SUB_0004 chosen, merge pending (roadmap)."
+Kohv,Levotüroksiin; Raud,existing,ITEM_0020,food_group,food_drink,exact,,,,
+Soja,Levotüroksiin,existing,ITEM_0019,food_group,food_drink,override,,,,Seed alias on ITEM_0019 (Soja / sojaproteiin) is right; the second seed alias 'soja' on ITEM_0032 (Kofeiini järsk vähendamine) is wrong and rejected.
+Kiudained,Levotüroksiin,new,NUT_0003,nutrient,food_drink,override,alias 'kiudained' moved from ITEM_0031,,,Seed alias 'kiudained' on ITEM_0031 (Madal soolatarbimine / dehüdratsioon) was wrong; it is re-pointed here.
+Kaltsiumilisand,Levotüroksiin,new,SUP_0001,supplement,supplement,override,alias added to SUP_0001,,,
+Raualisand,Levotüroksiin; Raud,new,SUP_0002,supplement,supplement,override,alias added to SUP_0002,,,"Oral iron supplement, as opposed to dietary iron (ITEM_0018 Raud)."
+Sojaoad,Levotüroksiin,new,ITEM_0064,food,food_drink,override,alias added to ITEM_0064,ITEM_0064 narrower_than ITEM_0019,,
+C-vitamiin,Levotüroksiin; PPI; Raud,new,NUT_0002,nutrient,supplement,override,alias 'C-vitamiin' moved from ITEM_0053,,,"Seed alias 'C-vitamiin' on ITEM_0053 (Melatoniin) was wrong; it is re-pointed here. ITEM_0049 'C-vitamiin suurtes annustes' stays a separate, dose-qualified concept."
+Kaltsiumkarbonaat,Levotüroksiin,new,SUP_0004,supplement,supplement,override,alias 'Kaltsiumkarbonaat' moved from ITEM_0003,SUP_0004 is_a SUP_0001,,Split from the combined ITEM_0003 calcium-salt listing; its seed alias is re-pointed.
+Kaltsiumtsitraat,Levotüroksiin,new,SUP_0005,supplement,supplement,override,alias 'kaltsiumtsitraat' moved from ITEM_0003,SUP_0005 is_a SUP_0001,,Split from the combined ITEM_0003 calcium-salt listing; its seed alias is re-pointed.
+Kaltsiumatsetaat,Levotüroksiin,new,SUP_0006,supplement,supplement,override,alias 'kaltsiumatsetaat' moved from ITEM_0003,SUP_0006 is_a SUP_0001,,Split from the combined ITEM_0003 calcium-salt listing; its seed alias is re-pointed.
+Raudsulfaat,Levotüroksiin,new,SUP_0003,supplement,supplement,override,alias 'Raudsulfaat' moved from ITEM_0005,SUP_0003 is_a SUP_0002,,Split from the combined ITEM_0005 iron-salt listing; its seed alias is re-pointed.
+Kolestüramiin,Levotüroksiin,new,SUB_0104,active_substance,drug,override,alias 'Kolestüramiin' moved from SUB_0077,SUB_0104 narrower_than SUB_0077,,Split from 'Kolestüramiin/kolesevelaam'.
+Kolesevelaam,Levotüroksiin,new,SUB_0103,active_substance,drug,override,alias 'kolesevelaam' moved from SUB_0077,SUB_0103 narrower_than SUB_0077,,Split from 'Kolestüramiin/kolesevelaam'.
+Lantaan,Levotüroksiin,new,SUB_0106,active_substance,drug,override,alias added to SUB_0106,,,
+Tsiprofloksatsiin,Levotüroksiin,existing,SUB_0005,active_substance,drug,override,,,,"Exact name matches two seed concepts (SUB_0005, SUB_0019 duplicate); SUB_0005 chosen, merge pending."
+Alumiiniumhüdroksiid,Levotüroksiin,new,SUB_0081,active_substance,drug,override,alias added to SUB_0081,SUB_0081 is_a GRP_0001,,
+Sevelameer,Levotüroksiin,new,SUB_0129,active_substance,drug,override,alias added to SUB_0129,,,
+Prootonpumba inhibiitorid,Levotüroksiin; PPI; Raud; Päevaaeg,existing,SUB_0053,drug_group,drug,override,alias added to SUB_0053,,,Seed 'PPI-d' (retyped to drug_group); the combined SUB_0052 'PPI-d: omeprasool/pantoprasool' is not used.
+Levotüroksiin (suukaudne lahus),Levotüroksiin,formulation,FORM_0002,formulation,drug,override,alias added to FORM_0002,FORM_0002 is_a SUB_0004,,
+Levotüroksiin (pehmekapsel),Levotüroksiin,formulation,FORM_0001,formulation,drug,override,alias added to FORM_0001,FORM_0001 is_a SUB_0004,,
+Rivaroksabaan,Antikoagulandid ja greip; Antikoagulandid ja naistepuna,new,SUB_0125,active_substance,drug,override,alias 'rivaroksabaan' moved from SUB_0044,SUB_0125 narrower_than SUB_0044,,Split from 'Apiksabaan/rivaroksabaan'.
+Apiksabaan,Antikoagulandid ja greip; Antikoagulandid ja naistepuna,new,SUB_0085,active_substance,drug,override,alias 'Apiksabaan' moved from SUB_0044,SUB_0085 narrower_than SUB_0044,,Split from 'Apiksabaan/rivaroksabaan'.
+Naistepuna,Naistepuna; Antikoagulandid ja naistepuna,existing,ITEM_0026,supplement,supplement,exact,,,,
+Amitriptüliin,Naistepuna,new,SUB_0082,active_substance,drug,override,alias added to SUB_0082,,,
+Tsüklosporiin,Naistepuna,new,SUB_0135,active_substance,drug,override,alias 'Tsüklosporiin' moved from SUB_0014,SUB_0135 narrower_than SUB_0014,,Split from 'Tsüklosporiin / takroliimus'.
+Digoksiin,Naistepuna,existing,SUB_0030,active_substance,drug,exact,,,,
+Feksofenadiin,Naistepuna,new,SUB_0092,active_substance,drug,override,alias added to SUB_0092,,,
+Indinaviir,Naistepuna,new,SUB_0101,active_substance,drug,override,alias added to SUB_0101,SUB_0101 is_a SUB_0070,,
+Metadoon,Naistepuna,new,SUB_0109,active_substance,drug,override,alias added to SUB_0109,SUB_0109 is_a SUB_0047,,
+Midasolaam,Naistepuna,new,SUB_0111,active_substance,drug,override,alias added to SUB_0111,SUB_0111 is_a SUB_0046,,
+Nevirapiin,Naistepuna,new,SUB_0115,active_substance,drug,override,alias added to SUB_0115,,,
+Fenprokumoon,Naistepuna,new,SUB_0094,active_substance,drug,override,alias added to SUB_0094,,,
+Takroliimus,Naistepuna,new,SUB_0131,active_substance,drug,override,alias 'takroliimus' moved from SUB_0014,SUB_0131 narrower_than SUB_0014,,Split from 'Tsüklosporiin / takroliimus'.
+Teofülliin,Naistepuna,existing,SUB_0036,active_substance,drug,exact,,,,
+Varfariin,Naistepuna; Alkohol ja varfariin,existing,SUB_0001,active_substance,drug,override,,,,"Exact name matches two seed concepts (SUB_0001, SUB_0015 duplicate); SUB_0001 chosen (fixture profiles use it), merge pending."
+Sertraliin,Naistepuna,new,SUB_0128,active_substance,drug,override,alias added to SUB_0128,SUB_0128 is_a SUB_0045,,
+Paroksetiin,Naistepuna,new,SUB_0121,active_substance,drug,override,alias added to SUB_0121,SUB_0121 is_a SUB_0045,,
+Suukaudsed rasestumisvastased ravimid,Naistepuna,existing,SUB_0031,active_substance,drug,override,alias added to SUB_0031,,,Oral contraceptives; the seed also has ITEM_0046 'Hormonaalsed kontratseptiivid' (retyped below).
+Serotonergilised ravimid,Naistepuna,new (shared),GRP_0008,drug_group,drug,override,alias added to GRP_0008,,,
+B12-vitamiin,PPI,existing,ITEM_0040,food_group,food_drink,exact,,,,
+Raud,PPI; Raud,existing,ITEM_0018,food_group,food_drink,exact,,,,
+Kaltsium,PPI; Raud,existing,ITEM_0017,food_group,food_drink,exact,,,,
+Magneesium,PPI,existing,ITEM_0041,food_group,food_drink,exact,,,,
+Dabigatraan,Antikoagulandid ja naistepuna,existing,SUB_0043,active_substance,drug,exact,,,,
+Edoksabaan,Antikoagulandid ja naistepuna,new,SUB_0090,active_substance,drug,override,alias added to SUB_0090,,,
+Apelsinimahl,Raud,new,ITEM_0058,drink,food_drink,override,alias 'apelsinimahl' moved from ITEM_0044,,,Seed alias 'apelsinimahl' on ITEM_0044 (Foolhape/folaat) was wrong; it is re-pointed here.
+Askorbiinhape,Raud,new (shared),NUT_0002,nutrient,supplement,override,alias added to NUT_0002,,,Ascorbic acid = vitamin C.
+Liha,Raud,new,ITEM_0061,food,food_drink,override,alias added to ITEM_0061,,,
+Kala,Raud,new,ITEM_0060,food,food_drink,override,alias added to ITEM_0060,,,
+Linnuliha,Raud,new,ITEM_0062,food,food_drink,override,alias added to ITEM_0062,,,
+Tee,Raud,new,ITEM_0065,drink,food_drink,override,alias added to ITEM_0065,,,
+Polüfenoolid,Raud,new,NUT_0004,nutrient,food_drink,override,alias added to NUT_0004,,,
+Fütaadid,Raud,new,NUT_0005,nutrient,food_drink,override,alias added to NUT_0005,,,
+Piim,Raud,new,ITEM_0063,drink,food_drink,override,alias 'Piim' moved from ITEM_0006,,,Seed aliases on the combined ITEM_0006 and ITEM_0008 are re-pointed.
+Teraviljad,Raud,new,ITEM_0066,food,food_drink,override,alias added to ITEM_0066,,,
+Kaltsiumilisandid,Raud,new (shared),SUP_0001,supplement,supplement,override,alias 'kaltsiumilisandid' moved from ITEM_0006,,,Plural of Kaltsiumilisand; seed alias on the combined ITEM_0006 is re-pointed.
+Antatsiidid,Raud,new (shared),GRP_0001,drug_group,drug,override,alias 'antatsiidid' moved from ITEM_0007,,,Seed alias 'antatsiidid' on the combined ITEM_0007 is re-pointed to the new group.
+H2-retseptori inhibiitorid,Raud,existing,SUB_0054,active_substance,drug,override,alias added to SUB_0054,,,Seed 'H2-blokaatorid: famotidiin' (retyped to drug_group).
+Digoksiin; glütsürritsiini sisaldav lagrits,Digoksiin ja lagrits,existing,SUB_0030,active_substance,drug,override,,,,"Factor 1 cell repeats both sides of the pair; factor 1 is digoxin, factor 2 (lagrits) carries the licorice side. Not added as an alias."
+lagrits,Digoksiin ja lagrits,existing,ITEM_0051,food_group,food_drink,override,,,,Exact name (case-insensitive). Seed alias 'lagrits' on ITEM_0022 (Tsink/raud) is wrong and rejected.
+Suukaudne amiodaroon,Amiodaroon ja greip,formulation,FORM_0006,formulation,drug,override,alias added to FORM_0006,FORM_0006 is_a SUB_0066,,
+Klassi üldpõhimõte,KKB ja greip,new (shared),GRP_0006,drug_group,drug,override,,,,'Class general principle' on the calcium channel blocker tab = the class itself.
+Felodipiin,KKB ja greip,new,SUB_0093,active_substance,drug,override,alias 'felodipiin' moved from SUB_0011,SUB_0093 is_a GRP_0006; SUB_0093 narrower_than SUB_0011,,Split from 'Amlodipiin / nifedipiin / felodipiin'.
+Nifedipiin,KKB ja greip,new,SUB_0116,active_substance,drug,override,alias 'nifedipiin' moved from SUB_0011,SUB_0116 is_a GRP_0006; SUB_0116 narrower_than SUB_0011,,Split from 'Amlodipiin / nifedipiin / felodipiin'.
+Lerkanidipiin,KKB ja greip; Tühja kõhuga,new,SUB_0107,active_substance,drug,override,alias added to SUB_0107,SUB_0107 is_a GRP_0006,,
+Amlodipiin,KKB ja greip,new,SUB_0083,active_substance,drug,override,alias 'Amlodipiin' moved from SUB_0011,SUB_0083 narrower_than SUB_0011,,Split from the combined seed concept 'Amlodipiin / nifedipiin / felodipiin'.
+Verapamiil,KKB ja greip,new,SUB_0136,active_substance,drug,override,alias 'Verapamiil' moved from SUB_0065,SUB_0136 is_a GRP_0006; SUB_0136 narrower_than SUB_0065,,Split from 'Verapamiil/diltiaseem'.
+Diltiaseem,KKB ja greip,new,SUB_0089,active_substance,drug,override,alias 'diltiaseem' moved from SUB_0065,SUB_0089 is_a GRP_0006; SUB_0089 narrower_than SUB_0065,,Split from 'Verapamiil/diltiaseem'.
+Alkohol,Alkohol ja varfariin; Alkohol ja antibiootikumid; Alkohol ja diabeediravimid; Alkohol ja valuvaigistid; Alkohol ja bensodiasepiinid; Alkohol ja opioidid; Alkohol ja metotreksaat,existing,ITEM_0013,lifestyle_factor,lifestyle,exact,,,,
+Klassi üldpõhimõte,Alkohol ja antibiootikumid,new (shared),GRP_0002,drug_group,drug,override,,,,'Class general principle' on the antibiotics tab = antibiotics as a class.
+Metronidasool,Alkohol ja antibiootikumid,existing,SUB_0016,active_substance,drug,exact,,,,
+Tinidasool,Alkohol ja antibiootikumid,new,SUB_0132,active_substance,drug,override,alias added to SUB_0132,SUB_0132 is_a GRP_0002,,
+Tsefotetaan,Alkohol ja antibiootikumid,new,SUB_0134,active_substance,drug,override,alias 'tsefotetaan' moved from SUB_0017,SUB_0134 is_a SUB_0017,,
+Tsefoperasoon,Alkohol ja antibiootikumid,new,SUB_0133,active_substance,drug,override,alias added to SUB_0133,SUB_0133 is_a SUB_0017,,
+Linesoliid,Alkohol ja antibiootikumid,existing,SUB_0034,active_substance,drug,override,alias added to SUB_0034,,,Seed spells it 'Linezoliid'.
+Doksütsükliin,Alkohol ja antibiootikumid,existing,SUB_0018,active_substance,drug,exact,,,,
+Isoniasiid,Alkohol ja antibiootikumid; Tühja kõhuga,existing,SUB_0057,active_substance,drug,exact,,,,
+Amoksitsilliin,Alkohol ja antibiootikumid,new,SUB_0084,active_substance,drug,override,alias added to SUB_0084,SUB_0084 is_a GRP_0002,Amoksitsilliin; penitsilliin V,
+Penitsilliin V,Alkohol ja antibiootikumid,new,SUB_0122,active_substance,drug,override,alias added to SUB_0122,SUB_0122 is_a GRP_0002,Amoksitsilliin; penitsilliin V,
+Amoksitsilliin; penitsilliin V,Alkohol ja antibiootikumid,alternatives,SUB_0084;SUB_0122,active_substance;active_substance,drug;drug,override,,SUB_0084 is_a GRP_0002; SUB_0122 is_a GRP_0002,,Any one of the listed members.
+Klassi üldpõhimõte,Alkohol ja diabeediravimid,new (shared),GRP_0004,drug_group,drug,override,,,,'Class general principle' on the diabetes drugs tab = glucose-lowering drugs as a class.
+Insuliinid,Alkohol ja diabeediravimid,existing,SUB_0025,active_substance,drug,override,alias added to SUB_0025,,,
+Gliklasiid,Alkohol ja diabeediravimid,new,SUB_0097,active_substance,drug,override,alias 'gliklasiid' moved from SUB_0026,SUB_0097 is_a SUB_0026,Gliklasiid; glimepiriid (sulfonüüluuread),
+Glimepiriid,Alkohol ja diabeediravimid,new,SUB_0098,active_substance,drug,override,alias added to SUB_0098,SUB_0098 is_a SUB_0026,Gliklasiid; glimepiriid (sulfonüüluuread),
+Gliklasiid; glimepiriid (sulfonüüluuread),Alkohol ja diabeediravimid,alternatives,SUB_0097;SUB_0098,active_substance;active_substance,drug;drug,override,,SUB_0097 is_a SUB_0026; SUB_0098 is_a SUB_0026,,Any one of the listed members.
+Metformiin,Alkohol ja diabeediravimid,existing,SUB_0024,active_substance,drug,exact,,,,
+SGLT2 inhibiitorid,Alkohol ja diabeediravimid,existing,SUB_0075,drug_group,drug,exact,,,SGLT2 inhibiitorid; empagliflosiin,
+Empagliflosiin,Alkohol ja diabeediravimid,new,SUB_0091,active_substance,drug,override,alias added to SUB_0091,SUB_0091 is_a SUB_0075,SGLT2 inhibiitorid; empagliflosiin,
+SGLT2 inhibiitorid; empagliflosiin,Alkohol ja diabeediravimid,alternatives,SUB_0075;SUB_0091,drug_group;active_substance,drug;drug,override,,SUB_0091 is_a SUB_0075,,The class or its named example.
+GLP-1 agonistid,Alkohol ja diabeediravimid,existing,SUB_0076,drug_group,drug,exact,,,GLP-1 agonistid (semaglutiid); DPP-4 inhibiitorid (sitagliptiin),
+Semaglutiid,Alkohol ja diabeediravimid,new,SUB_0127,active_substance,drug,override,alias added to SUB_0127,SUB_0127 is_a SUB_0076,GLP-1 agonistid (semaglutiid); DPP-4 inhibiitorid (sitagliptiin),
+DPP-4 inhibiitorid,Alkohol ja diabeediravimid,new,GRP_0005,drug_group,drug,override,alias added to GRP_0005,,GLP-1 agonistid (semaglutiid); DPP-4 inhibiitorid (sitagliptiin),
+Sitagliptiin,Alkohol ja diabeediravimid,new,SUB_0130,active_substance,drug,override,alias added to SUB_0130,SUB_0130 is_a GRP_0005,GLP-1 agonistid (semaglutiid); DPP-4 inhibiitorid (sitagliptiin),
+GLP-1 agonistid (semaglutiid); DPP-4 inhibiitorid (sitagliptiin),Alkohol ja diabeediravimid,alternatives,SUB_0076;SUB_0127;GRP_0005;SUB_0130,drug_group;active_substance;drug_group;active_substance,drug;drug;drug;drug,override,,SUB_0127 is_a SUB_0076; SUB_0130 is_a GRP_0005,,Two classes with one named example each.
+Ibuprofeen,Alkohol ja valuvaigistid,new,SUB_0100,active_substance,drug,override,alias 'ibuprofeen' moved from ITEM_0018,SUB_0100 is_a SUB_0039,"MSPVA-d: ibuprofeen, naprokseen, diklofenak; aspiriin",
+Naprokseen,Alkohol ja valuvaigistid,new,SUB_0114,active_substance,drug,override,alias 'naprokseen' moved from SUB_0039,SUB_0114 is_a SUB_0039,"MSPVA-d: ibuprofeen, naprokseen, diklofenak; aspiriin",
+Diklofenak,Alkohol ja valuvaigistid,new,SUB_0088,active_substance,drug,override,alias added to SUB_0088,SUB_0088 is_a SUB_0039,"MSPVA-d: ibuprofeen, naprokseen, diklofenak; aspiriin",
+Aspiriin,Alkohol ja valuvaigistid,existing,SUB_0041,active_substance,drug,exact,,,"MSPVA-d: ibuprofeen, naprokseen, diklofenak; aspiriin",
+"MSPVA-d: ibuprofeen, naprokseen, diklofenak; aspiriin",Alkohol ja valuvaigistid,alternatives,SUB_0100;SUB_0114;SUB_0088;SUB_0041,active_substance;active_substance;active_substance;active_substance,drug;drug;drug;drug,override,,SUB_0088 is_a SUB_0039; SUB_0100 is_a SUB_0039; SUB_0114 is_a SUB_0039,,Any one of the listed members.
+Paratsetamool,Alkohol ja valuvaigistid,existing,SUB_0040,active_substance,drug,exact,,,,
+"Opioidi sisaldavad kombinatsioonid, nt tramadool/paratsetamool",Alkohol ja valuvaigistid,new (shared),GRP_0007,drug_group,drug,override,alias added to GRP_0007,GRP_0007 is_a SUB_0047,,
+Diasepaam,Alkohol ja bensodiasepiinid,new,SUB_0087,active_substance,drug,override,alias added to SUB_0087,SUB_0087 is_a SUB_0046,"Kogu rühm: diasepaam, alprasolaam, lorasepaam, oksasepaam",
+Alprasolaam,Alkohol ja bensodiasepiinid,new,SUB_0080,active_substance,drug,override,alias 'alprasolaam' moved from SUB_0046,SUB_0080 is_a SUB_0046,"Kogu rühm: diasepaam, alprasolaam, lorasepaam, oksasepaam",
+Lorasepaam,Alkohol ja bensodiasepiinid,new,SUB_0108,active_substance,drug,override,alias added to SUB_0108,SUB_0108 is_a SUB_0046,"Kogu rühm: diasepaam, alprasolaam, lorasepaam, oksasepaam",
+Oksasepaam,Alkohol ja bensodiasepiinid,new,SUB_0117,active_substance,drug,override,alias added to SUB_0117,SUB_0117 is_a SUB_0046,"Kogu rühm: diasepaam, alprasolaam, lorasepaam, oksasepaam",
+"Kogu rühm: diasepaam, alprasolaam, lorasepaam, oksasepaam",Alkohol ja bensodiasepiinid,alternatives,SUB_0087;SUB_0080;SUB_0108;SUB_0117,active_substance;active_substance;active_substance;active_substance,drug;drug;drug;drug,override,,SUB_0080 is_a SUB_0046; SUB_0087 is_a SUB_0046; SUB_0108 is_a SUB_0046; SUB_0117 is_a SUB_0046,,Whole group listed as members: any one of these.
+Morfiin,Alkohol ja opioidid,new,SUB_0113,active_substance,drug,override,alias added to SUB_0113,SUB_0113 is_a SUB_0047,"Kogu rühm; morfiin, oksükodoon, kodeiin",
+Oksükodoon,Alkohol ja opioidid,new,SUB_0118,active_substance,drug,override,alias 'oksükodoon' moved from SUB_0047,SUB_0118 is_a SUB_0047,"Kogu rühm; morfiin, oksükodoon, kodeiin",
+Kodeiin,Alkohol ja opioidid,new,SUB_0102,active_substance,drug,override,alias added to SUB_0102,SUB_0102 is_a SUB_0047,"Kogu rühm; morfiin, oksükodoon, kodeiin",
+"Kogu rühm; morfiin, oksükodoon, kodeiin",Alkohol ja opioidid,alternatives,SUB_0113;SUB_0118;SUB_0102,active_substance;active_substance;active_substance,drug;drug;drug,override,,SUB_0102 is_a SUB_0047; SUB_0113 is_a SUB_0047; SUB_0118 is_a SUB_0047,,Any one of the listed members.
+Tramadool,Alkohol ja opioidid,existing,SUB_0048,active_substance,drug,exact,,,,
+Buprenorfiin,Alkohol ja opioidid,new,SUB_0086,active_substance,drug,override,alias added to SUB_0086,SUB_0086 is_a SUB_0047,,
+"Metotreksaat, eeskätt väikese annusega RA-ravi",Alkohol ja metotreksaat,existing,SUB_0056,active_substance,drug,override,,,,"Methotrexate; the low-dose RA context stays in the case's conditions text, not in the concept."
+Alendronaat,Tühja kõhuga,existing,SUB_0007,active_substance,drug,exact,,,,
+"Risedronaat, tavaline tablett",Tühja kõhuga,formulation,FORM_0005,formulation,drug,override,alias added to FORM_0005,FORM_0005 is_a SUB_0124,,
+Ibandronaat 150 mg osteoporoosiravis,Tühja kõhuga,formulation,FORM_0004,formulation,drug,override,alias added to FORM_0004,FORM_0004 is_a SUB_0099,,
+Levotüroksiini tabletid,Tühja kõhuga,formulation,FORM_0003,formulation,drug,override,alias added to FORM_0003,FORM_0003 is_a SUB_0004,,
+Rybelsus (suukaudne semaglutiid),Tühja kõhuga,formulation,FORM_0008,formulation,drug,override,alias added to FORM_0008,FORM_0008 is_a SUB_0127,,
+"Rauasoolad, nt raudsulfaat",Tühja kõhuga,new (shared),SUP_0002,supplement,supplement,override,alias added to SUP_0002,,,Iron salts in general = oral iron supplement; Raudsulfaat (SUP_0003) is the specific salt.
+Flukloksatsilliin,Tühja kõhuga,new,SUB_0095,active_substance,drug,override,alias added to SUB_0095,SUB_0095 is_a GRP_0002,,
+Rifampitsiin,Tühja kõhuga,existing,SUB_0058,active_substance,drug,exact,,,,
+Lansoprasool,Tühja kõhuga,new,SUB_0105,active_substance,drug,override,alias added to SUB_0105,SUB_0105 is_a SUB_0053,,
+Pantoprasool,Tühja kõhuga,new,SUB_0120,active_substance,drug,override,alias 'pantoprasool' moved from SUB_0052,SUB_0120 is_a SUB_0053,,Seed alias on the combined SUB_0052 'PPI-d: omeprasool/pantoprasool' is re-pointed.
+Omeprasool,Tühja kõhuga,new,SUB_0119,active_substance,drug,override,alias added to SUB_0119,SUB_0119 is_a SUB_0053,,
+Abirateroon (Zytiga tavapreparaat),Tühja kõhuga,formulation,FORM_0007,formulation,drug,override,alias added to FORM_0007,FORM_0007 is_a SUB_0079,,Conventional (Zytiga) tablets; other abiraterone formulations differ in food effect.
+Rosuvastatiin,Päevaaeg,new,SUB_0126,active_substance,drug,override,alias added to SUB_0126,,,
+"Prednisoloon, tavaline üks kord päevas skeem",Päevaaeg,new (shared),SUB_0123,active_substance,drug,override,,,,"Prednisolone; the once-daily regimen is the timing rule's content, not a concept."
+Furosemiid,Päevaaeg,new,SUB_0096,active_substance,drug,override,alias added to SUB_0096,SUB_0096 is_a SUB_0064,,
+Mirtasapiin,Päevaaeg,new,SUB_0112,active_substance,drug,override,alias added to SUB_0112,,,
+Zolpideem,Päevaaeg,new,SUB_0137,active_substance,drug,override,alias added to SUB_0137,SUB_0137 is_a SUB_0051,,Seed has only the group 'Z-ravimid: zolpideem/zopikloon'.
+"Metüülfenidaat, lühitoimeline Ritalin",Päevaaeg,formulation,FORM_0009,formulation,drug,override,alias added to FORM_0009,FORM_0009 is_a SUB_0110,,
+Suukaudsed bisfosfonaadid,Päevaaeg,existing,SUB_0022,drug_group,drug,override,alias added to SUB_0022,,,Seed 'Bisfosfonaadid: alendronaat/risedronaat' (retyped to drug_group).
+Rybelsus,Päevaaeg,new (shared),FORM_0008,formulation,drug,override,alias added to FORM_0008,FORM_0008 is_a SUB_0127,,
+Vererõhuravimid üldiselt,Päevaaeg,existing,SUB_0069,active_substance,drug,override,alias added to SUB_0069,,,
+Suukaudne raud,Päevaaeg,new (shared),SUP_0002,supplement,supplement,override,alias added to SUP_0002,,,
+
+# retyped seed concepts
+Naistepuna,,retype,ITEM_0026,supplement,supplement,override,,,,"was food_group/food_drink: Naistepuna (St John's wort) is a herbal supplement, not a food group."
+Alkohol,,retype,ITEM_0013,lifestyle_factor,lifestyle,override,,,,was food_group/food_drink: Alkohol: intake pattern matters (binge vs chronic); drug_lifestyle rules.
+Hormonaalsed kontratseptiivid,,retype,ITEM_0046,drug_group,drug,override,,,,"was food_group/food_drink: Hormonaalsed kontratseptiivid are medicines, not a food group."
+"Tsefalosporiinid, eriti tsefoperasoon/tsefotetaan",,retype,SUB_0017,drug_group,drug,override,,,,"was active_substance/drug: Receives is_a members (tsefotetaan, tsefoperasoon)."
+Bisfosfonaadid: alendronaat/risedronaat,,retype,SUB_0022,drug_group,drug,override,,,,"was active_substance/drug: Receives is_a members (ibandronaat, risedronaat)."
+Sulfonüüluuread: glimepiriid/gliklasiid,,retype,SUB_0026,drug_group,drug,override,,,,"was active_substance/drug: Receives is_a members (gliklasiid, glimepiriid)."
+MSPVA-d: ibuprofeen/naprokseen,,retype,SUB_0039,drug_group,drug,override,,,,"was active_substance/drug: Receives is_a members (ibuprofeen, naprokseen, diklofenak)."
+SSRI/SNRI,,retype,SUB_0045,drug_group,drug,override,,,,"was active_substance/drug: Receives is_a members (sertraliin, paroksetiin)."
+Bensodiasepiinid: diasepaam/alprasolaam,,retype,SUB_0046,drug_group,drug,override,,,,was active_substance/drug: Receives is_a members (benzodiazepines).
+Opioidid: morfiin/oksükodoon/tramadool,,retype,SUB_0047,drug_group,drug,override,,,,was active_substance/drug: Receives is_a members (opioids).
+PPI-d,,retype,SUB_0053,drug_group,drug,override,,,,"was active_substance/drug: PPI-d: receives is_a members (omeprasool, pantoprasool, lansoprasool)."
+Loop-diureetikumid: furosemiid,,retype,SUB_0064,drug_group,drug,override,,,,was active_substance/drug: Receives is_a member (furosemiid).
+HIV proteaasi inhibiitorid,,retype,SUB_0070,drug_group,drug,override,,,,was active_substance/drug: Receives is_a member (indinaviir).
+SGLT2 inhibiitorid,,retype,SUB_0075,drug_group,drug,override,,,,was active_substance/drug: Receives is_a member (empagliflosiin).
+GLP-1 agonistid,,retype,SUB_0076,drug_group,drug,override,,,,was active_substance/drug: Receives is_a member (semaglutiid).
+Z-ravimid: zolpideem/zopikloon,,retype,SUB_0051,drug_group,drug,override,,,,was active_substance/drug: Receives is_a member (zolpideem).
+# rejected seed aliases
+naprokseen,,reject_alias,ITEM_0018,,,override,alias id 653 rejected,,,'Naprokseen' now has its own concept SUB_0114
+greibimahl,,reject_alias,ITEM_0010,,,override,alias id 626 rejected,,,'Greibimahl' now has its own concept ITEM_0059
+piim,,reject_alias,ITEM_0008,,,override,alias id 184 rejected,,,'Piim' now has its own concept ITEM_0063
+lagrits,,reject_alias,ITEM_0022,,,override,alias id 668 rejected,,,Licorice is not 'Tsink/raud'.
+soja,,reject_alias,ITEM_0032,,,override,alias id 695 rejected,,,Soy is not 'Kofeiini järsk vähendamine'.
+naistepuna,,reject_alias,ITEM_0013,,,override,alias id 637 rejected,,,St John's wort is not alcohol.
+alkohol,,reject_alias,ITEM_0012,,,override,alias id 630 rejected,,,Alcohol is not cranberry.
+kaltsium,,reject_alias,ITEM_0028,,,override,alias id 686 rejected,,,Calcium is not 'Suitsetamine ja järsk loobumine'.
+magneesium,,reject_alias,ITEM_0029,,,override,alias id 688 rejected,,,Magnesium is not 'Suitsetamine ja kofeiin'.
+aspiriin,,reject_alias,ITEM_0018,,,override,alias id 654 rejected,,,Aspirin is not iron (Raud).

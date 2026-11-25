@@ -1,6 +1,6 @@
 name: Database smoke test
 
-# Builds the standalone db/ package from scratch (schema, seed, enrichment)
+# Builds the standalone db/ package from scratch (schema, seed, migrations, workbook import)
 # and runs db/tests/smoke.sql against it. See wiki/database.md.
 
 on:
