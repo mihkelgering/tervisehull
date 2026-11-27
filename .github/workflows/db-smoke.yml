@@ -1,0 +1,50 @@
+name: Database smoke test
+
+# Builds the standalone db/ package from scratch (schema, seed, migrations, workbook import)
+# and runs db/tests/smoke.sql against it. See wiki/database.md.
+
+on:
+  pull_request:
+    paths:
+      - "db/**"
+      - ".github/workflows/db-smoke.yml"
+  push:
+    branches: [main]
+    paths:
+      - "db/**"
+      - ".github/workflows/db-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: db-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      # The healthcheck connects over TCP, which the entrypoint's temporary
+      # init server doesn't accept, so --wait returns only after db/init/*.sql
+      # has run. A failing init script stops the container and fails this step.
+      - name: Start database
+        run: docker compose -f db/compose.yml up -d --wait --wait-timeout 120
+
+      - name: Run smoke test
+        run: |
+          docker compose -f db/compose.yml exec -T postgres \
+            psql -X -v ON_ERROR_STOP=1 -U tervisehull -d tervisehull \
+            < db/tests/smoke.sql
+
+      - name: Database logs
+        if: failure()
+        run: docker compose -f db/compose.yml logs postgres
+
+      - name: Stop database
+        if: always()
+        run: docker compose -f db/compose.yml down -v

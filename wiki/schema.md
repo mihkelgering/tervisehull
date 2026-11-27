@@ -15,6 +15,8 @@ https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 | `roadmap.md` | Product purpose, target users, planned/needed features, status |
 | `architecture.md` | Monorepo shape, service boundaries, deployment topology |
 | `backend.md` | Spring Boot service: packages, endpoints, config |
+| `database.md` | Standalone health knowledge DB: run, contents, gate/matcher behaviour |
+| `decisions.md` | Accepted health knowledge model decisions and their tensions |
 | `frontend.md` | SvelteKit app: routes, structure, config |
 | `operations.md` | Local dev, env vars, Railway deployment |
 | `log.md` | Append-only history of wiki changes |

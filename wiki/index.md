@@ -14,6 +14,10 @@ maintaining this wiki (ingesting new work, querying for context, or linting).
   deployment topology.
 - [backend.md](backend.md) — Spring Boot service: layout, endpoints, config, data
   layer, build/run.
+- [database.md](database.md) — standalone health knowledge DB (`db/`): run,
+  contents, publication gate and matcher behaviour; not yet integrated.
+- [decisions.md](decisions.md) — health knowledge model decisions: product
+  boundary, data-model decisions, contradiction log, privacy.
 - [frontend.md](frontend.md) — SvelteKit app: layout, config, build/run.
 - [operations.md](operations.md) — local dev, env vars, Railway deployment, CI/CD.
 
